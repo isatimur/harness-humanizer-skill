@@ -28,6 +28,12 @@ in any blog post?
 - **Generic filler:** intensifiers ("really", "very", "truly", "incredibly"),
   manufactured stakes ("in today's fast-paced world"), throat-clearing openers.
 
+For the full taxonomy of tells — each one, why it reads as AI, and which detector
+type catches it (or why none can) — see `slop-catalogue.md`. Note that the
+detector surfaces *candidates* by surface pattern; this rubric assigns the band.
+A clean-looking paragraph can still be **weak** or **fail** if it makes no claim
+(hollowness is invisible to any regex — only the removal test below catches it).
+
 ## The two tests
 
 1. **Hostile-editor test:** would a sharp editor leave this sentence on the page,

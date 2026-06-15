@@ -42,6 +42,13 @@ It returns JSON spans (hedge stems, listicle openers, em-dash density,
 "in today's…", filler intensifiers, etc.). These are **candidates, not
 verdicts** — you still judge every paragraph.
 
+Optionally, `python3 scripts/flag_slop.py --score <file>` returns a per-paragraph
+`slop_band`. Treat it as a **surface-tell meter, not a humanness score**: it
+measures how many slop patterns appear, *not* whether a real claim is present. A
+paragraph with zero tells can still be hollow and `fail` the rubric — so a high
+`slop_band` never excuses you from step 2. See `references/slop-catalogue.md` for
+which tells the detector can and cannot see.
+
 **2. Judge.** Score each paragraph against `references/rubric.md` →
 `strong | moderate | weak | fail`, with a one-line reason. The bar is the
 hostile-editor test: *would this survive a red pen? does removing it lose
@@ -82,3 +89,6 @@ The human or calling agent decides what to accept.
   anti-pattern catalogue. Apply it for step 4.
 - `references/examples.md` — before→after pairs, "flag don't fabricate" cases,
   and over-correction PASS/FAIL pairs. Consult when a rewrite is non-obvious.
+- `references/slop-catalogue.md` — the full taxonomy: every tell, why it reads as
+  AI, the detector type that catches it (or why none can). The map of the
+  detector's blind spots.

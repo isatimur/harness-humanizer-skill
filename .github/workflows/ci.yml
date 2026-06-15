@@ -1,0 +1,27 @@
+name: ci
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        # The "stdlib-only, just works" claim is only true if it's true across
+        # versions. No pip install step anywhere — that is the proof.
+        python-version: ["3.9", "3.10", "3.11", "3.12", "3.13"]
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Zero-dependency guard
+        run: python3 tests/check_no_deps.py
+      - name: Detector self-test
+        run: python3 scripts/flag_slop.py --selftest
+      - name: Detector eval (gated)
+        run: python3 tests/eval.py

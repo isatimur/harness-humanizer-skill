@@ -1,0 +1,12 @@
+{
+  "_comment": "Gates for tests/eval.py. Set just below the first green run, ratchet up as the corpus grows real-world samples. overcorrection_min_recall is held at 1.0 on purpose: the detector must catch every lexically-detectable edgy-slop sample (the project thesis). Semantic edgy-slop with no trigger words belongs in references/, not this gated corpus.",
+  "min_recall": 0.95,
+  "min_clean_specificity": 0.95,
+  "max_false_positives": 1,
+  "overcorrection_min_recall": 1.0,
+  "per_type_min_recall": {
+    "candor": 1.0,
+    "stakes": 1.0,
+    "emdash": 1.0
+  }
+}
