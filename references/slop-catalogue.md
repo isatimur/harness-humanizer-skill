@@ -34,7 +34,7 @@ candidates; the rubric (`rubric.md`) decides bands; this file explains the tells
 | Negative-parallel cadence | The "it's not X, it's Y" LLM rhythm | `negparallel` | "It's not just a database, it's a platform." |
 | LLM lexicon | "delve / tapestry / realm / testament" | `delve` | "delve into the rich tapestry" |
 | Wrap-up scaffolding | "In conclusion / the key takeaway is" | `conclusion` | "In conclusion, it saves time." |
-| Corporate uplift | "empower / leverage / seamless / robust" — low weight | `empower` | "empowers teams to leverage cutting-edge tools" |
+| Corporate uplift | marketing-register buzzwords; *sentence-aware* (see below) | `empower` | "empowers teams to leverage cutting-edge tools" |
 | Rule-of-three triplet | Three buzz adjectives in a row | `triadic` | "fast, reliable, and scalable" |
 | Call to action | "Buckle up / without further ado / read on" | `calltoaction` | "Buckle up, this changes everything." |
 | Em-dash theatrics | Dashes manufacturing unearned emphasis | `emdash` | "It was fast — clean — and correct — somehow." |
@@ -46,6 +46,27 @@ listicle and stakes are strong signals (20); a lone degree intensifier is weak
 (6). This is why "very old browsers" surfaces as a *candidate* but doesn't drag a
 paragraph's `slop_band` down — only **clusters** of tells accumulate enough weight
 to matter. The detector flags; it does not convict.
+
+### The `empower` rule is sentence-aware
+
+"leverage", "robust", "unlock", "harness", "streamline", "elevate" appear
+constantly in honest engineering prose ("we leverage connection pooling", "robust
+error handling"). Flagging them there would be noise. So `empower` splits its
+vocabulary in two:
+
+- **Marketing-register words** — "empower", "seamless", "frictionless", "synergy",
+  "cutting-edge", "state-of-the-art", "best-in-class", "world-class",
+  "game-changer", "supercharge", "turnkey", "paradigm shift". These almost never
+  occur in honest technical writing, so they **fire on their own**.
+- **Rider words** — "leverage", "robust", "unlock", "harness", "elevate",
+  "streamline". These **fire only when a marketing word shares the same
+  sentence** — i.e. the register is already slop. On their own they stay silent.
+
+So "We leverage Postgres connection pooling to reduce tail latency" is silent,
+while "Our seamless platform empowers teams to leverage cutting-edge tooling"
+flags the whole cluster. This is still surface-pattern matching, not semantics —
+a marketing sentence with zero buzzwords ("our solution helps you do more") slips
+through, and that's the detector's documented boundary, not a bug.
 
 ---
 

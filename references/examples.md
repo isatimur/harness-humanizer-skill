@@ -105,9 +105,13 @@ a named option is.
 > caches build artifacts across branches, so a green main makes feature branches
 > build in seconds.
 
-Why: "empower/leverage/seamless/robust" are low-weight candidates — they flag, but
-they're only slop when they *replace* a mechanism. The fix is naming the
-mechanism, not deleting the words. If there's no mechanism to name, HOLLOW.
+Why: the `empower` rule is sentence-aware. The marketing words here
+("empowers", "seamless", "cutting-edge") flag on their own; the riders
+("leverage", "robust") flag because they share the sentence with them. The fix is
+naming the mechanism, not deleting the words. If there's no mechanism to name,
+HOLLOW. (Note: standalone "we leverage connection pooling" or "robust error
+handling" in honest technical prose is deliberately *not* flagged — only the
+marketing register is.)
 
 ## Rewordable: vague quantifier (a wide variety of)
 

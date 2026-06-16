@@ -4,6 +4,18 @@ All notable changes to this project are documented here. Format follows
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/); this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.2.1] — 2026-06-16
+
+### Changed
+- **`empower` rule is now sentence-aware.** Marketing-register buzzwords
+  ("empower", "seamless", "cutting-edge", "game-changer", "synergy", …) still
+  fire on their own, but ambiguous riders common in honest engineering prose
+  ("leverage", "robust", "unlock", "harness", "streamline", "elevate") fire
+  **only when a marketing word shares the sentence**. So "we leverage connection
+  pooling" and "robust error handling" stay silent, while "our seamless platform
+  empowers teams to leverage cutting-edge tooling" still flags the whole cluster.
+  Removes the last class of false positives on clean technical prose.
+
 ## [0.2.0] — 2026-06-15
 
 The "prove it works" release. The skill is now measurable, harder to fool, and
