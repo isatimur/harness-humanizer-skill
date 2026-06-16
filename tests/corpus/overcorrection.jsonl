@@ -1,0 +1,6 @@
+{"id": "oc-candor-001", "text": "Let's be honest: most engineers are just typing and hoping.", "expect": ["candor"], "band": "weak", "source": "examples.md", "note": "FAIL rewrite of testing example — performed candor must be caught"}
+{"id": "oc-candor-002", "text": "Here's the thing, nobody actually ships clean code.", "expect": ["candor"], "band": "weak", "source": "synthetic", "note": "here's-the-thing performed candor"}
+{"id": "oc-candor-003", "text": "I'll be honest, this framework genuinely changed how I work.", "expect": ["candor", "intensifier_filler"], "band": "weak", "source": "synthetic", "note": "fake first-person candor + flavor adverb"}
+{"id": "oc-candor-stakes-001", "text": "Let's be real: in today's world, you either adapt or die.", "expect": ["candor", "stakes"], "band": "fail", "source": "synthetic", "note": "candor + manufactured stakes — louder slop"}
+{"id": "oc-empower-001", "text": "Truth be told, this is a real game-changer.", "expect": ["candor", "empower"], "band": "fail", "source": "synthetic", "note": "performed candor + buzzword"}
+{"id": "oc-emdash-001", "text": "It was bold — brilliant — and utterly — fearless.", "expect": ["emdash"], "band": "weak", "source": "synthetic", "note": "em-dash theatrics manufacturing unearned emphasis"}

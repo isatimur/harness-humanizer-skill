@@ -1,0 +1,21 @@
+{"id": "slop-hedge-001", "text": "It's worth noting that caching can often improve performance.", "expect": ["hedge"], "band": "fail", "source": "examples.md", "note": "classic empty-hedging stem"}
+{"id": "slop-hedge-002", "text": "It's worth noting that, in many cases, caching helps a wide variety of applications.", "expect": ["hedge", "weaselquant"], "band": "fail", "source": "examples.md", "note": "hedging + vague quantifier, both buried over a real claim"}
+{"id": "slop-listicle-001", "text": "There are several important factors to consider when choosing a database.", "expect": ["listicle"], "band": "weak", "source": "examples.md", "note": "listicle stem with no point of view"}
+{"id": "slop-listicle-002", "text": "Here are a few things to keep in mind before you start.", "expect": ["listicle"], "band": "weak", "source": "synthetic", "note": "here-are-a-few opener"}
+{"id": "slop-transition-001", "text": "Moreover, the system is built with modern tools.", "expect": ["transition"], "band": "weak", "source": "examples.md", "note": "dead transition gluing a non-claim"}
+{"id": "slop-transition-002", "text": "Furthermore, performance remains a concern.", "expect": ["transition"], "band": "weak", "source": "synthetic", "note": "furthermore opener"}
+{"id": "slop-stakes-001", "text": "In today's fast-paced world, speed matters more than ever.", "expect": ["stakes"], "band": "fail", "source": "examples.md", "note": "manufactured stakes"}
+{"id": "slop-candor-001", "text": "Let's be honest, nobody actually reads the docs.", "expect": ["candor"], "band": "weak", "source": "synthetic", "note": "performed candor"}
+{"id": "slop-rhetq-001", "text": "Ever wondered why your build is slow?", "expect": ["rhetq"], "band": "weak", "source": "synthetic", "note": "rhetorical-question opener"}
+{"id": "slop-notonly-001", "text": "This is not only fast but also cheap to run.", "expect": ["notonly"], "band": "moderate", "source": "synthetic", "note": "not-only-but-also padding"}
+{"id": "slop-intensifier-001", "text": "This is a truly elegant and genuinely useful abstraction.", "expect": ["intensifier_filler"], "band": "moderate", "source": "synthetic", "note": "flavor-adverb filler (truly/genuinely)"}
+{"id": "slop-weaselquant-001", "text": "We evaluated a wide variety of options before deciding.", "expect": ["weaselquant"], "band": "moderate", "source": "synthetic", "note": "a wide variety of"}
+{"id": "slop-weaselquant-002", "text": "There are numerous ways to configure the cache.", "expect": ["weaselquant"], "band": "moderate", "source": "synthetic", "note": "numerous as vague quantifier"}
+{"id": "slop-negparallel-001", "text": "It's not just a database, it's a platform.", "expect": ["negparallel"], "band": "weak", "source": "synthetic", "note": "it's-not-just-X-it's-Y cadence"}
+{"id": "slop-delve-001", "text": "Let's delve into the rich tapestry of modern frameworks.", "expect": ["delve"], "band": "fail", "source": "synthetic", "note": "delve + tapestry, the LLM lexicon"}
+{"id": "slop-conclusion-001", "text": "In conclusion, the framework saves time.", "expect": ["conclusion"], "band": "weak", "source": "synthetic", "note": "wrap-up scaffolding"}
+{"id": "slop-empower-001", "text": "Our platform empowers teams to leverage cutting-edge tooling.", "expect": ["empower"], "band": "fail", "source": "synthetic", "note": "corporate-uplift buzzword cluster"}
+{"id": "slop-triadic-001", "text": "It's fast, reliable, and scalable out of the box.", "expect": ["triadic"], "band": "moderate", "source": "synthetic", "note": "rule-of-three buzzword triplet"}
+{"id": "slop-calltoaction-001", "text": "Buckle up, because this changes everything.", "expect": ["calltoaction"], "band": "weak", "source": "synthetic", "note": "throat-clearing call to action"}
+{"id": "slop-calltoaction-002", "text": "Without further ado, let's get into it.", "expect": ["calltoaction"], "band": "weak", "source": "synthetic", "note": "without-further-ado opener"}
+{"id": "slop-emdash-001", "text": "It was fast — clean — and correct — somehow.", "expect": ["emdash"], "band": "moderate", "source": "examples.md", "note": "em-dash theatrics, >=2 in a sentence"}

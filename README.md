@@ -60,11 +60,34 @@ references/
   rubric.md              # the 4 bands, slop indicators, the two tests, triage rule
   guardrails.md          # fidelity rules + over-correction anti-pattern catalogue
   examples.md            # before→after pairs; flag-don't-fabricate; PASS/FAIL cases
+  slop-catalogue.md      # full taxonomy: each tell → its detector type (or none)
 scripts/
-  flag_slop.py           # stdlib-only regex pre-pass → JSON candidates; --selftest
+  flag_slop.py           # stdlib-only regex pre-pass → JSON candidates; --selftest, --score
+tests/                   # dev-only; omittable from a runtime install
+  corpus/*.jsonl         # labeled slop / clean / over-correction samples
+  eval.py                # deterministic detector gate (recall, specificity, …)
+  thresholds.json        # pass/fail gates
+  fixtures/README.md     # how to contribute a sample
+.github/workflows/ci.yml # self-test + eval across Python 3.9–3.13, no pip install
 ```
 
-Verify the script with `python3 scripts/flag_slop.py --selftest`.
+The runtime skill is just `SKILL.md`, `references/`, and `scripts/` — `tests/`
+and `.github/` are development assets and can be omitted from an install.
+
+## Verify
+
+```bash
+python3 scripts/flag_slop.py --selftest   # detector smoke test
+python3 tests/eval.py                      # full detector eval against the corpus
+python3 tests/check_no_deps.py             # confirm it's still stdlib-only
+```
+
+The detector also emits a per-paragraph **slop score** with
+`python3 scripts/flag_slop.py --score <file>`. That score measures *surface slop
+tells only* — it is **not** a humanness judge. A paragraph with no slop words can
+still be hollow (no claim) and fail the rubric; only a reader or the model loop
+can catch that. A green eval means the candidate-surfacer behaves, never "the
+writing is good."
 
 ## Origin
 
