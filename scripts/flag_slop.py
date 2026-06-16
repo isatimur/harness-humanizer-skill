@@ -28,7 +28,7 @@ import json
 import re
 import sys
 
-__version__ = "0.2.0"
+__version__ = "0.2.1"
 
 # (type, human-readable pattern, compiled regex) — case-insensitive.
 # Adding a rule? Give it a weight in _WEIGHTS and a corpus sample in tests/.
@@ -81,11 +81,9 @@ _RULES = [
     ("conclusion", "wrap-up scaffolding",
      re.compile(r"(?mi)^\s*(in conclusion|to sum up|in summary|to summarize|"
                 r"all in all)\b|\bthe key takeaway( here)? is\b", re.I)),
-    ("empower", "corporate-uplift buzzword",
-     re.compile(r"\b(empower(s|ing)?|leverag(e|es|ing)|unlock(s|ing)?|"
-                r"harness(es|ing)?|elevate(s|d)?|seamless(ly)?|robust|"
-                r"cutting-edge|state-of-the-art|best-in-class|world-class|"
-                r"game-?chang(er|ing)|supercharg(e|es|ing))\b", re.I)),
+    # NB: 'empower' is NOT a plain regex rule — it is sentence-aware (see
+    # _empower_hits) so that standalone "leverage"/"robust" in genuine technical
+    # prose stays silent. Only marketing-register buzzwords fire on their own.
     ("triadic", "rule-of-three buzzword triplet",
      re.compile(r"\b(fast|reliable|scalable|secure|robust|powerful|flexible|"
                 r"intuitive|seamless|efficient|innovative|modern),?\s+"
@@ -109,6 +107,43 @@ _WEIGHTS = {
 }
 
 
+# 'empower' buzzwords, split by how often they appear in HONEST technical prose.
+# Marketing terms almost never do — they fire on their own. Riders (leverage,
+# robust, unlock, …) are common in real engineering writing, so they fire ONLY
+# when a marketing term shares the sentence (i.e. the register is already slop).
+_EMPOWER_MARKETING = re.compile(
+    r"\b(empower(s|ing)?|seamless(ly)?|frictionless|turnkey|synerg(y|ies)|"
+    r"cutting-edge|bleeding-edge|state-of-the-art|best-in-class|world-class|"
+    r"game-?chang(er|ing)|supercharg(e|es|ing)|next-generation|paradigm shift)\b",
+    re.I)
+_EMPOWER_RIDER = re.compile(
+    r"\b(leverag(e|es|ing|ed)|robust|unlock(s|ing|ed)?|harness(es|ing)?|"
+    r"elevate(s|d)?|streamlin(e|es|ed|ing))\b", re.I)
+
+
+def _empower_hits(text):
+    """Corporate-uplift buzzwords, sentence-aware.
+
+    Marketing-register words always flag. Ambiguous 'rider' words (leverage,
+    robust, …) flag only when a marketing word shares the sentence — so
+    "we leverage Postgres connection pooling" stays silent while "empowers teams
+    to leverage cutting-edge tooling" does not.
+    """
+    out = []
+    label = "corporate-uplift buzzword"
+    for i, line in enumerate(text.splitlines(), 1):
+        for sent in re.split(r"(?<=[.!?])\s+", line):
+            marketing = list(_EMPOWER_MARKETING.finditer(sent))
+            for m in marketing:
+                out.append({"line": i, "type": "empower", "pattern": label,
+                            "span": m.group(0).strip()[:120]})
+            if marketing:  # register is already marketing → riders count too
+                for m in _EMPOWER_RIDER.finditer(sent):
+                    out.append({"line": i, "type": "empower", "pattern": label,
+                                "span": m.group(0).strip()[:120]})
+    return out
+
+
 def _emdash_hits(text):
     """Flag sentences with >=2 em dashes (theatrics)."""
     out = []
@@ -129,6 +164,7 @@ def flag(text):
             for m in rx.finditer(line):
                 hits.append({"line": i, "type": typ, "pattern": label,
                              "span": m.group(0).strip()[:120]})
+    hits.extend(_empower_hits(text))
     hits.extend(_emdash_hits(text))
     hits.sort(key=lambda h: (h["line"], h["type"]))
     return hits
@@ -233,20 +269,22 @@ def score(text):
 # --- selftest ----------------------------------------------------------------
 
 _SELFTEST = (
-    "It's worth noting that caching helps.\n"          # hedge
-    "There are several key factors to consider here.\n"  # listicle
-    "Moreover, the system is robust.\n"                # transition + empower(robust)
-    "In today's fast-paced world, speed matters.\n"    # stakes
-    "Let's be honest, nobody reads docs.\n"            # candor
-    "This is a truly important and really useful tool.\n"  # filler + degree
-    "It was fast — clean — and obviously correct — somehow.\n"  # emdash
-    "We must delve into the rich tapestry of various options.\n"  # delve+weaselquant
-    "Buckle up, in conclusion the key takeaway is clear.\n"  # calltoaction+conclusion
-    "A cache miss costs the full computation plus storage bookkeeping.\n"  # clean
-    "We support very old browsers for compatibility.\n"  # degree only (legit, low wt)
+    "It's worth noting that caching helps.\n"          # 1  hedge
+    "There are several key factors to consider here.\n"  # 2  listicle
+    "Moreover, the system is robust.\n"                # 3  transition; empower SILENT (standalone robust)
+    "In today's fast-paced world, speed matters.\n"    # 4  stakes
+    "Let's be honest, nobody reads docs.\n"            # 5  candor
+    "This is a truly important and really useful tool.\n"  # 6  filler + degree
+    "It was fast — clean — and obviously correct — somehow.\n"  # 7  emdash
+    "We must delve into the rich tapestry of various options.\n"  # 8  delve+weaselquant
+    "Buckle up, in conclusion the key takeaway is clear.\n"  # 9  calltoaction+conclusion
+    "Our seamless platform empowers teams to leverage cutting-edge tools.\n"  # 10 empower (marketing cluster)
+    "A cache miss costs the full computation plus storage bookkeeping.\n"  # 11 clean
+    "We support very old browsers for compatibility.\n"  # 12 degree only (legit, low wt)
+    "The pipeline is robust and we leverage caching for speed.\n"  # 13 clean (empower riders, no marketing → SILENT)
 )
 # absolute line numbers in _SELFTEST that must produce NO hit
-_CLEAN_LINES = {10}
+_CLEAN_LINES = {11, 13}
 
 
 def _selftest():
@@ -258,14 +296,17 @@ def _selftest():
                 "empower"}
     missing = expected - types
     clean_line_hits = [h for h in hits if h["line"] in _CLEAN_LINES]
-    # the degree-only line (11) must NOT contain a stronger tell than degree
-    degree_line = [h for h in hits if h["line"] == 11]
+    # the degree-only line (12) must NOT contain a stronger tell than degree
+    degree_line = [h for h in hits if h["line"] == 12]
     degree_ok = all(h["type"] == "intensifier_degree" for h in degree_line) \
         and len(degree_line) >= 1
+    # standalone 'robust' (line 3) must NOT raise an empower hit
+    empower_silent_ok = not [h for h in hits
+                             if h["line"] in {3, 13} and h["type"] == "empower"]
     # scoring sanity: slop-heavy text scores low; clean line scores strong
     sc = score(_SELFTEST)
     ok = (not missing and not clean_line_hits and degree_ok
-          and sc["overall"]["slop_band"] in {"weak", "fail"})
+          and empower_silent_ok and sc["overall"]["slop_band"] in {"weak", "fail"})
     print(json.dumps({
         "ok": ok,
         "version": __version__,
@@ -273,6 +314,7 @@ def _selftest():
         "missing": sorted(missing),
         "false_positives_on_clean_line": clean_line_hits,
         "degree_line_ok": degree_ok,
+        "empower_silent_on_standalone_riders": empower_silent_ok,
         "overall_slop_band": sc["overall"]["slop_band"],
         "total_hits": len(hits),
     }, indent=2))

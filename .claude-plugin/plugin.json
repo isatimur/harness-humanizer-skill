@@ -1,6 +1,6 @@
 {
   "name": "harness-humanizer",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Removes AI-slop from prose (empty hedging, listicle stems, smooth transitions, generic filler) and rewrites toward a real point of view — without trading AI-slop for louder slop. Self-scores against an embedded rubric, flags hollow spans instead of fabricating, and reports rather than overwrites.",
   "author": {
     "name": "Timur Isachenko"
