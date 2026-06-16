@@ -1,6 +1,6 @@
 # harness-humanizer
 
-**Version 0.2.1** · stdlib-only, zero-dependency · [Changelog](CHANGELOG.md) · MIT
+**Version 0.2.1** · stdlib-only, zero-dependency · [Website](https://isatimur.github.io/harness-humanizer-skill/) · [Changelog](CHANGELOG.md) · MIT
 
 A portable [Claude Code](https://claude.com/claude-code) skill that turns AI-slop
 prose into writing that survives a hostile editor's red pen — **without** swapping
