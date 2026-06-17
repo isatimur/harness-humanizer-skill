@@ -121,6 +121,26 @@ _RULES = [
      re.compile(r"\b(circle back|double down|move the needle|low-hanging fruit|"
                 r"boil the ocean|take a step back|on the same page|moving forward|"
                 r"lean into|deep dive)\b", re.I)),
+    # --- harvested from stop-slop community PRs (#4, #5, #8); see slop-catalogue.md ---
+    ("assistantvoice", "assistant voice / sycophancy",
+     re.compile(r"\b(great question|good question|i'?d be happy to|i'?m happy to|"
+                r"happy to help|glad you asked|i'?d love to help|"
+                r"as an ai( language model)?|"
+                r"i hope (this (email|message) )?finds you well|"
+                r"i hope (you'?re|all is)( doing)? well)\b", re.I)),
+    ("transformchain", "transformation chain",
+     re.compile(r"\b(\w+) becomes? (\w+)[.,]\s+\2 becomes?\b", re.I)),
+    ("correctivereveal", "corrective reveal / contrarian posturing",
+     re.compile(r"\b(you'?ve been told|here'?s the (actual )?truth"
+                r"|(everyone|they all) says?\b.{0,40}\bthey'?re wrong)\b", re.I)),
+    ("forcedcohesion", "forced cohesion",
+     re.compile(r"\byou can'?t have one without the other\b", re.I)),
+    ("copula", "copula avoidance / significance inflation",
+     re.compile(r"\b(boasts|(serves|stands) as a "
+                r"(testament|reminder|symbol|cornerstone))\b", re.I)),
+    ("hedgestack", "stacked hedges",
+     re.compile(r"\b(might|may|could)\s+(possibly|potentially|perhaps)\b"
+                r"|\b(possibly|perhaps)\s+(might|could|may)\b", re.I)),
 ]
 
 # Aggressive, opt-in rules for `--profile stop-slop`: stop-slop bans these
@@ -147,8 +167,10 @@ _WEIGHTS = {
     "listicle": 20, "stakes": 20, "candor": 18, "rhetq": 18,
     "calltoaction": 16, "delve": 16, "metacommentary": 16, "hedge": 15,
     "throatclear": 15, "conclusion": 14, "emphasis_crutch": 14,
+    "assistantvoice": 18, "correctivereveal": 16,
     "emdash": 12, "weaselquant": 12, "negparallel": 12, "binarycontrast": 12,
-    "neglisting": 12, "transition": 10, "notonly": 10, "intensifier_filler": 10,
+    "neglisting": 12, "transformchain": 14, "forcedcohesion": 12, "hedgestack": 12,
+    "copula": 10, "transition": 10, "notonly": 10, "intensifier_filler": 10,
     "empower": 8, "triadic": 8, "bizjargon": 8, "intensifier_degree": 6,
 }
 
@@ -355,6 +377,12 @@ _SELFTEST = (
     "The answer isn't more servers. It's better caching.\n"  # 17 binarycontrast
     "Let's circle back and double down moving forward.\n"  # 18 bizjargon
     "It wasn't the code. It wasn't the config. It was DNS.\n"  # 19 neglisting
+    "Great question! I'd be happy to help with that.\n"  # 20 assistantvoice
+    "Friction becomes flow. Flow becomes speed.\n"  # 21 transformchain
+    "You've been told indexes are free. Here's the truth: they aren't.\n"  # 22 correctivereveal
+    "You can't have one without the other.\n"  # 23 forcedcohesion
+    "The library boasts a clean API.\n"  # 24 copula
+    "This might possibly be a memory leak.\n"  # 25 hedgestack
 )
 # absolute line numbers in _SELFTEST that must produce NO hit
 _CLEAN_LINES = {11, 13}
@@ -367,7 +395,9 @@ def _selftest():
                 "intensifier_filler", "intensifier_degree", "emdash",
                 "delve", "weaselquant", "calltoaction", "conclusion",
                 "empower", "throatclear", "emphasis_crutch", "metacommentary",
-                "binarycontrast", "bizjargon", "neglisting"}
+                "binarycontrast", "bizjargon", "neglisting", "assistantvoice",
+                "transformchain", "correctivereveal", "forcedcohesion",
+                "copula", "hedgestack"}
     missing = expected - types
     clean_line_hits = [h for h in hits if h["line"] in _CLEAN_LINES]
     # the degree-only line (12) must NOT contain a stronger tell than degree

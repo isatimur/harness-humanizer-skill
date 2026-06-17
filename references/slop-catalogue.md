@@ -44,15 +44,33 @@ candidates; the rubric (`rubric.md`) decides bands; this file explains the tells
 | Binary-contrast cadence | The "the answer isn't X, it's Y" reveal rhythm | `binarycontrast` | "The answer isn't more servers. It's caching." |
 | Negative listing | Staccato "it wasn't X, it wasn't Y, it was Z" | `neglisting` | "It wasn't the code. It wasn't the config. It was DNS." |
 | Business-jargon idiom | Office filler standing in for a verb | `bizjargon` | "Let's circle back and move the needle." |
+| Assistant voice | Chatbot sycophancy / email pleasantry | `assistantvoice` | "Great question! I'd be happy to help." |
+| Transformation chain | "X becomes Y. Y becomes Z." false momentum | `transformchain` | "Friction becomes flow. Flow becomes speed." |
+| Corrective reveal | "You've been told X; here's the truth" posturing | `correctivereveal` | "You've been told tests slow you down. Here's the truth: they don't." |
+| Forced cohesion | Manufactured profundity binding two ideas | `forcedcohesion` | "You can't have one without the other." |
+| Copula inflation | "boasts / serves as a testament" dodging "is/has" | `copula` | "The framework boasts a clean API." |
+| Stacked hedges | Two qualifiers where zero or one belong | `hedgestack` | "It might possibly be a memory leak." |
 
 ### Harvested from stop-slop (and why ours differs)
 
-The last six tells above were catalogued by
+The twelve tells above (from "Throat-clearing opener" down) were catalogued by
 [stop-slop](https://github.com/hardikpandya/stop-slop) (MIT, Hardik Pandya) — an
-excellent, widely-used banned-list skill. We fold its taxonomy into a *runnable,
-weighted, low-false-positive detector* rather than a flat block-list: each pattern
-is idiom-anchored so honest technical prose stays silent (a blanket "ban every
-adverb" match would not). The deeper difference is philosophy — stop-slop
+excellent, widely-used banned-list skill — and its community pull requests:
+assistant-voice and hedge-stacks from
+[PR #4](https://github.com/hardikpandya/stop-slop/pull/4), email pleasantries /
+transformation chains / corrective reveals / forced cohesion from
+[PR #5](https://github.com/hardikpandya/stop-slop/pull/5), and copula inflation +
+the register-aware framing from
+[PR #8](https://github.com/hardikpandya/stop-slop/pull/8). We fold the taxonomy
+into a *runnable, weighted, low-false-positive detector* rather than a flat
+block-list: each pattern is idiom-anchored so honest technical prose stays silent
+(a blanket "ban every adverb" match would not).
+
+PR #8's "register-aware" thesis — different writing contexts tolerate different
+patterns — is the same instinct behind this detector's sentence-aware rules (the
+`empower` rider split, the low-weight `intensifier_degree`). A lone hedge in
+academic prose or an em-dash in narrative is not automatically slop; only clusters
+convict. The deeper difference is philosophy — stop-slop
 *prescribes* a replacement style (be punchy, drop em-dashes, go second-person);
 several of those prescriptions are exactly the over-correction `guardrails.md`
 flags as *louder slop*. That is why `binarycontrast` and `neglisting` live in the
