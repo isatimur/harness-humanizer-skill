@@ -19,6 +19,7 @@ Usage:
     python3 flag_slop.py FILE
     cat text | python3 flag_slop.py
     python3 flag_slop.py --score FILE      # per-paragraph slop_band JSON
+    python3 flag_slop.py --profile stop-slop FILE   # aggressive opt-in rules
     python3 flag_slop.py --selftest
 
 Output: JSON array of {line, type, pattern, span} (default), or the score object
@@ -28,7 +29,7 @@ import json
 import re
 import sys
 
-__version__ = "0.2.1"
+__version__ = "0.3.0"
 
 # (type, human-readable pattern, compiled regex) — case-insensitive.
 # Adding a rule? Give it a weight in _WEIGHTS and a corpus sample in tests/.
@@ -94,16 +95,61 @@ _RULES = [
     ("calltoaction", "throat-clearing call to action",
      re.compile(r"\b(let'?s dive (in|right in)|dive right in|buckle up|"
                 r"stay tuned|without further ado|let'?s get started|read on)\b", re.I)),
+    # --- harvested from stop-slop (MIT, Hardik Pandya); see slop-catalogue.md ---
+    # These extend the taxonomy with tells stop-slop catalogued. Patterns are kept
+    # narrow + idiom-anchored so honest technical prose stays silent (the project's
+    # low-false-positive rule), unlike a blanket banned-word match.
+    ("throatclear", "throat-clearing opener",
+     re.compile(r"\b(the uncomfortable truth is|it turns out(,| that)|"
+                r"let me be clear|the real (problem|question|issue|reason) (is|here)"
+                r"|can we talk about|i'?m going to be honest"
+                r"|i'?ll be honest with you)\b", re.I)),
+    ("emphasis_crutch", "emphasis crutch",
+     re.compile(r"\b(let that sink in|make no mistake|this matters because|"
+                r"here'?s why (that|this) matters)\b", re.I)),
+    ("metacommentary", "meta-commentary scaffolding",
+     re.compile(r"\b(plot twist|spoiler( alert)?|let me walk you through|"
+                r"in this (section|post|article|chapter)[, ]+(we|i)'?ll|"
+                r"as we'?ll see|i want to explore|you already know this,? but)\b", re.I)),
+    ("binarycontrast", "binary-contrast cadence",
+     re.compile(r"\b(the (answer|question|problem|issue) (isn'?t|is not)\b.*?\bit'?s\b"
+                r"|isn'?t the problem[.,]\s+\w+\s+is\b"
+                r"|it'?s not (that )?\w+[.,]\s+it'?s that\b)", re.I)),
+    ("neglisting", "negative listing",
+     re.compile(r"\bit wasn'?t\b.*?\bit wasn'?t\b.*?\bit was\b", re.I)),
+    ("bizjargon", "business-jargon idiom",
+     re.compile(r"\b(circle back|double down|move the needle|low-hanging fruit|"
+                r"boil the ocean|take a step back|on the same page|moving forward|"
+                r"lean into|deep dive)\b", re.I)),
 ]
+
+# Aggressive, opt-in rules for `--profile stop-slop`: stop-slop bans these
+# outright (all adverbs, any em-dash, Wh- openers). We keep them OFF by default
+# because fidelity-first writing tolerates a lone adverb or em-dash — but fans of
+# stop-slop's stricter style can switch them on and still get our non-destructive
+# report + over-correction guardrails on top.
+_PROFILE_EXTRA_RULES = {
+    "stop-slop": [
+        ("adverb_ly", "-ly adverb (stop-slop bans all)",
+         re.compile(r"\b\w{3,}ly\b", re.I)),
+        ("wh_opener", "Wh- question opener (stop-slop bans)",
+         re.compile(r"(?mi)^\s*(what|when|where|which|who|why|how)\b")),
+        ("emdash_any", "any em-dash (stop-slop bans)", re.compile(r"—")),
+    ],
+}
+_PROFILE_EXTRA_WEIGHTS = {
+    "stop-slop": {"adverb_ly": 4, "wh_opener": 8, "emdash_any": 8},
+}
 
 # Severity weights — the tuning surface. Higher = stronger slop tell.
 # Bands align to references/rubric.md cutoffs once turned into a 0..100 score.
 _WEIGHTS = {
     "listicle": 20, "stakes": 20, "candor": 18, "rhetq": 18,
-    "calltoaction": 16, "delve": 16, "hedge": 15, "conclusion": 14,
-    "emdash": 12, "weaselquant": 12, "negparallel": 12,
-    "transition": 10, "notonly": 10, "intensifier_filler": 10,
-    "empower": 8, "triadic": 8, "intensifier_degree": 6,
+    "calltoaction": 16, "delve": 16, "metacommentary": 16, "hedge": 15,
+    "throatclear": 15, "conclusion": 14, "emphasis_crutch": 14,
+    "emdash": 12, "weaselquant": 12, "negparallel": 12, "binarycontrast": 12,
+    "neglisting": 12, "transition": 10, "notonly": 10, "intensifier_filler": 10,
+    "empower": 8, "triadic": 8, "bizjargon": 8, "intensifier_degree": 6,
 }
 
 
@@ -156,11 +202,31 @@ def _emdash_hits(text):
     return out
 
 
-def flag(text):
-    """Line-oriented slop candidates. Output shape is stable since v0.1.0."""
+def _rules_for(profile):
+    """Active rule list for a profile. Default = the fidelity-first set."""
+    if profile and profile != "default":
+        return _RULES + _PROFILE_EXTRA_RULES.get(profile, [])
+    return _RULES
+
+
+def weights_for(profile="default"):
+    """Severity weights for a profile (default + any profile extras)."""
+    w = dict(_WEIGHTS)
+    if profile and profile != "default":
+        w.update(_PROFILE_EXTRA_WEIGHTS.get(profile, {}))
+    return w
+
+
+def flag(text, profile="default"):
+    """Line-oriented slop candidates. Output shape is stable since v0.1.0.
+
+    `profile` selects the rule set: "default" is the fidelity-first detector;
+    "stop-slop" adds the aggressive opt-in rules (all adverbs, Wh- openers, any
+    em-dash). The default keeps the eval's low-false-positive contract.
+    """
     hits = []
     for i, line in enumerate(text.splitlines(), 1):
-        for typ, label, rx in _RULES:
+        for typ, label, rx in _rules_for(profile):
             for m in rx.finditer(line):
                 hits.append({"line": i, "type": typ, "pattern": label,
                              "span": m.group(0).strip()[:120]})
@@ -220,14 +286,15 @@ def _band(score):
     return "fail"
 
 
-def _score_paragraph(start_line, lines):
+def _score_paragraph(start_line, lines, profile="default"):
     text = "\n".join(lines)
-    hits = flag(text)
+    hits = flag(text, profile)
+    weights = weights_for(profile)
     # remap hit line numbers to absolute file lines
     for h in hits:
         h["line"] = start_line + h["line"] - 1
     words = max(len(re.findall(r"\b\w+\b", text)), 1)
-    raw = sum(_WEIGHTS.get(h["type"], 8) for h in hits)
+    raw = sum(weights.get(h["type"], 8) for h in hits)
     density_bonus = min(20, (len(hits) / words) * 100 * 4)
     penalty = min(100, raw + density_bonus)
     slop_score = max(0, round(100 - penalty))
@@ -241,11 +308,11 @@ def _score_paragraph(start_line, lines):
     }, words
 
 
-def score(text):
+def score(text, profile="default"):
     """Per-paragraph slop_band. SURFACE TELLS ONLY — not a humanness judge."""
     paras, weights = [], []
     for idx, (start, lines) in enumerate(_paragraphs(text)):
-        p, w = _score_paragraph(start, lines)
+        p, w = _score_paragraph(start, lines, profile)
         p["index"] = idx
         paras.append(p)
         weights.append(w)
@@ -282,6 +349,12 @@ _SELFTEST = (
     "A cache miss costs the full computation plus storage bookkeeping.\n"  # 11 clean
     "We support very old browsers for compatibility.\n"  # 12 degree only (legit, low wt)
     "The pipeline is robust and we leverage caching for speed.\n"  # 13 clean (empower riders, no marketing → SILENT)
+    "The uncomfortable truth is most teams skip tests.\n"  # 14 throatclear
+    "Make no mistake, this will break in production.\n"  # 15 emphasis_crutch
+    "Plot twist: the cache was the real bottleneck.\n"  # 16 metacommentary
+    "The answer isn't more servers. It's better caching.\n"  # 17 binarycontrast
+    "Let's circle back and double down moving forward.\n"  # 18 bizjargon
+    "It wasn't the code. It wasn't the config. It was DNS.\n"  # 19 neglisting
 )
 # absolute line numbers in _SELFTEST that must produce NO hit
 _CLEAN_LINES = {11, 13}
@@ -293,7 +366,8 @@ def _selftest():
     expected = {"hedge", "listicle", "transition", "stakes", "candor",
                 "intensifier_filler", "intensifier_degree", "emdash",
                 "delve", "weaselquant", "calltoaction", "conclusion",
-                "empower"}
+                "empower", "throatclear", "emphasis_crutch", "metacommentary",
+                "binarycontrast", "bizjargon", "neglisting"}
     missing = expected - types
     clean_line_hits = [h for h in hits if h["line"] in _CLEAN_LINES]
     # the degree-only line (12) must NOT contain a stronger tell than degree
@@ -325,12 +399,18 @@ def main(argv):
     if "--selftest" in argv:
         return _selftest()
     want_score = "--score" in argv
+    profile = "default"
+    if "--profile" in argv:
+        profile = argv[argv.index("--profile") + 1]
     args = [a for a in argv[1:] if not a.startswith("-")]
+    # drop the --profile value (it isn't a positional path)
+    if profile != "default":
+        args = [a for a in args if a != profile]
     if args:
         text = open(args[0], encoding="utf-8").read()
     else:
         text = sys.stdin.read()
-    out = score(text) if want_score else flag(text)
+    out = score(text, profile) if want_score else flag(text, profile)
     print(json.dumps(out, indent=2, ensure_ascii=False))
     return 0
 

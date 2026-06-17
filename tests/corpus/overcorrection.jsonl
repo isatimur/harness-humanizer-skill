@@ -4,3 +4,5 @@
 {"id": "oc-candor-stakes-001", "text": "Let's be real: in today's world, you either adapt or die.", "expect": ["candor", "stakes"], "band": "fail", "source": "synthetic", "note": "candor + manufactured stakes — louder slop"}
 {"id": "oc-empower-001", "text": "Truth be told, this is a real game-changer.", "expect": ["candor", "empower"], "band": "fail", "source": "synthetic", "note": "performed candor + buzzword"}
 {"id": "oc-emdash-001", "text": "It was bold — brilliant — and utterly — fearless.", "expect": ["emdash"], "band": "weak", "source": "synthetic", "note": "em-dash theatrics manufacturing unearned emphasis"}
+{"id": "oc-binary-001", "text": "The problem isn't the database. It's the cache.", "expect": ["binarycontrast"], "band": "weak", "source": "stop-slop", "note": "binary-contrast cadence — stop-slop PRESCRIBES this shape; we flag it as louder-slop"}
+{"id": "oc-neglisting-001", "text": "It wasn't slow. It wasn't broken. It was just misconfigured.", "expect": ["neglisting"], "band": "weak", "source": "stop-slop", "note": "negative listing — edgy fragmentation that reads as AI in a different costume"}

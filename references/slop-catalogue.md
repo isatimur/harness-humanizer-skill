@@ -38,6 +38,36 @@ candidates; the rubric (`rubric.md`) decides bands; this file explains the tells
 | Rule-of-three triplet | Three buzz adjectives in a row | `triadic` | "fast, reliable, and scalable" |
 | Call to action | "Buckle up / without further ado / read on" | `calltoaction` | "Buckle up, this changes everything." |
 | Em-dash theatrics | Dashes manufacturing unearned emphasis | `emdash` | "It was fast — clean — and correct — somehow." |
+| Throat-clearing opener | Announces a reveal instead of making it | `throatclear` | "The uncomfortable truth is most teams skip tests." |
+| Emphasis crutch | Tells you it matters instead of showing it | `emphasis_crutch` | "Make no mistake, this will break." |
+| Meta-commentary | Narrates the writing instead of writing | `metacommentary` | "Let me walk you through why it failed." |
+| Binary-contrast cadence | The "the answer isn't X, it's Y" reveal rhythm | `binarycontrast` | "The answer isn't more servers. It's caching." |
+| Negative listing | Staccato "it wasn't X, it wasn't Y, it was Z" | `neglisting` | "It wasn't the code. It wasn't the config. It was DNS." |
+| Business-jargon idiom | Office filler standing in for a verb | `bizjargon` | "Let's circle back and move the needle." |
+
+### Harvested from stop-slop (and why ours differs)
+
+The last six tells above were catalogued by
+[stop-slop](https://github.com/hardikpandya/stop-slop) (MIT, Hardik Pandya) — an
+excellent, widely-used banned-list skill. We fold its taxonomy into a *runnable,
+weighted, low-false-positive detector* rather than a flat block-list: each pattern
+is idiom-anchored so honest technical prose stays silent (a blanket "ban every
+adverb" match would not). The deeper difference is philosophy — stop-slop
+*prescribes* a replacement style (be punchy, drop em-dashes, go second-person);
+several of those prescriptions are exactly the over-correction `guardrails.md`
+flags as *louder slop*. That is why `binarycontrast` and `neglisting` live in the
+**over-correction** corpus: they are shapes a naive humanizer produces, and the
+detector must catch them too.
+
+### The `stop-slop` profile (opt-in interop)
+
+`flag_slop.py --profile stop-slop` switches on stop-slop's stricter, aggressive
+rules — `adverb_ly` (every -ly adverb), `wh_opener` (Wh- question openers),
+`emdash_any` (any em-dash) — which the default profile keeps **off** because
+fidelity-first writing tolerates a lone adverb or dash. Fans of stop-slop's style
+get its severity *plus* our non-destructive report and over-correction guardrails.
+These extra rules are deliberately excluded from the gated eval; the default
+profile is what carries the low-false-positive contract.
 
 ### A note on weight
 
