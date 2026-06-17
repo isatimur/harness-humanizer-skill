@@ -123,6 +123,25 @@ A clean-looking paragraph can still be **weak** or **fail** if it makes no claim
    anything? If nothing is lost, the sentence is slop regardless of how polished
    it sounds.
 
+## The substance lens (specificity · restraint · voice)
+
+Surface tells are only half the judgment. A paragraph can be mechanically clean —
+zero hedging, no buzzwords — and still be slop because it has nothing to say. When
+the detector is quiet, judge substance on three axes before passing it:
+
+- **Specificity** — does it commit to a concrete claim (a name, number, mechanism,
+  consequence), or only gesture at one? "Significant improvement" fails;
+  "latency dropped from 340ms to 90ms" passes.
+- **Restraint** — is the emphasis earned, or manufactured? Forced contrast, dramatic
+  fragmentation, and hot takes are *negative* substance — louder, not stronger.
+- **Voice** — is there a thinking author reacting to the facts, or a neutral
+  narrator restating them? Voice is not personality theatrics; it is having a point.
+
+Mechanics-clean ≠ good. This lens is what separates *moderate* from *strong*, and
+it is the human/model side of the loop the regex cannot reach. (The three-axis
+"substance" framing is shared with `stop-slop` derivatives like `tagore`; here it
+guides band judgment rather than a numeric gate.)
+
 ## Triage rule (for anything below strong)
 
 - **REWORDABLE** — the paragraph *has a real claim* that's buried under hedging or
