@@ -425,7 +425,9 @@ def _selftest():
     return 0 if ok else 1
 
 
-def main(argv):
+def main(argv=None):
+    if argv is None:
+        argv = sys.argv
     if "--selftest" in argv:
         return _selftest()
     want_score = "--score" in argv
