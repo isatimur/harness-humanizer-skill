@@ -25,3 +25,7 @@ jobs:
         run: python3 scripts/flag_slop.py --selftest
       - name: Detector eval (gated)
         run: python3 tests/eval.py
+      - name: Adapters in sync with source
+        run: python3 scripts/build_adapters.py --check
+      - name: Web scorer parity with detector
+        run: python3 tests/check_js_parity.py
