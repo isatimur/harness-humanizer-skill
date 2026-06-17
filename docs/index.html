@@ -3,11 +3,61 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>harness-humanizer — survive a hostile editor's red pen</title>
-<meta name="description" content="A portable Claude Code skill that removes AI-slop from prose and rewrites it toward a real point of view — without trading AI-slop for louder slop. Fidelity-first, flags hollow spans instead of faking them." />
-<meta property="og:title" content="harness-humanizer" />
-<meta property="og:description" content="De-slop AI prose into writing that survives a hostile editor's red pen. Detect, rewrite, self-score, iterate — zero dependencies." />
+<title>harness-humanizer — humanize AI text & remove AI slop in any AI tool</title>
+<meta name="description" content="Free, open-source skill that removes AI slop (empty hedging, listicle stems, manufactured stakes) and rewrites prose toward a real point of view — without trading AI-slop for louder slop. Works in Claude Code, Cursor, Copilot, Codex, Gemini, Windsurf, or any chatbot. Fidelity-first; flags hollow spans instead of faking them." />
+<meta name="keywords" content="AI slop, humanize AI text, remove AI slop, de-slop, make ChatGPT sound human, AI writing detector, anti-slop, AI tells, Claude Code skill, Cursor rules, AGENTS.md" />
+<meta name="author" content="Timur Isachenko" />
+<meta name="theme-color" content="#ece5d6" />
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+<link rel="canonical" href="https://harness-humanizer-skill.vercel.app/" />
+<meta property="og:title" content="harness-humanizer — humanize AI text in any AI tool" />
+<meta property="og:description" content="De-slop AI prose into writing that survives a hostile editor's red pen. Detect, rewrite, self-score, iterate. Portable to every AI tool. Zero dependencies, MIT." />
 <meta property="og:type" content="website" />
+<meta property="og:url" content="https://harness-humanizer-skill.vercel.app/" />
+<meta property="og:site_name" content="harness-humanizer" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="harness-humanizer — humanize AI text in any AI tool" />
+<meta name="twitter:description" content="Remove AI slop and sharpen what's underneath — without trading it for louder slop. Free, portable to every AI tool, MIT." />
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "SoftwareApplication",
+      "name": "harness-humanizer",
+      "applicationCategory": "DeveloperApplication",
+      "operatingSystem": "Any",
+      "description": "Open-source skill that removes AI slop from prose and rewrites it toward a real point of view, portable to every AI tool. Detects machine-writing tells, self-scores against a humanness rubric, flags hollow spans instead of fabricating, and reports rather than overwrites.",
+      "url": "https://harness-humanizer-skill.vercel.app/",
+      "downloadUrl": "https://github.com/isatimur/harness-humanizer-skill",
+      "softwareVersion": "0.3.0",
+      "license": "https://opensource.org/licenses/MIT",
+      "author": { "@type": "Person", "name": "Timur Isachenko" },
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is AI slop?",
+          "acceptedAnswer": { "@type": "Answer", "text": "AI slop is machine-flavored prose: empty hedging ('it's worth noting'), listicle stems with no point, dead transitions ('moreover', 'furthermore'), manufactured stakes ('in today's fast-paced world'), and generic filler. It reads fluent but says little. harness-humanizer detects these tells and rewrites the fixable ones while preserving meaning." }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I make AI text sound less like AI?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Subtract the hedging and filler, surface the real claim that was buried, and keep the meaning identical — do not add forced hot takes, em-dash theatrics, or fake first-person, which is just louder slop. harness-humanizer automates this loop and flags spans that are hollow rather than fabricating a point." }
+        },
+        {
+          "@type": "Question",
+          "name": "Which AI tools does harness-humanizer work with?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Claude Code, Cursor, GitHub Copilot, Codex and other AGENTS.md-aware agents, Gemini, and Windsurf — all generated from one source — plus a paste-anywhere prompt that works in any chatbot like ChatGPT, Claude, or Gemini." }
+        }
+      ]
+    }
+  ]
+}
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,900;1,9..144,400;1,9..144,500&family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;1,400&family=Caveat:wght@500;600;700&display=swap" rel="stylesheet" />
@@ -146,6 +196,10 @@
   }
   .band.weak{background:rgba(197,54,42,.12);color:var(--red-deep)}
   .band.strong{background:rgba(44,74,90,.13);color:var(--blue)}
+  .band.fail{background:rgba(151,39,29,.16);color:var(--red-deep)}
+  .band.moderate{background:rgba(138,128,112,.18);color:var(--ink-soft)}
+  .tcard .cmt{color:#7d7263}
+  .tcard .grn{color:#9fc08a}
 
   /* ---- section scaffolding ---- */
   section{padding:74px 0;border-top:1px solid var(--rule)}
@@ -211,6 +265,53 @@
   .invoke .q{font-family:var(--display);font-style:italic;font-size:24px;color:var(--ink);padding:14px 20px;background:var(--paper-card);border:1px solid var(--rule-strong);border-radius:3px;position:relative}
   .invoke .q::before{content:"›";color:var(--red);font-style:normal;font-weight:600;margin-right:10px}
 
+  /* ---- slop scorer tool ---- */
+  .tool{display:grid;grid-template-columns:1.05fr .95fr;gap:34px;align-items:start}
+  @media(max-width:860px){.tool{grid-template-columns:1fr}}
+  .tool-in{display:flex;flex-direction:column;gap:12px}
+  #slop-input{
+    width:100%;min-height:240px;resize:vertical;background:var(--paper-card);
+    border:1px solid var(--rule-strong);border-radius:4px;padding:18px 20px;
+    font-family:var(--display);font-size:18px;line-height:1.6;color:var(--ink);
+    box-shadow:var(--shadow);
+  }
+  #slop-input:focus{outline:none;border-color:var(--red)}
+  .tool-actions{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+  .tool-actions .hint{font-family:var(--mono);font-size:11.5px;color:var(--ink-faint)}
+  .gauge{
+    background:var(--paper-card);border:1px solid var(--rule-strong);border-radius:4px;
+    box-shadow:var(--shadow);padding:26px 26px 30px;
+  }
+  .gauge .score-line{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap}
+  .gauge .score-num{font-family:var(--display);font-weight:900;font-size:64px;line-height:.9;letter-spacing:-.03em}
+  .gauge .score-of{font-family:var(--mono);font-size:13px;color:var(--ink-faint)}
+  .meter{height:10px;border-radius:6px;background:var(--paper-deep);margin:18px 0 8px;overflow:hidden}
+  .meter > i{display:block;height:100%;border-radius:6px;transition:width .5s cubic-bezier(.2,.7,.2,1)}
+  .meter-scale{display:flex;justify-content:space-between;font-family:var(--mono);font-size:10px;letter-spacing:.1em;color:var(--ink-faint);text-transform:uppercase}
+  .tells{margin-top:22px;display:flex;flex-direction:column;gap:9px;max-height:230px;overflow-y:auto}
+  .tell{display:flex;gap:10px;align-items:baseline;font-size:15.5px;border-left:2.5px solid var(--red);padding:2px 0 2px 12px}
+  .tell .ty{font-family:var(--mono);font-size:11px;color:var(--red-deep);letter-spacing:.04em;min-width:108px}
+  .tell .sp{color:var(--ink-soft);font-style:italic}
+  .tell.clean{border-color:var(--blue);color:var(--blue);font-family:var(--mono);font-size:13px;font-style:normal}
+  .gauge .disclaimer{margin-top:20px;font-family:var(--mono);font-size:11px;color:var(--ink-faint);line-height:1.6;border-top:1px solid var(--rule);padding-top:14px}
+  mark.flag{background:rgba(197,54,42,.16);border-bottom:2px solid var(--red);border-radius:1px;padding:0 1px}
+
+  /* ---- install: tool matrix ---- */
+  .tool-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  @media(max-width:860px){.tool-grid{grid-template-columns:1fr 1fr}}
+  @media(max-width:560px){.tool-grid{grid-template-columns:1fr}}
+  .tcard{
+    background:var(--paper-card);border:1px solid var(--rule-strong);border-radius:4px;
+    padding:20px 20px 22px;display:flex;flex-direction:column;gap:10px;box-shadow:var(--shadow);
+  }
+  .tcard h4{font-family:var(--display);font-weight:600;font-size:20px;letter-spacing:-.01em;display:flex;align-items:center;gap:9px}
+  .tcard .badge{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--red-deep);border:1px solid var(--rule-strong);border-radius:2px;padding:2px 6px}
+  .tcard code, .tcard pre{font-family:var(--mono);font-size:12.5px;line-height:1.55;background:#171411;color:#d8cfbe;border-radius:3px;padding:10px 12px;display:block;overflow-x:auto;white-space:pre-wrap;word-break:break-word}
+  .tcard p{font-size:15px;color:var(--ink-soft)}
+  .tcard a.file{font-family:var(--mono);font-size:12px;color:var(--red-deep);text-decoration:none;margin-top:auto}
+  .tcard a.file:hover{text-decoration:underline}
+  .tcard.wide{grid-column:1/-1}
+
   /* ---- footer ---- */
   footer{border-top:2px solid var(--ink);padding:54px 0 70px;margin-top:20px}
   .foot-grid{display:flex;justify-content:space-between;gap:30px;flex-wrap:wrap;align-items:flex-start}
@@ -236,7 +337,7 @@
     <nav>
       <a href="#rules" class="hideph">The rules</a>
       <a href="#loop" class="hideph">The loop</a>
-      <a href="#proof" class="hideph">Proof</a>
+      <a href="#tool" class="hideph">Score your text</a>
       <a href="#install">Install</a>
       <a class="gh" href="https://github.com/isatimur/harness-humanizer-skill">GitHub ↗</a>
     </nav>
@@ -248,12 +349,12 @@
   <!-- HERO -->
   <section class="hero" style="border-top:none">
     <div class="stamp">Rejected<br>by the<br>red pen</div>
-    <div class="eyebrow reveal">A Claude Code skill · v0.2.1</div>
+    <div class="eyebrow reveal">A skill for every AI tool · v0.3.0</div>
     <h1 class="reveal" style="transition-delay:.05s">Make it survive a<br><span class="ital">hostile editor's</span> red pen.</h1>
     <p class="lede reveal" style="transition-delay:.12s">Strip the AI slop from prose and sharpen what's underneath — <em>without</em> trading it for louder slop.</p>
     <div class="cta reveal" style="transition-delay:.18s">
-      <a class="btn primary" href="https://github.com/isatimur/harness-humanizer-skill">Get the skill →</a>
-      <a class="btn ghost" href="#loop">See how it works</a>
+      <a class="btn primary" href="#tool">Score your text ↓</a>
+      <a class="btn ghost" href="#install">Install for your tool</a>
       <span class="metaline">stdlib-only · zero deps · MIT</span>
     </div>
 
@@ -334,7 +435,7 @@
         <div class="top"><i style="background:#e6705f"></i><i style="background:#e8d9a0"></i><i style="background:#9fc08a"></i><span class="t">python3 tests/eval.py</span></div>
 <pre><span class="cmt">harness-humanizer detector eval
 (tests DETECTOR behaviour only — not humanness)</span>
-corpus: 21 slop / 11 clean / 6 over-correction
+corpus: 29 slop / 11 clean / 11 over-correction
 
   recall              <span class="grn">1.0</span>   gate &gt;= 0.95   <span class="grn">PASS</span>
   clean_specificity   <span class="grn">1.0</span>   gate &gt;= 0.95   <span class="grn">PASS</span>
@@ -351,6 +452,39 @@ RESULT: <span class="grn">PASS</span></pre>
         <div class="pp reveal" style="transition-delay:.08s"><h4>Surface tells, not humanness</h4><p>The <code>slop_band</code> score measures pattern density, never claim presence. A clean-scoring paragraph can still be hollow — and the skill says so.</p></div>
         <div class="pp reveal" style="transition-delay:.16s"><h4>Sentence-aware buzzwords</h4><p>"We leverage connection pooling" stays silent; "seamless platform empowers teams to leverage cutting-edge X" flags the whole cluster.</p></div>
         <div class="pp reveal" style="transition-delay:.24s"><h4>Honest about its blind spots</h4><p>A documented catalogue marks which tells regex can't see — hollowness, fabricated stance — so a quiet detector is never mistaken for clean prose.</p></div>
+        <div class="pp reveal" style="transition-delay:.32s"><h4>29 tells, including stop-slop's</h4><p>The taxonomy folds in the <a href="https://github.com/hardikpandya/stop-slop" style="color:var(--red-deep)">stop-slop</a> corpus and its community PRs — assistant voice, transformation chains, corrective reveals — as <em>weighted, idiom-anchored</em> rules, not a blunt block-list.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TOOL -->
+  <section id="tool">
+    <div class="sec-head">
+      <span class="sec-num">§ 04</span>
+      <div>
+        <h2>Score your own text for <span class="ital">AI slop.</span></h2>
+        <p class="sec-sub">The repo's detector, ported to run in your browser. Paste prose, get a slop score and the flagged tells. Nothing is uploaded — it runs entirely on this page.</p>
+      </div>
+    </div>
+    <div class="tool">
+      <div class="tool-in">
+        <textarea id="slop-input" spellcheck="false" placeholder="Paste AI-written prose here…">It's worth noting that, in today's fast-paced world, there are several key factors to consider when leveraging cutting-edge solutions. Let's be honest: the answer isn't more tooling. It's better writing.</textarea>
+        <div class="tool-actions">
+          <span class="hint">runs locally · your text never leaves the page · same rules as flag_slop.py</span>
+        </div>
+      </div>
+      <div class="gauge reveal">
+        <div class="score-line">
+          <span class="score-num" id="score-num">—</span>
+          <div>
+            <span class="band" id="score-band">paste to score</span>
+            <div class="score-of">humanness · 100 = no surface tells</div>
+          </div>
+        </div>
+        <div class="meter"><i id="score-bar" style="width:0%;background:var(--red)"></i></div>
+        <div class="meter-scale"><span>fail</span><span>weak</span><span>moderate</span><span>strong</span></div>
+        <div class="tells" id="tells"></div>
+        <p class="disclaimer">Surface tells only — not a humanness judge. A clean score means "no pattern-matched slop," never "good writing." Hollow prose with a real-sounding shape can still score high; only a human (or the full skill loop) catches an absent claim.</p>
       </div>
     </div>
   </section>
@@ -358,31 +492,69 @@ RESULT: <span class="grn">PASS</span></pre>
   <!-- INSTALL -->
   <section id="install">
     <div class="sec-head">
-      <span class="sec-num">§ 04</span>
+      <span class="sec-num">§ 05</span>
       <div>
-        <h2>Install &amp; <span class="ital">invoke.</span></h2>
-        <p class="sec-sub">Copy it into your skills directory. No setup, no dependencies — it just works.</p>
+        <h2>Install for <span class="ital">your</span> tool.</h2>
+        <p class="sec-sub">One source, every harness. Each adapter is generated from the same <code>SKILL.md</code> — drop it in and ask "humanize this." Zero dependencies.</p>
       </div>
     </div>
-    <div class="install-grid">
-      <div class="codecard reveal">
-        <div class="hd">terminal</div>
-<pre><span class="cmt"># clone &amp; drop into Claude Code</span>
-git clone https://github.com/isatimur/\
-  harness-humanizer-skill.git
-cp -R harness-humanizer-skill \
-  ~/.claude/skills/harness-humanizer
-
-<span class="cmt"># verify (optional)</span>
-python3 scripts/flag_slop.py --selftest  <span class="grn"># ok</span>
-python3 tests/eval.py                     <span class="grn"># PASS</span></pre>
+    <div class="tool-grid">
+      <div class="tcard reveal">
+        <h4>Claude Code <span class="badge">skill</span></h4>
+        <pre>git clone https://github.com/isatimur/harness-humanizer-skill \
+  ~/.claude/skills/harness-humanizer</pre>
+        <p>Then ask: <em>"humanize this."</em></p>
+        <a class="file" href="https://github.com/isatimur/harness-humanizer-skill/blob/main/SKILL.md">SKILL.md ↗</a>
       </div>
-      <div class="invoke reveal" style="transition-delay:.1s">
-        <p style="font-family:var(--mono);font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-faint)">Then just ask</p>
-        <div class="q">humanize this</div>
-        <div class="q">de-slop this draft</div>
-        <div class="q">make this sound less like AI</div>
-        <div class="q">this reads like ChatGPT</div>
+      <div class="tcard reveal" style="transition-delay:.05s">
+        <h4>Cursor <span class="badge">.mdc rule</span></h4>
+        <pre>mkdir -p .cursor/rules && curl -o \
+ .cursor/rules/harness-humanizer.mdc \
+ https://raw.githubusercontent.com/isatimur/harness-humanizer-skill/main/adapters/cursor/harness-humanizer.mdc</pre>
+        <a class="file" href="https://github.com/isatimur/harness-humanizer-skill/blob/main/adapters/cursor/harness-humanizer.mdc">adapters/cursor/…mdc ↗</a>
+      </div>
+      <div class="tcard reveal" style="transition-delay:.1s">
+        <h4>GitHub Copilot <span class="badge">instructions</span></h4>
+        <pre>mkdir -p .github/instructions && curl -o \
+ .github/instructions/harness-humanizer.instructions.md \
+ https://raw.githubusercontent.com/isatimur/harness-humanizer-skill/main/adapters/copilot/harness-humanizer.instructions.md</pre>
+        <a class="file" href="https://github.com/isatimur/harness-humanizer-skill/blob/main/adapters/copilot/harness-humanizer.instructions.md">adapters/copilot/… ↗</a>
+      </div>
+      <div class="tcard reveal">
+        <h4>Codex &amp; agents <span class="badge">AGENTS.md</span></h4>
+        <pre>curl -o AGENTS.md \
+ https://raw.githubusercontent.com/isatimur/harness-humanizer-skill/main/adapters/AGENTS.md</pre>
+        <p>The cross-tool standard — also read by Amp, Jules, Pi, Hermes, OpenCLAW.</p>
+        <a class="file" href="https://github.com/isatimur/harness-humanizer-skill/blob/main/adapters/AGENTS.md">adapters/AGENTS.md ↗</a>
+      </div>
+      <div class="tcard reveal" style="transition-delay:.05s">
+        <h4>Gemini CLI <span class="badge">GEMINI.md</span></h4>
+        <pre>curl -o GEMINI.md \
+ https://raw.githubusercontent.com/isatimur/harness-humanizer-skill/main/adapters/gemini/GEMINI.md</pre>
+        <a class="file" href="https://github.com/isatimur/harness-humanizer-skill/blob/main/adapters/gemini/GEMINI.md">adapters/gemini/GEMINI.md ↗</a>
+      </div>
+      <div class="tcard reveal" style="transition-delay:.1s">
+        <h4>Windsurf <span class="badge">rule</span></h4>
+        <pre>mkdir -p .windsurf/rules && curl -o \
+ .windsurf/rules/harness-humanizer.md \
+ https://raw.githubusercontent.com/isatimur/harness-humanizer-skill/main/adapters/windsurf/harness-humanizer.md</pre>
+        <a class="file" href="https://github.com/isatimur/harness-humanizer-skill/blob/main/adapters/windsurf/harness-humanizer.md">adapters/windsurf/… ↗</a>
+      </div>
+      <div class="tcard wide reveal">
+        <h4>Any chatbot <span class="badge">paste-anywhere</span></h4>
+        <p>Copy the self-contained prompt into ChatGPT, Claude, or Gemini, then paste your text under it. No install, no account, nothing to set up.</p>
+        <a class="file" href="https://github.com/isatimur/harness-humanizer-skill/blob/main/adapters/PROMPT.md">adapters/PROMPT.md ↗</a>
+      </div>
+      <div class="tcard wide reveal">
+        <h4>CLI detector <span class="badge">uv · pipx</span></h4>
+        <pre><span class="cmt"># run the deterministic flagger anywhere — recommended: uv</span>
+uvx --from git+https://github.com/isatimur/harness-humanizer-skill \
+  humanizer-flag yourfile.md --score
+
+<span class="cmt"># or install it as a standalone tool</span>
+uv tool install git+https://github.com/isatimur/harness-humanizer-skill
+humanizer-flag yourfile.md            <span class="grn"># JSON of flagged tells</span></pre>
+        <p>Zero runtime dependencies, stdlib only. <code>pipx install</code> works too.</p>
       </div>
     </div>
   </section>
@@ -394,15 +566,16 @@ python3 tests/eval.py                     <span class="grn"># PASS</span></pre>
       <h3>harness-humanizer</h3>
       <div class="links">
         <a href="https://github.com/isatimur/harness-humanizer-skill">Repository ↗</a>
-        <a href="https://github.com/isatimur/harness-humanizer-skill/blob/main/CHANGELOG.md">Changelog ↗</a>
+        <a href="/ai-slop.html">What is AI slop? ↗</a>
+        <a href="https://github.com/isatimur/harness-humanizer-skill/blob/main/adapters/PROMPT.md">Paste-anywhere prompt ↗</a>
         <a href="https://github.com/isatimur/harness-humanizer-skill/blob/main/references/slop-catalogue.md">Slop catalogue ↗</a>
-        <a href="https://github.com/isatimur/harness-humanizer-skill/releases">Releases ↗</a>
+        <a href="https://github.com/isatimur/harness-humanizer-skill/blob/main/CHANGELOG.md">Changelog ↗</a>
       </div>
     </div>
     <p class="colophon">
       The rubric is adapted from the <em>humanness</em> judge in book-mash, the multi-judge quality engine behind <em>From Copilot to Colleague</em>. Where the judge measures slop, this removes it.
       <br><br>
-      v0.2.1 · MIT © Timur Isachenko · Set in <em>Fraunces</em>, <em>IBM&nbsp;Plex&nbsp;Mono</em>, and <em>Caveat</em>. No purple gradients were harmed.
+      v0.3.0 · MIT © Timur Isachenko · Taxonomy extends <a href="https://github.com/hardikpandya/stop-slop" style="color:inherit">stop-slop</a> (MIT). Set in <em>Fraunces</em>, <em>IBM&nbsp;Plex&nbsp;Mono</em>, and <em>Caveat</em>. No purple gradients were harmed.
     </p>
   </div>
 </footer>
@@ -425,6 +598,72 @@ python3 tests/eval.py                     <span class="grn"># PASS</span></pre>
     entries.forEach(e=>{ if(e.isIntersecting){ drawCuts(); msIO.disconnect(); } });
   },{threshold:.3});
   msIO.observe(ms);
+</script>
+
+<script src="slop.js"></script>
+<script>
+  // ---- live slop scorer ----
+  (function(){
+    const input = document.getElementById('slop-input');
+    const numEl = document.getElementById('score-num');
+    const bandEl = document.getElementById('score-band');
+    const barEl = document.getElementById('score-bar');
+    const tellsEl = document.getElementById('tells');
+    if(!input || !window.HHSlop) return;
+
+    const BAND_COLOR = { fail:'var(--red-deep)', weak:'var(--red)', moderate:'#9a8f7a', strong:'var(--blue)' };
+    const PRETTY = {
+      hedge:'hedging', listicle:'listicle stem', transition:'dead transition',
+      stakes:'manufactured stakes', candor:'performed candor', rhetq:'rhetorical opener',
+      notonly:'not-only-but-also', intensifier_filler:'filler adverb',
+      intensifier_degree:'degree intensifier', weaselquant:'vague quantifier',
+      negparallel:'negative parallel', delve:'LLM lexicon', conclusion:'wrap-up scaffolding',
+      triadic:'rule-of-three', calltoaction:'call to action', throatclear:'throat-clearing',
+      emphasis_crutch:'emphasis crutch', metacommentary:'meta-commentary',
+      binarycontrast:'binary contrast', neglisting:'negative listing', bizjargon:'business jargon',
+      assistantvoice:'assistant voice', transformchain:'transformation chain',
+      correctivereveal:'corrective reveal', forcedcohesion:'forced cohesion',
+      copula:'copula inflation', hedgestack:'stacked hedges', empower:'corporate uplift',
+      emdash:'em-dash theatrics'
+    };
+
+    function norm(t){ return t.replace(/[’‘]/g,"'").replace(/[“”]/g,'"'); }
+
+    function render(){
+      const text = norm(input.value);
+      if(!text.trim()){
+        numEl.textContent='—'; bandEl.textContent='paste to score'; bandEl.className='band';
+        barEl.style.width='0%'; tellsEl.innerHTML=''; return;
+      }
+      const r = window.HHSlop.score(text);
+      const s = r.overall.slopScore, b = r.overall.slopBand;
+      numEl.textContent = s;
+      bandEl.textContent = 'slop_band · ' + b;
+      bandEl.className = 'band ' + b;
+      barEl.style.width = s + '%';
+      barEl.style.background = BAND_COLOR[b] || 'var(--red)';
+
+      // aggregate hits by type
+      const byType = {};
+      r.paragraphs.forEach(p=>p.hits.forEach(h=>{
+        (byType[h.type] = byType[h.type] || {n:0, span:h.span}).n++;
+      }));
+      const rows = Object.keys(byType).sort((a,c)=>byType[c].n-byType[a].n);
+      if(!rows.length){
+        tellsEl.innerHTML = '<div class="tell clean">✓ no surface tells — but check it makes a real claim</div>';
+        return;
+      }
+      tellsEl.innerHTML = rows.map(t=>{
+        const d = byType[t];
+        const label = (PRETTY[t]||t) + (d.n>1 ? ' ×'+d.n : '');
+        return '<div class="tell"><span class="ty">'+label+'</span>'+
+               '<span class="sp">“'+d.span.replace(/[<>&]/g,c=>({'<':'&lt;','>':'&gt;','&':'&amp;'}[c]))+'”</span></div>';
+      }).join('');
+    }
+
+    let t; input.addEventListener('input', ()=>{ clearTimeout(t); t=setTimeout(render,140); });
+    render();
+  })();
 </script>
 </body>
 </html>
