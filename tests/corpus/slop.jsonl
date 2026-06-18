@@ -19,3 +19,11 @@
 {"id": "slop-calltoaction-001", "text": "Buckle up, because this changes everything.", "expect": ["calltoaction"], "band": "weak", "source": "synthetic", "note": "throat-clearing call to action"}
 {"id": "slop-calltoaction-002", "text": "Without further ado, let's get into it.", "expect": ["calltoaction"], "band": "weak", "source": "synthetic", "note": "without-further-ado opener"}
 {"id": "slop-emdash-001", "text": "It was fast — clean — and correct — somehow.", "expect": ["emdash"], "band": "moderate", "source": "examples.md", "note": "em-dash theatrics, >=2 in a sentence"}
+{"id": "slop-throatclear-001", "text": "The uncomfortable truth is that most caching layers add more bugs than they remove.", "expect": ["throatclear"], "band": "weak", "source": "stop-slop", "note": "throat-clearing opener (harvested from stop-slop taxonomy)"}
+{"id": "slop-emphasis-001", "text": "Make no mistake: an unbounded cache is a memory leak with better marketing.", "expect": ["emphasis_crutch"], "band": "weak", "source": "stop-slop", "note": "emphasis crutch announcing importance instead of showing it"}
+{"id": "slop-meta-001", "text": "Let me walk you through why the cache invalidation kept failing.", "expect": ["metacommentary"], "band": "weak", "source": "stop-slop", "note": "meta-commentary scaffolding"}
+{"id": "slop-bizjargon-001", "text": "We need to circle back and move the needle on cache hit rates.", "expect": ["bizjargon"], "band": "weak", "source": "stop-slop", "note": "business-jargon idioms"}
+{"id": "slop-assistant-001", "text": "Great question! I'd be happy to help you understand caching.", "expect": ["assistantvoice"], "band": "fail", "source": "stop-slop-pr4", "note": "assistant voice / performative enthusiasm (stop-slop PR #4)"}
+{"id": "slop-assistant-002", "text": "I hope this email finds you well.", "expect": ["assistantvoice"], "band": "fail", "source": "stop-slop-pr5", "note": "email pleasantry (stop-slop PR #5)"}
+{"id": "slop-copula-001", "text": "The framework boasts a clean, well-documented API.", "expect": ["copula"], "band": "weak", "source": "stop-slop-pr8", "note": "copula inflation — 'boasts' instead of 'has'"}
+{"id": "slop-hedgestack-001", "text": "It might possibly perhaps be related to a memory leak somewhere.", "expect": ["hedgestack"], "band": "weak", "source": "stop-slop-pr4", "note": "stacked hedges"}

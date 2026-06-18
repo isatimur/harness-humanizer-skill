@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://harness-humanizer-skill.vercel.app/sitemap.xml

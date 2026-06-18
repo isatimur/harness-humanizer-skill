@@ -1,0 +1,38 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "harness-humanizer"
+version = "0.3.0"
+description = "Deterministic AI-slop pre-flagger for the harness-humanizer skill — zero dependencies, stdlib only."
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+authors = [{ name = "Timur Isachenko" }]
+keywords = ["humanize", "de-slop", "ai-slop", "writing", "editing", "prose", "llm"]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Intended Audience :: Developers",
+  "License :: OSI Approved :: MIT License",
+  "Programming Language :: Python :: 3",
+  "Topic :: Text Processing :: Linguistic",
+]
+# No runtime dependencies — that is the whole point. Do not add any.
+dependencies = []
+
+[project.urls]
+Homepage = "https://github.com/isatimur/harness-humanizer-skill"
+Website = "https://harness-humanizer-skill.vercel.app"
+Repository = "https://github.com/isatimur/harness-humanizer-skill"
+Changelog = "https://github.com/isatimur/harness-humanizer-skill/blob/main/CHANGELOG.md"
+
+[project.scripts]
+# `pipx install harness-humanizer` then `humanizer-flag FILE` / `--score` / `--profile stop-slop`
+humanizer-flag = "flag_slop:main"
+
+[tool.setuptools]
+py-modules = ["flag_slop"]
+
+[tool.setuptools.package-dir]
+"" = "scripts"

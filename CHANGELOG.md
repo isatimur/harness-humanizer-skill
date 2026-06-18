@@ -4,6 +4,46 @@ All notable changes to this project are documented here. Format follows
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/); this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.3.0] — 2026-06-18
+
+The "everyone, every tool" release. Same fidelity-first skill — now portable to
+every AI harness, installable as a CLI, scoreable in the browser, and with a
+detector that folds in (and out-engineers) the wider de-slop ecosystem.
+
+### Added
+- **Portable adapters** — one stdlib-only generator (`scripts/build_adapters.py`)
+  renders `SKILL.md` + `references/` into every tool's native format: Cursor
+  (`.mdc`), GitHub Copilot (`.instructions.md`), Codex/Amp/Jules (`AGENTS.md`),
+  Gemini (`GEMINI.md`), Windsurf, and a self-contained **paste-anywhere
+  `PROMPT.md`** for any chatbot. CI gates drift with `--check`.
+- **CLI packaging** (`pyproject.toml`) — `uv tool install` / `pipx install`
+  exposes a `humanizer-flag` command. Still zero runtime dependencies.
+- **Free in-browser Slop Score tool** — `docs/slop.js`, a parity-gated JS port of
+  the detector that runs entirely client-side on the website. New
+  `tests/check_js_parity.py` keeps it in lockstep with `flag_slop.py`.
+- **SEO + glossary** — `docs/ai-slop.html` ("What is AI slop?"), JSON-LD
+  (`SoftwareApplication` + `FAQPage`), `sitemap.xml`, `robots.txt`.
+- **12 new detector tells**, harvested from
+  [stop-slop](https://github.com/hardikpandya/stop-slop) (MIT) and its community
+  PRs (#4/#5/#8): `throatclear`, `emphasis_crutch`, `metacommentary`,
+  `binarycontrast`, `neglisting`, `bizjargon`, `assistantvoice`, `transformchain`,
+  `correctivereveal`, `forcedcohesion`, `copula`, `hedgestack`. Rendered as
+  weighted, idiom-anchored rules (not a blunt block-list) so honest technical
+  prose stays silent. Contrarian/profundity shapes added to the over-correction
+  corpus. Eval still green: recall 1.0, clean-specificity 1.0, over-correction
+  recall 1.0, **0 false positives**.
+- **`--profile stop-slop`** — opt-in aggressive rules (all adverbs, Wh- openers,
+  any em-dash) for fans of stop-slop's stricter style, behind our non-destructive
+  report + over-correction guardrails.
+
+### Changed
+- **Rubric gains a substance lens** (specificity · restraint · voice) for the
+  hollow-vs-rewordable call — the model-judgment axis the regex can't reach.
+  Cross-pollinated from stop-slop derivatives (tagore), adapted to guide band
+  judgment rather than a numeric gate.
+- Website rebuilt: live scorer, an "Install for your tool" matrix (uv-first), and
+  full SEO. Now hosted on Vercel.
+
 ## [0.2.1] — 2026-06-16
 
 ### Changed

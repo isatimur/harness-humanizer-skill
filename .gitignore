@@ -1,3 +1,8 @@
 __pycache__/
 *.pyc
 .DS_Store
+.vercel
+.vercel
+.playwright-cli/
+build/
+*.egg-info/
