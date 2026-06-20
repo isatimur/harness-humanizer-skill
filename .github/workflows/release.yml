@@ -2,9 +2,16 @@ name: release
 
 # Publishes to PyPI on a version tag (e.g. `git tag v0.3.1 && git push --tags`).
 # Uses PyPI Trusted Publishing (OIDC) — no API token is stored anywhere.
-# One-time setup on PyPI: project "harness-humanizer" → Publishing → add a
-# trusted publisher for repo isatimur/harness-humanizer-skill, workflow
-# release.yml, environment "pypi".
+#
+# One-time setup on PyPI → Account → Publishing → "Add a pending publisher":
+#   PyPI Project Name : harness-humanizer
+#   Owner             : isatimur
+#   Repository name   : harness-humanizer-skill
+#   Workflow name     : release.yml
+#   Environment name  : (leave BLANK)
+# The publish job intentionally declares no GitHub environment, so the OIDC claim
+# carries no environment — leaving the PyPI field blank is what makes them match.
+# (An environment mismatch is the usual cause of `invalid-publisher`.)
 
 on:
   push:
@@ -45,7 +52,8 @@ jobs:
   publish:
     needs: build
     runs-on: ubuntu-latest
-    environment: pypi
+    # No `environment:` on purpose — keeps the OIDC claim free of an environment,
+    # so the PyPI trusted publisher must be registered with a BLANK environment.
     permissions:
       id-token: write   # required for Trusted Publishing (OIDC)
     steps:
