@@ -77,18 +77,20 @@ Editing the rules? Change `SKILL.md` / `references/` and run
 Run the zero-dependency pre-flagger anywhere. **`uv` is the recommended installer:**
 
 ```bash
-# one-off, no install
-uvx --from git+https://github.com/isatimur/harness-humanizer-skill \
-  humanizer-flag yourfile.md --score
+# one-off, no install — straight from PyPI
+uvx --from harness-humanizer humanizer-flag yourfile.md --score
 
 # install as a tool
-uv tool install git+https://github.com/isatimur/harness-humanizer-skill
+uv tool install harness-humanizer
 humanizer-flag yourfile.md                 # JSON of flagged tells
 humanizer-flag yourfile.md --score         # per-paragraph slop_band
 humanizer-flag yourfile.md --profile stop-slop   # aggressive opt-in rules
 ```
 
-`pipx install` works identically. Or score text with no install at all in the
+`pipx install harness-humanizer` (or `pip install harness-humanizer`) works
+identically. Prefer the bleeding edge? Swap the package name for
+`git+https://github.com/isatimur/harness-humanizer-skill`. Or score text with no
+install at all in the
 **[free in-browser tool](https://harness-humanizer-skill.vercel.app/#tool)**.
 
 ## Layout
