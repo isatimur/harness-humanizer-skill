@@ -1,6 +1,6 @@
 # harness-humanizer
 
-**Version 0.3.0** · stdlib-only, zero-dependency · [Website + free slop scorer](https://harness-humanizer-skill.vercel.app/) · [What is AI slop?](https://harness-humanizer-skill.vercel.app/ai-slop.html) · [Changelog](CHANGELOG.md) · MIT
+**Version 0.3.0** · stdlib-only, zero-dependency · [Website + free slop scorer](https://harness-humanizer-skill.vercel.app/) · [What is AI slop?](https://harness-humanizer-skill.vercel.app/ai-slop) · [Changelog](CHANGELOG.md) · MIT
 
 A skill that turns AI-slop prose into writing that survives a hostile editor's red
 pen — **without** swapping one kind of slop for another. Portable to **every AI
