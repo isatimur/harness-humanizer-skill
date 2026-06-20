@@ -1,0 +1,57 @@
+name: release
+
+# Publishes to PyPI on a version tag (e.g. `git tag v0.3.1 && git push --tags`).
+# Uses PyPI Trusted Publishing (OIDC) — no API token is stored anywhere.
+# One-time setup on PyPI: project "harness-humanizer" → Publishing → add a
+# trusted publisher for repo isatimur/harness-humanizer-skill, workflow
+# release.yml, environment "pypi".
+
+on:
+  push:
+    tags:
+      - "v*"
+
+jobs:
+  # Re-prove the stdlib-only contract before anything ships.
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+      - run: python3 tests/check_no_deps.py
+      - run: python3 scripts/flag_slop.py --selftest
+      - run: python3 tests/eval.py
+
+  build:
+    needs: verify
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+      - name: Build sdist + wheel
+        run: |
+          python3 -m pip install --upgrade build twine
+          python3 -m build
+          python3 -m twine check dist/*
+      - uses: actions/upload-artifact@v4
+        with:
+          name: dist
+          path: dist/
+
+  publish:
+    needs: build
+    runs-on: ubuntu-latest
+    environment: pypi
+    permissions:
+      id-token: write   # required for Trusted Publishing (OIDC)
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: dist
+          path: dist/
+      - name: Publish to PyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
