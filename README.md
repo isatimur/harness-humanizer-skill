@@ -150,6 +150,14 @@ The rubric is adapted from the **humanness** judge in
 [*From Copilot to Colleague*](https://fromcopilottocolleague.com/). This skill is
 the inverse of that judge: where the judge *measures* slop, this *removes* it.
 
+## Contributing
+
+The highest-value contribution is a labeled sample: prose the skill got wrong, as
+the one line that proves it. See [`CONTRIBUTING.md`](CONTRIBUTING.md) for the funnel
+(wrong-silence → `slop.jsonl`, false-positive → `clean.jsonl`, over-correction →
+`overcorrection.jsonl`), the rule-authoring checklist, and the verification suite.
+The skill stays stdlib-only — CI enforces it.
+
 ## License
 
 MIT © Timur Isachenko

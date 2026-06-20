@@ -4,6 +4,19 @@ All notable changes to this project are documented here. Format follows
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/); this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### Added
+- **Social preview card** — a 1200×630 `og-image.png` (manuscript/red-pen
+  aesthetic) wired into `og:image`/`twitter:image` on both pages, so link unfurls
+  on X/LinkedIn/Slack/Discord render properly. Source is `docs/og-image.svg`.
+- **`CONTRIBUTING.md`** — the contribution funnel (labeled samples), rule-authoring
+  checklist, and the five-command verification suite, surfaced from the README.
+
+### Changed
+- Canonical home consolidated on Vercel: GitHub Pages retired, repo homepage and
+  README links point at `harness-humanizer-skill.vercel.app` (clean `/ai-slop` URL).
+
 ## [0.3.0] — 2026-06-18
 
 The "everyone, every tool" release. Same fidelity-first skill — now portable to

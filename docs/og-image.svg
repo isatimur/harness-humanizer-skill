@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="paper" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f7f1e4"/>
+      <stop offset="1" stop-color="#efe6d3"/>
+    </linearGradient>
+  </defs>
+
+  <!-- paper -->
+  <rect width="1200" height="630" fill="url(#paper)"/>
+  <rect width="1200" height="630" fill="none" stroke="#e3d8c0" stroke-width="2"/>
+
+  <!-- manuscript left margin rule -->
+  <line x1="96" y1="40" x2="96" y2="590" stroke="#d98b84" stroke-width="2" opacity="0.55"/>
+
+  <!-- eyebrow -->
+  <text x="130" y="116" font-family="'IBM Plex Mono','Courier New',monospace" font-size="26" letter-spacing="3" fill="#b3271e">harness-humanizer · every AI tool</text>
+
+  <!-- headline line 1: "Remove AI slop" with red strike on "AI slop" -->
+  <text x="128" y="232" font-family="Georgia,'Times New Roman',serif" font-size="86" font-weight="700" fill="#2b2620">Remove AI slop</text>
+  <path d="M 404 206 C 470 199, 700 213, 824 202" stroke="#b3271e" stroke-width="6" fill="none" stroke-linecap="round"/>
+
+  <!-- headline line 2 -->
+  <text x="128" y="338" font-family="Georgia,'Times New Roman',serif" font-size="86" font-weight="700" fill="#2b2620">without faking a voice.</text>
+
+  <!-- handwritten marginal note over the struck words -->
+  <text x="600" y="150" font-family="'Comic Sans MS','Segoe Print',cursive" font-size="30" fill="#b3271e" transform="rotate(-7 600 150)" opacity="0.92">cut it &#10005;</text>
+
+  <!-- subline (the loop) -->
+  <text x="130" y="432" font-family="'IBM Plex Mono','Courier New',monospace" font-size="30" fill="#5b5346">detect &#8594; rewrite &#8594; self-score &#8594; iterate</text>
+
+  <!-- divider -->
+  <line x1="130" y1="488" x2="1070" y2="488" stroke="#d8cbb2" stroke-width="2"/>
+
+  <!-- footer row -->
+  <text x="130" y="542" font-family="'IBM Plex Mono','Courier New',monospace" font-size="26" fill="#6b6354">MIT · zero-dependency</text>
+  <text x="1070" y="542" text-anchor="end" font-family="'IBM Plex Mono','Courier New',monospace" font-size="26" fill="#b3271e">harness-humanizer-skill.vercel.app</text>
+</svg>
