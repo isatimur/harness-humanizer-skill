@@ -7,10 +7,12 @@ All notable changes to this project are documented here. Format follows
 ## [0.3.1] — 2026-06-20
 
 ### Added
-- **Published to PyPI** — `pip install harness-humanizer` / `uvx harness-humanizer`
-  / `pipx install harness-humanizer` now work by name (was git-only). Shipped via a
-  `release.yml` workflow using PyPI Trusted Publishing (OIDC, no stored token);
-  the stdlib-only guard + eval run before anything publishes.
+- **PyPI release pipeline** — a `release.yml` workflow that builds the sdist +
+  wheel and publishes on a version tag via PyPI Trusted Publishing (OIDC, no stored
+  token); the stdlib-only guard + eval run before anything publishes. Once the
+  project is registered on PyPI, `pip install harness-humanizer` /
+  `uvx harness-humanizer` / `pipx install harness-humanizer` work by name (was
+  git-only).
 - **Social preview card** — a 1200×630 `og-image.png` (manuscript/red-pen
   aesthetic) wired into `og:image`/`twitter:image` on both pages, so link unfurls
   on X/LinkedIn/Slack/Discord render properly. Source is `docs/og-image.svg`.
