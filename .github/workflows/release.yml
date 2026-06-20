@@ -55,3 +55,11 @@ jobs:
           path: dist/
       - name: Publish to PyPI
         uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          # Idempotent re-runs: don't fail if a file was already uploaded.
+          skip-existing: true
+          # Leave `password` unset to use Trusted Publishing (OIDC) — the default
+          # and the recommended path (no stored secret). If you'd rather use an
+          # API token, add a repo secret PYPI_API_TOKEN and uncomment the next line;
+          # the action uses the token when a password is supplied, OIDC otherwise.
+          # password: ${{ secrets.PYPI_API_TOKEN }}
