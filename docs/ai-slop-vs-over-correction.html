@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>AI slop vs over-correction — why your humanizer makes it worse</title>
+<meta name="description" content="Two failure modes look opposite but read the same. AI slop is timid padding; over-correction is performed edginess — forced hot takes, em-dash theatrics, negative listing. Most humanizer tools cure the first by causing the second. How to tell them apart, with a side-by-side comparison and a free scorer that catches both." />
+<meta name="keywords" content="AI slop vs over-correction, humanizer makes it worse, over-corrected AI writing, AI humanizer too aggressive, fake human writing, edgy AI writing, em-dash theatrics" />
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+<link rel="canonical" href="https://harness-humanizer-skill.vercel.app/ai-slop-vs-over-correction" />
+<meta property="og:title" content="AI slop vs over-correction — why your humanizer makes it worse" />
+<meta property="og:description" content="Timid padding and performed edginess are two costumes for the same problem: no real claim. Most humanizers cure one by causing the other." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://harness-humanizer-skill.vercel.app/ai-slop-vs-over-correction" />
+<meta property="og:image" content="https://harness-humanizer-skill.vercel.app/og-image.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://harness-humanizer-skill.vercel.app/og-image.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,900;1,9..144,400;1,9..144,500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "AI slop vs over-correction: why your humanizer makes it worse",
+  "description": "AI slop is timid padding; over-correction is performed edginess. Most humanizer tools cure the first by causing the second. How to tell them apart and fix both.",
+  "author": { "@type": "Person", "name": "Timur Isachenko" },
+  "mainEntityOfPage": "https://harness-humanizer-skill.vercel.app/ai-slop-vs-over-correction",
+  "publisher": { "@type": "Organization", "name": "harness-humanizer" }
+}
+</script>
+<style>
+  :root{
+    --paper:#ece5d6;--paper-card:#f4efe4;--paper-deep:#e3dac6;--ink:#1b1813;
+    --ink-soft:#544c40;--ink-faint:#8a8070;--red:#c5362a;--red-deep:#97271d;--blue:#2c4a5a;
+    --rule:rgba(27,24,19,.13);--rule-strong:rgba(27,24,19,.26);
+    --display:"Fraunces",Georgia,serif;--mono:"IBM Plex Mono",ui-monospace,monospace;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--paper);color:var(--ink);font-family:var(--display);font-size:18px;line-height:1.65;-webkit-font-smoothing:antialiased}
+  ::selection{background:var(--red);color:var(--paper-card)}
+  a{color:var(--red-deep)}
+  .wrap{max-width:820px;margin:0 auto;padding:0 26px}
+  header.bar{border-bottom:1px solid var(--rule);position:sticky;top:0;background:rgba(236,229,214,.94);backdrop-filter:blur(6px);z-index:10}
+  .bar .wrap{display:flex;align-items:center;justify-content:space-between;height:60px}
+  .brand{font-family:var(--mono);font-weight:500;font-size:15px;display:flex;align-items:center;gap:9px;text-decoration:none;color:var(--ink)}
+  .brand .dot{width:10px;height:10px;border-radius:50%;background:var(--red)}
+  .bar nav a{font-family:var(--mono);font-size:13px;color:var(--ink-soft);text-decoration:none;margin-left:22px}
+  .crumb{font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint);margin:42px 0 0}
+  h1{font-family:var(--display);font-weight:900;font-size:clamp(34px,6vw,58px);line-height:1;letter-spacing:-.025em;margin:14px 0 0}
+  h1 .ital{font-style:italic;font-weight:500}
+  .lede{font-size:22px;line-height:1.45;color:var(--ink-soft);margin:24px 0 0;max-width:44ch}
+  h2{font-family:var(--display);font-weight:600;font-size:30px;letter-spacing:-.02em;margin:54px 0 14px}
+  h3{font-family:var(--display);font-weight:600;font-size:22px;margin:30px 0 8px}
+  p{margin:14px 0;color:var(--ink)}
+  p.note{color:var(--ink-soft);font-size:16.5px}
+  section{padding:8px 0;border-top:1px solid var(--rule);margin-top:30px}
+  section:first-of-type{border-top:none}
+  ul{margin:14px 0 14px 4px;list-style:none}
+  li{padding:9px 0 9px 16px;border-left:2.5px solid var(--red);margin-bottom:10px;color:var(--ink-soft)}
+  li b{color:var(--ink);font-weight:600}
+  li .ex{font-style:italic;color:var(--red-deep)}
+  code{font-family:var(--mono);font-size:14px;background:var(--paper-deep);padding:1px 5px;border-radius:2px}
+  blockquote{border-left:3px solid var(--rule-strong);padding:6px 0 6px 18px;margin:16px 0;font-style:italic;color:var(--ink-soft)}
+  table.cmp{width:100%;border-collapse:collapse;margin:20px 0;font-size:16px}
+  table.cmp th,table.cmp td{text-align:left;padding:12px 14px;border-bottom:1px solid var(--rule);vertical-align:top}
+  table.cmp thead th{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-faint);border-bottom:1px solid var(--rule-strong)}
+  table.cmp tbody th{font-weight:600;color:var(--ink);width:30%}
+  table.cmp td{color:var(--ink-soft)}
+  table.cmp .slop{color:var(--red-deep)}
+  .cta{display:inline-block;font-family:var(--mono);font-size:14px;background:var(--ink);color:var(--paper-card);text-decoration:none;padding:13px 22px;border-radius:3px;box-shadow:5px 5px 0 var(--red);margin:10px 14px 10px 0}
+  .faq dt{font-weight:600;font-family:var(--display);font-size:20px;margin-top:22px}
+  .faq dd{color:var(--ink-soft);margin:6px 0 0}
+  footer{border-top:2px solid var(--ink);margin-top:60px;padding:36px 0 60px;font-family:var(--mono);font-size:12.5px;color:var(--ink-faint)}
+  footer a{color:var(--ink-soft);text-decoration:none;margin-right:20px}
+</style>
+</head>
+<body>
+<header class="bar">
+  <div class="wrap">
+    <a class="brand" href="/"><span class="dot"></span>harness-humanizer</a>
+    <nav><a href="/#tool">Score your text</a><a href="/#install">Install</a></nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <p class="crumb"><a href="/" style="color:inherit">Home</a> › Slop vs over-correction</p>
+  <h1>AI slop <span class="ital">vs</span> over-correction</h1>
+  <p class="lede">One is timid padding. One is performed edginess. They look opposite, they read the same — and most humanizers cure the first by causing the second.</p>
+
+  <section>
+    <p>When people ask why a humanizer "made it worse," this is almost always the reason. The tool took text that was guilty of <b>AI slop</b> — hedging, filler, dead transitions — and corrected so hard it landed in the opposite ditch: <b>over-correction</b>, the forced-hot-take, em-dash-heavy, "let's be honest" voice. Both are slop. They share the same root cause: a paragraph with no real claim, dressed up to look like it has one.</p>
+    <p>Subtractive editing fixes the first without producing the second. The point isn't to make writing punchier or softer — it's to find whether a claim exists, state it plainly if it does, and <a href="/humanize-ai-text">flag the paragraph if it doesn't.</a></p>
+  </section>
+
+  <section>
+    <h2>Side by side</h2>
+    <table class="cmp">
+      <thead>
+        <tr><th>&nbsp;</th><th>AI slop</th><th>Over-correction</th></tr>
+      </thead>
+      <tbody>
+        <tr><th>Failure</th><td>Says too little, too softly</td><td>Performs conviction it didn't earn</td></tr>
+        <tr><th>Voice</th><td>Bland corporate fluency</td><td>Edgy-LinkedIn cadence</td></tr>
+        <tr><th>Tells</th><td class="slop">"It's worth noting…", "in many cases", "moreover"</td><td class="slop">"It's not X. It's Y." — staccato dashes, "let's be honest"</td></tr>
+        <tr><th>Punctuation</th><td>Long, hedged sentences</td><td>Fragments and em-dashes manufacturing emphasis</td></tr>
+        <tr><th>Comes from</th><td>The model padding to fill space</td><td>A humanizer applying "be bold, go first-person"</td></tr>
+        <tr><th>Shared root</th><td colspan="2" style="text-align:center;font-style:italic">No real claim under the surface</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>The same hollow paragraph, both costumes</h2>
+    <p>Here is one empty idea wearing each outfit, then said plainly:</p>
+    <blockquote><b>As slop:</b> "It's worth noting that, in today's fast-paced environment, choosing the right tool can often play a key role in driving meaningful outcomes for your team."</blockquote>
+    <blockquote><b>As over-correction:</b> "Your tool isn't the problem. Your process is. Most teams won't admit it — but the best ones already know."</blockquote>
+    <blockquote><b>Said plainly:</b> <span style="font-style:normal;color:var(--ink)">— and here the paragraph simply ends, because it never had a claim. Neither costume can hide that. The honest move is to flag it and ask the writer what they actually meant.</span></blockquote>
+    <p class="note">This is why "flag, don't fabricate" matters. A detector that only knew AI-slop tells would bless the over-corrected version. A real humanizer has to catch both — and admit when there's nothing underneath.</p>
+  </section>
+
+  <section>
+    <h2>How to tell which one you have</h2>
+    <ul>
+      <li><b>Count the qualifiers.</b> If sentences open with "it's worth noting" or stack two hedges, you have slop. <span class="ex">Subtract them.</span></li>
+      <li><b>Count the reveals.</b> If sentences keep setting up a false belief to knock down — "you've been told X; here's the truth" — you have over-correction. <span class="ex">Remove the performance.</span></li>
+      <li><b>Apply the deletion test.</b> Cut the sentence. If nothing is lost either way, the paragraph is hollow — not a candidate for rewording in either direction.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>A detector that catches both</h2>
+    <p>The scorer behind this site is gated on a labeled corpus that includes an <b>over-correction set</b>, so the edgy-slop shapes get caught alongside the timid ones. It runs in your browser, flags surface candidates per paragraph, and never auto-rewrites — the judgment of whether a claim is buried stays with you.</p>
+    <p style="margin-top:26px">
+      <a class="cta" href="/#tool">Score your text →</a>
+      <a class="cta" style="background:var(--paper-card);color:var(--ink);box-shadow:5px 5px 0 var(--rule-strong)" href="/humanize-ai-text">How to humanize AI text</a>
+    </p>
+  </section>
+
+  <section class="faq">
+    <h2>FAQ</h2>
+    <dl>
+      <dt>Why did my AI humanizer make the writing worse?</dt>
+      <dd>It over-corrected. Tools that apply rules like "be punchy, drop em-dashes, go second-person" trade timid AI-slop for a louder, equally recognizable voice. The writing feels different but reads just as artificial, because the underlying paragraph still has no real claim.</dd>
+      <dt>Are em-dashes a sign of AI writing?</dt>
+      <dd>Dense em-dashes manufacturing emphasis are a tell, and over-correction leans on them heavily. But banning the dash outright is itself over-correction — a single earned dash is fine. Density and intent matter more than the character.</dd>
+      <dt>What's the difference between AI slop and over-correction?</dt>
+      <dd>AI slop says too little too softly: hedging, filler, dead transitions. Over-correction performs conviction it never earned: forced hot takes, negative listing, staccato fragments. They're opposite surfaces over the same hollow center.</dd>
+      <dt>Can one tool catch both?</dt>
+      <dd>It has to, or it isn't honest. A detector tuned only for timid slop will pass the edgy kind, and a humanizer that only softens or only sharpens just moves text between the two ditches. The fix is to flag both shapes and, when a paragraph has no claim, say so.</dd>
+    </dl>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <a href="/">Home</a>
+    <a href="/ai-slop">What is AI slop?</a>
+    <a href="/humanize-ai-text">Humanize AI text</a>
+    <a href="https://github.com/isatimur/harness-humanizer-skill">GitHub</a>
+    <br><br>MIT © Timur Isachenko · harness-humanizer
+  </div>
+</footer>
+</body>
+</html>
