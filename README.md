@@ -1,6 +1,16 @@
 # harness-humanizer
 
+[![CI](https://github.com/isatimur/harness-humanizer-skill/actions/workflows/ci.yml/badge.svg)](https://github.com/isatimur/harness-humanizer-skill/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![Python 3.9–3.13](https://img.shields.io/badge/python-3.9%E2%80%933.13-blue.svg)](pyproject.toml)
+[![Dependencies: 0](https://img.shields.io/badge/dependencies-0-success.svg)](tests/check_no_deps.py)
+[![Star on GitHub](https://img.shields.io/github/stars/isatimur/harness-humanizer-skill?style=social)](https://github.com/isatimur/harness-humanizer-skill/stargazers)
+
+**The de-slopper that won't fake a voice — and passes its own detector.**
+
 **Version 0.3.1** · stdlib-only, zero-dependency · [Website + free slop scorer](https://harness-humanizer-skill.vercel.app/) · [What is AI slop?](https://harness-humanizer-skill.vercel.app/ai-slop) · [Changelog](CHANGELOG.md) · MIT
+
+> ⭐ **If this saves you from one more "it's worth noting that…" paragraph, star the repo** — it's how other people find the skill.
 
 A skill that turns AI-slop prose into writing that survives a hostile editor's red
 pen — **without** swapping one kind of slop for another. Portable to **every AI
@@ -74,24 +84,27 @@ Editing the rules? Change `SKILL.md` / `references/` and run
 
 ## CLI: the deterministic flagger
 
-Run the zero-dependency pre-flagger anywhere. **`uv` is the recommended installer:**
+Run the zero-dependency pre-flagger anywhere. **`uv` is the recommended installer**,
+and today it runs straight from the GitHub source — no clone, no `pip`:
 
 ```bash
-# one-off, no install — straight from PyPI
-uvx --from harness-humanizer humanizer-flag yourfile.md --score
+# one-off, no install — from source
+uvx --from git+https://github.com/isatimur/harness-humanizer-skill humanizer-flag yourfile.md --score
 
 # install as a tool
-uv tool install harness-humanizer
+uv tool install git+https://github.com/isatimur/harness-humanizer-skill
 humanizer-flag yourfile.md                 # JSON of flagged tells
 humanizer-flag yourfile.md --score         # per-paragraph slop_band
 humanizer-flag yourfile.md --profile stop-slop   # aggressive opt-in rules
 ```
 
-`pipx install harness-humanizer` (or `pip install harness-humanizer`) works
-identically. Prefer the bleeding edge? Swap the package name for
-`git+https://github.com/isatimur/harness-humanizer-skill`. Or score text with no
-install at all in the
+`pipx install git+https://github.com/isatimur/harness-humanizer-skill` works
+identically. Or score text with no install at all in the
 **[free in-browser tool](https://harness-humanizer-skill.vercel.app/#tool)**.
+
+> **PyPI release pending.** Trusted-publisher registration is in progress; once it
+> lands, `uvx --from harness-humanizer …` and `pipx install harness-humanizer` will
+> work by name. Until then, use the `git+https://…` forms above (identical behavior).
 
 ## Layout
 
