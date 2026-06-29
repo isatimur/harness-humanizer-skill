@@ -47,7 +47,8 @@ uvx --from git+https://github.com/isatimur/harness-humanizer-skill \
 
 Screenshot the run showing the README/SKILL/rubric scoring `strong` under the
 project's own detector. Skeptics trust "it passes its own bar" far more than any
-claim. Lead comments with it.
+claim. Lead comments with it. The result is pre-captured in [`PROOF.md`](PROOF.md)
+(SKILL.md + guardrails.md score 100/100; README + rubric score 97 — all `strong`).
 
 ## Pre-flight checklist
 
