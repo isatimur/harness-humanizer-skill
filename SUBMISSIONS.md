@@ -46,6 +46,7 @@ These are where people browse for skills. Mostly dofollow GitHub backlinks + dir
 | **awesomeclaude.ai** & **awesome-skills.com** | Web submit form | ★★★☆☆ | Web directories that mirror the lists; extra discovery. |
 | `gh skill` ecosystem (GitHub Agent Skills) | Ensure repo is `gh skill`-installable + tagged | ★★★★☆ | GitHub CLI can install skills directly (Apr-2026 changelog). Make sure SKILL.md metadata is discoverable. |
 | **vercel-labs/skills** (decentralized installer CLI, 70+ agents) | No submission — already installable: `npx skills add isatimur/harness-humanizer-skill` (root `SKILL.md` conforms). **Advertise the command**; consider a PR to any examples/showcase list in the repo. | ★★★★★ | Distribution surface, not a list. One command installs us into Claude Code/Cursor/Cline/OpenCode/etc. Put the command everywhere. |
+| **skills.sh** (registry/leaderboard for the `npx skills` ecosystem) | Indexes GitHub skills installed via `npx skills add`. Confirm we appear at `skills.sh/isatimur/harness-humanizer-skill`; check the docs (`/docs`, CLI/API) for any explicit publish step. **Ranking = total installs + 8-week activity** → every install/launch post compounds here. | ★★★★★ | Public leaderboard with visible install counts. The competitor `story-deslop` lives here at 6.4K installs / 3.3K★ — this is the scoreboard to climb. Drive installs via the one-command line everywhere. |
 
 **Ready-to-paste entry (markdown list item for awesome-lists):**
 ```markdown
