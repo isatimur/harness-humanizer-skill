@@ -53,15 +53,25 @@ Properties: **fail-honest** (hollow/capped spans always surfaced), **idempotent*
 (already-strong prose returned unchanged), **non-destructive** (report, not
 in-place edit).
 
-## Install for your tool
+## Install — one command, 60+ agents
 
-One source, every harness. Each adapter is generated from the same `SKILL.md` —
-pick yours, then invoke with *"humanize this"*, *"de-slop this"*, *"make this
+```bash
+npx skills add isatimur/harness-humanizer-skill
+```
+
+That's it. The [`skills` CLI](https://github.com/vercel-labs/skills) installs this
+skill into **whatever coding agents you have** — Claude Code, Cursor, GitHub Copilot,
+Gemini CLI, Codex, Cline, Windsurf, OpenCode, Zed, Warp, Continue, Goose, Kilo, Roo,
+Qwen, Droid, and [60+ more](https://www.skills.sh/) — each to its own path, from one
+source `SKILL.md`. Then invoke with *"humanize this"*, *"de-slop this"*, *"make this
 sound less like AI"*, or *"this reads like ChatGPT"*.
+
+### Manual install (no CLI / fallback)
+
+Prefer to drop in a file yourself? Each adapter is generated from the same `SKILL.md`:
 
 | Tool | Install |
 |---|---|
-| **70+ agents** ([Vercel `skills` CLI](https://github.com/vercel-labs/skills)) | `npx skills add isatimur/harness-humanizer-skill` |
 | **Claude Code** | `git clone … ~/.claude/skills/harness-humanizer` |
 | **Cursor** | copy [`adapters/cursor/harness-humanizer.mdc`](adapters/cursor/harness-humanizer.mdc) → `.cursor/rules/` |
 | **GitHub Copilot** | copy [`adapters/copilot/…instructions.md`](adapters/copilot/harness-humanizer.instructions.md) → `.github/instructions/` |
