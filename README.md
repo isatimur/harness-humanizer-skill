@@ -61,6 +61,7 @@ sound less like AI"*, or *"this reads like ChatGPT"*.
 
 | Tool | Install |
 |---|---|
+| **70+ agents** ([Vercel `skills` CLI](https://github.com/vercel-labs/skills)) | `npx skills add isatimur/harness-humanizer-skill` |
 | **Claude Code** | `git clone … ~/.claude/skills/harness-humanizer` |
 | **Cursor** | copy [`adapters/cursor/harness-humanizer.mdc`](adapters/cursor/harness-humanizer.mdc) → `.cursor/rules/` |
 | **GitHub Copilot** | copy [`adapters/copilot/…instructions.md`](adapters/copilot/harness-humanizer.instructions.md) → `.github/instructions/` |
