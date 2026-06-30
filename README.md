@@ -1,14 +1,41 @@
 # harness-humanizer
 
+**The de-slopper that won't fake a voice — and [passes its own detector](PROOF.md).**
+
 [![CI](https://github.com/isatimur/harness-humanizer-skill/actions/workflows/ci.yml/badge.svg)](https://github.com/isatimur/harness-humanizer-skill/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![Python 3.9–3.13](https://img.shields.io/badge/python-3.9%E2%80%933.13-blue.svg)](pyproject.toml)
 [![Dependencies: 0](https://img.shields.io/badge/dependencies-0-success.svg)](tests/check_no_deps.py)
 [![Star on GitHub](https://img.shields.io/github/stars/isatimur/harness-humanizer-skill?style=social)](https://github.com/isatimur/harness-humanizer-skill/stargazers)
 
-**The de-slopper that won't fake a voice — and [passes its own detector](PROOF.md).**
-
 **Version 0.3.1** · stdlib-only, zero-dependency · [Website + free slop scorer](https://harness-humanizer-skill.vercel.app/) · [What is AI slop?](https://harness-humanizer-skill.vercel.app/ai-slop) · [Changelog](CHANGELOG.md) · MIT
+
+## Install
+
+```bash
+npx skills add isatimur/harness-humanizer-skill
+```
+
+Installs into Claude Code, Cursor, Copilot, Gemini, Codex, Windsurf, and [60+ more
+agents](#install--one-command-60-agents) from one `SKILL.md`. Then say *"humanize
+this"*, *"de-slop this"*, or *"this reads like ChatGPT"*. Python users: see the
+standalone [CLI flagger](#cli-the-deterministic-flagger).
+
+## See it work
+
+**Before** — the single most common AI tell: hedging that smothers a real claim.
+
+> It's worth noting that, in many cases, caching can often lead to significant
+> improvements in performance for a wide variety of applications.
+
+**After** — same claim, stated outright.
+
+> Caching cuts repeated work, so a cache hit returns in microseconds what a cache
+> miss spends milliseconds computing.
+
+The hedging is gone ("it's worth noting", "in many cases", "often", "a wide
+variety"); the mechanism is named. Meaning preserved, voice not faked — that's the
+whole bar. [More before→after pairs →](references/examples.md)
 
 > ⭐ **If this saves you from one more "it's worth noting that…" paragraph, star the repo** — it's how other people find the skill.
 

@@ -1,0 +1,35 @@
+name: "Wrong silence (missed slop)"
+description: The skill stayed silent on prose that is clearly AI slop. It should have flagged or rewritten it.
+title: "[wrong-silence]: "
+labels: ["wrong-silence", "detector"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for the sample. A missed tell becomes a labeled row in `tests/corpus/slop.jsonl`.
+        Paste the exact text the skill let through — the smaller the span, the better.
+  - type: textarea
+    id: offending-text
+    attributes:
+      label: Offending text (the slop that slipped through)
+      description: The verbatim prose the skill failed to flag or rewrite.
+      placeholder: "It's worth noting that, in many cases, leveraging the right tools is more important than ever."
+      render: markdown
+    validations:
+      required: true
+  - type: textarea
+    id: expected-behavior
+    attributes:
+      label: Expected behavior
+      description: What should have happened — flagged as hollow, rewritten, or scored as weak? Which tell is it?
+      placeholder: "Should flag as hollow: 'leveraging the right tools' names nothing concrete; it survives the removal test."
+    validations:
+      required: true
+  - type: input
+    id: tool
+    attributes:
+      label: Where did you run it?
+      description: CLI (`humanizer-flag`), a coding agent (Claude Code / Cursor / …), or the web scorer.
+      placeholder: "humanizer-flag --score"
+    validations:
+      required: false

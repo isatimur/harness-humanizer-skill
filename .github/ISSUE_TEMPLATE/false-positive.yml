@@ -1,0 +1,35 @@
+name: "False positive (flagged clean prose)"
+description: The skill flagged honest, concrete prose as slop when it should have stayed silent.
+title: "[false-positive]: "
+labels: ["false-positive", "detector"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks. A false positive becomes a labeled row in `tests/corpus/clean.jsonl` that the
+        detector must learn to leave alone. Paste the exact text that was wrongly flagged.
+  - type: textarea
+    id: offending-text
+    attributes:
+      label: Offending text (the clean prose that got flagged)
+      description: The verbatim prose the skill flagged or rewrote when it should not have.
+      placeholder: "We leverage connection pooling and robust error handling to keep the worker pool saturated."
+      render: markdown
+    validations:
+      required: true
+  - type: textarea
+    id: expected-behavior
+    attributes:
+      label: Expected behavior
+      description: Why is this honest technical prose, not slop? What should the skill have done instead?
+      placeholder: "Should stay silent: 'leverage' and 'robust' here are technical, not marketing register — there's a real mechanism named."
+    validations:
+      required: true
+  - type: input
+    id: tool
+    attributes:
+      label: Where did you run it?
+      description: CLI (`humanizer-flag`), a coding agent (Claude Code / Cursor / …), or the web scorer.
+      placeholder: "humanizer-flag --profile stop-slop"
+    validations:
+      required: false
