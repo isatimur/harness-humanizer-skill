@@ -45,6 +45,7 @@ These are where people browse for skills. Mostly dofollow GitHub backlinks + dir
 | **tech-leads-club/agent-skills** | PR add (validated/"secure" registry — may require review) | ★★★★☆ | Quality-gated → strong trust signal if accepted. |
 | **awesomeclaude.ai** & **awesome-skills.com** | Web submit form | ★★★☆☆ | Web directories that mirror the lists; extra discovery. |
 | `gh skill` ecosystem (GitHub Agent Skills) | Ensure repo is `gh skill`-installable + tagged | ★★★★☆ | GitHub CLI can install skills directly (Apr-2026 changelog). Make sure SKILL.md metadata is discoverable. |
+| **vercel-labs/skills** (decentralized installer CLI, 70+ agents) | No submission — already installable: `npx skills add isatimur/harness-humanizer-skill` (root `SKILL.md` conforms). **Advertise the command**; consider a PR to any examples/showcase list in the repo. | ★★★★★ | Distribution surface, not a list. One command installs us into Claude Code/Cursor/Cline/OpenCode/etc. Put the command everywhere. |
 
 **Ready-to-paste entry (markdown list item for awesome-lists):**
 ```markdown
