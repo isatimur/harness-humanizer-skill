@@ -1,4 +1,25 @@
+# harness-humanizer — all crawlers welcome, AI answer engines especially.
+# We *want* to be the cited answer for "how to humanize AI text" / "what is AI slop".
+
 User-agent: *
+Allow: /
+
+# AI answer engines — explicitly allowed so they can cite us.
+User-agent: GPTBot
+Allow: /
+User-agent: ChatGPT-User
+Allow: /
+User-agent: OAI-SearchBot
+Allow: /
+User-agent: PerplexityBot
+Allow: /
+User-agent: ClaudeBot
+Allow: /
+User-agent: anthropic-ai
+Allow: /
+User-agent: Claude-Web
+Allow: /
+User-agent: Google-Extended
 Allow: /
 
 Sitemap: https://harness-humanizer-skill.vercel.app/sitemap.xml

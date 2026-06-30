@@ -1,12 +1,63 @@
-# Launch copy
+# Launch runbook
 
-Ready-to-post copy for each channel. The angle that separates this from every
-other "humanizer": **it won't trade AI-slop for louder slop, and it passes its own
-detector.** Post when ready; nothing here auto-publishes.
+Sequenced plan + ready-to-post copy for each channel. The angle that separates this
+from every other "humanizer": **it won't trade AI-slop for louder slop, and it passes
+its own detector.** Post when ready; nothing here auto-publishes.
 
 Links: site https://harness-humanizer-skill.vercel.app/ · repo
 https://github.com/isatimur/harness-humanizer-skill · scorer
 https://harness-humanizer-skill.vercel.app/#tool
+
+---
+
+## The sequence (order matters)
+
+A launch is an *amplifier*. Amplifying an empty repo wastes the spike — a visitor
+who lands on 3 stars and no listings bounces. So the discovery + proof layer goes
+**first**, the loud channels **second**.
+
+**Phase 1 — Seed (do before any launch post)**
+- Work [`SUBMISSIONS.md`](SUBMISSIONS.md) top-down: awesome-lists & skill registries
+  first (permanent discovery + backlinks), directories second.
+- Get the first ~15–25 stars from your own network so the repo doesn't read as cold.
+- Confirm the site is live: scorer works, all four pages 200, `og-image.png` unfurls.
+- Build the **proof artifact** (below). It's the single best comment in every thread.
+
+**Phase 2 — Launch days (don't stack them on one day)**
+| Day | Channel | Best window | Notes |
+|---|---|---|---|
+| Day 1 (Tue–Thu) | **Show HN** | 8–10am ET | Title below. Be at your desk for 3h to answer. |
+| Day 1 (staggered) | **Reddit** | after HN settles | One sub at a time, tailored — never cross-post identical text. |
+| Day 1–2 | **X / LinkedIn** | mid-morning | The thread below; the card unfurls, don't attach an image. |
+| Day 3 (own day) | **Product Hunt** | 12:01am PT | Needs its own day + a few hunters lined up. |
+
+**Phase 3 — Compound (the week after)**
+- Reply to every comment; turn each "it got X wrong" into a `*.jsonl` corpus sample
+  and say so in-thread (the contribution funnel is itself a hook).
+- Repurpose the best before→after pairs into standalone social posts.
+
+## The proof artifact (build once, paste everywhere)
+
+The most persuasive thing you can show is the tool judging *itself*:
+
+```bash
+uvx --from git+https://github.com/isatimur/harness-humanizer-skill \
+  humanizer-flag README.md --score
+```
+
+Screenshot the run showing the README/SKILL/rubric scoring `strong` under the
+project's own detector. Skeptics trust "it passes its own bar" far more than any
+claim. Lead comments with it. The result is pre-captured in [`PROOF.md`](PROOF.md)
+(SKILL.md + guardrails.md score 100/100; README + rubric score 97 — all `strong`).
+
+## Pre-flight checklist
+
+- [ ] Phase-1 directory/awesome-list submissions started (see `SUBMISSIONS.md`)
+- [ ] Repo has a non-trivial star count
+- [ ] Site live: scorer, `/ai-slop`, `/humanize-ai-text`, `/ai-slop-vs-over-correction` all 200
+- [ ] `og-image.png` unfurls on X/LinkedIn/Slack (test with a private post)
+- [ ] Proof-artifact screenshot ready
+- [ ] 3 hours blocked to respond on launch day
 
 ---
 

@@ -1,0 +1,41 @@
+# harness-humanizer
+
+> A free, MIT, zero-dependency skill that removes "AI slop" from prose — the empty
+> hedging, listicle stems, smooth transitions that hide the absence of a claim, and
+> generic filler that make text read as machine-written. Unlike most "humanizers,"
+> it does **not** trade AI-slop for a louder slop (forced hot takes, em-dash
+> theatrics, fake first-person). It preserves meaning exactly, flags hollow spans
+> instead of inventing claims, and passes its own detector on its own docs.
+
+## What it is
+
+harness-humanizer is an Agent Skill (per the Agent Skills spec) plus a
+stdlib-only Python detector and an in-browser scorer. It works in Claude Code,
+Cursor, GitHub Copilot, Codex (AGENTS.md), Gemini, Windsurf, or any chatbot via a
+paste-anywhere prompt — all generated from one source (`SKILL.md`).
+
+The method is subtractive, in three moves:
+1. **Subtract** — delete hedging, filler intensifiers, and dead transitions.
+2. **Surface** — state the buried claim plainly in the first sentence.
+3. **Flag, don't fabricate** — if a paragraph has no claim under the filler, mark
+   it for a human; never invent an opinion to fill the hole.
+
+## How it differs from other humanizers
+
+Most "AI humanizer" tools prescribe a replacement style (be punchy, drop em-dashes,
+go first-person). harness-humanizer treats that prescription as **over-correction** —
+a second, louder kind of slop — and guards against it. Two hard rules: fidelity over
+flair, and flag hollow spans rather than fabricate. It reports changes rather than
+overwriting, so a human stays in control.
+
+## Key pages
+
+- [Home + free in-browser slop scorer](https://harness-humanizer-skill.vercel.app/): paste text, see which tells fired, nothing uploaded.
+- [What is AI slop?](https://harness-humanizer-skill.vercel.app/ai-slop): the full taxonomy of tells, each mapped to its detector type.
+- [How to humanize AI text](https://harness-humanizer-skill.vercel.app/humanize-ai-text): the subtractive method, before/after examples, per-tool guidance.
+- [AI slop vs over-correction](https://harness-humanizer-skill.vercel.app/ai-slop-vs-over-correction): why most humanizers make prose worse, and how to avoid it.
+
+## Source & install
+
+- [GitHub repository](https://github.com/isatimur/harness-humanizer-skill): MIT, zero-dependency, Python 3.9–3.13, adapters for every AI tool.
+- License: MIT. Maintainer: Timur Isachenko.
