@@ -3,9 +3,9 @@ requires = ["setuptools>=61"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "harness-humanizer"
+name = "de-slop"
 version = "0.3.1"
-description = "Deterministic AI-slop pre-flagger for the harness-humanizer skill — zero dependencies, stdlib only."
+description = "Deterministic AI-slop pre-flagger for the de-slop skill — zero dependencies, stdlib only."
 readme = "README.md"
 requires-python = ">=3.9"
 license = { text = "MIT" }
@@ -22,14 +22,14 @@ classifiers = [
 dependencies = []
 
 [project.urls]
-Homepage = "https://github.com/isatimur/harness-humanizer-skill"
+Homepage = "https://github.com/isatimur/de-slop"
 Website = "https://harness-humanizer-skill.vercel.app"
-Repository = "https://github.com/isatimur/harness-humanizer-skill"
-Changelog = "https://github.com/isatimur/harness-humanizer-skill/blob/main/CHANGELOG.md"
+Repository = "https://github.com/isatimur/de-slop"
+Changelog = "https://github.com/isatimur/de-slop/blob/main/CHANGELOG.md"
 
 [project.scripts]
-# `pipx install harness-humanizer` then `humanizer-flag FILE` / `--score` / `--profile stop-slop`
-humanizer-flag = "flag_slop:main"
+# `pipx install de-slop` then `de-slop FILE` / `--score` / `--profile stop-slop`
+de-slop = "flag_slop:main"
 
 [tool.setuptools]
 py-modules = ["flag_slop"]

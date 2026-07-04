@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Deterministic slop pre-flagger for the harness-humanizer skill.
+"""Deterministic slop pre-flagger for the de-slop skill.
 
 Cheap regex pass that narrows attention before the model judges. Emits JSON
 candidates — NOT verdicts. The model still scores every paragraph against the

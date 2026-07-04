@@ -1,4 +1,4 @@
-# harness-humanizer — all crawlers welcome, AI answer engines especially.
+# de-slop — all crawlers welcome, AI answer engines especially.
 # We *want* to be the cited answer for "how to humanize AI text" / "what is AI slop".
 
 User-agent: *

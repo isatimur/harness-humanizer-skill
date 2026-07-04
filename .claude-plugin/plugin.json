@@ -1,11 +1,11 @@
 {
-  "name": "harness-humanizer",
+  "name": "de-slop",
   "version": "0.3.1",
   "description": "Removes AI-slop from prose (empty hedging, listicle stems, smooth transitions, generic filler) and rewrites toward a real point of view — without trading AI-slop for louder slop. Self-scores against an embedded rubric, flags hollow spans instead of fabricating, and reports rather than overwrites. Portable to every AI tool via generated adapters; ships a zero-dependency CLI flagger.",
   "author": {
     "name": "Timur Isachenko"
   },
   "license": "MIT",
-  "homepage": "https://github.com/isatimur/harness-humanizer-skill",
+  "homepage": "https://github.com/isatimur/de-slop",
   "keywords": ["humanize", "de-slop", "ai-slop", "writing", "editing", "prose"]
 }

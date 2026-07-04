@@ -3,24 +3,24 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>harness-humanizer — humanize AI text & remove AI slop in any AI tool</title>
+<title>de-slop — humanize AI text & remove AI slop in any AI tool</title>
 <meta name="description" content="Free, open-source skill that removes AI slop (empty hedging, listicle stems, manufactured stakes) and rewrites prose toward a real point of view — without trading AI-slop for louder slop. Works in Claude Code, Cursor, Copilot, Codex, Gemini, Windsurf, or any chatbot. Fidelity-first; flags hollow spans instead of faking them." />
 <meta name="keywords" content="AI slop, humanize AI text, remove AI slop, de-slop, make ChatGPT sound human, AI writing detector, anti-slop, AI tells, Claude Code skill, Cursor rules, AGENTS.md" />
 <meta name="author" content="Timur Isachenko" />
 <meta name="theme-color" content="#ece5d6" />
 <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
 <link rel="canonical" href="https://harness-humanizer-skill.vercel.app/" />
-<meta property="og:title" content="harness-humanizer — humanize AI text in any AI tool" />
+<meta property="og:title" content="de-slop — humanize AI text in any AI tool" />
 <meta property="og:description" content="De-slop AI prose into writing that survives a hostile editor's red pen. Detect, rewrite, self-score, iterate. Portable to every AI tool. Zero dependencies, MIT." />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://harness-humanizer-skill.vercel.app/" />
-<meta property="og:site_name" content="harness-humanizer" />
+<meta property="og:site_name" content="de-slop" />
 <meta property="og:image" content="https://harness-humanizer-skill.vercel.app/og-image.png" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
-<meta property="og:image:alt" content="harness-humanizer — Remove AI slop without faking a voice. Detect, rewrite, self-score, iterate." />
+<meta property="og:image:alt" content="de-slop — Remove AI slop without faking a voice. Detect, rewrite, self-score, iterate." />
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="harness-humanizer — humanize AI text in any AI tool" />
+<meta name="twitter:title" content="de-slop — humanize AI text in any AI tool" />
 <meta name="twitter:description" content="Remove AI slop and sharpen what's underneath — without trading it for louder slop. Free, portable to every AI tool, MIT." />
 <meta name="twitter:image" content="https://harness-humanizer-skill.vercel.app/og-image.png" />
 <script type="application/ld+json">
@@ -29,12 +29,12 @@
   "@graph": [
     {
       "@type": "SoftwareApplication",
-      "name": "harness-humanizer",
+      "name": "de-slop",
       "applicationCategory": "DeveloperApplication",
       "operatingSystem": "Any",
       "description": "Open-source skill that removes AI slop from prose and rewrites it toward a real point of view, portable to every AI tool. Detects machine-writing tells, self-scores against a humanness rubric, flags hollow spans instead of fabricating, and reports rather than overwrites.",
       "url": "https://harness-humanizer-skill.vercel.app/",
-      "downloadUrl": "https://github.com/isatimur/harness-humanizer-skill",
+      "downloadUrl": "https://github.com/isatimur/de-slop",
       "softwareVersion": "0.3.0",
       "license": "https://opensource.org/licenses/MIT",
       "author": { "@type": "Person", "name": "Timur Isachenko" },
@@ -46,16 +46,16 @@
         {
           "@type": "Question",
           "name": "What is AI slop?",
-          "acceptedAnswer": { "@type": "Answer", "text": "AI slop is machine-flavored prose: empty hedging ('it's worth noting'), listicle stems with no point, dead transitions ('moreover', 'furthermore'), manufactured stakes ('in today's fast-paced world'), and generic filler. It reads fluent but says little. harness-humanizer detects these tells and rewrites the fixable ones while preserving meaning." }
+          "acceptedAnswer": { "@type": "Answer", "text": "AI slop is machine-flavored prose: empty hedging ('it's worth noting'), listicle stems with no point, dead transitions ('moreover', 'furthermore'), manufactured stakes ('in today's fast-paced world'), and generic filler. It reads fluent but says little. de-slop detects these tells and rewrites the fixable ones while preserving meaning." }
         },
         {
           "@type": "Question",
           "name": "How do I make AI text sound less like AI?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Subtract the hedging and filler, surface the real claim that was buried, and keep the meaning identical — do not add forced hot takes, em-dash theatrics, or fake first-person, which is just louder slop. harness-humanizer automates this loop and flags spans that are hollow rather than fabricating a point." }
+          "acceptedAnswer": { "@type": "Answer", "text": "Subtract the hedging and filler, surface the real claim that was buried, and keep the meaning identical — do not add forced hot takes, em-dash theatrics, or fake first-person, which is just louder slop. de-slop automates this loop and flags spans that are hollow rather than fabricating a point." }
         },
         {
           "@type": "Question",
-          "name": "Which AI tools does harness-humanizer work with?",
+          "name": "Which AI tools does de-slop work with?",
           "acceptedAnswer": { "@type": "Answer", "text": "Claude Code, Cursor, GitHub Copilot, Codex and other AGENTS.md-aware agents, Gemini, and Windsurf — all generated from one source — plus a paste-anywhere prompt that works in any chatbot like ChatGPT, Claude, or Gemini." }
         }
       ]
@@ -338,13 +338,13 @@
 
 <header class="bar">
   <div class="wrap">
-    <div class="brand"><span class="dot"></span>harness-humanizer</div>
+    <div class="brand"><span class="dot"></span>de-slop</div>
     <nav>
       <a href="#rules" class="hideph">The rules</a>
       <a href="#loop" class="hideph">The loop</a>
       <a href="#tool" class="hideph">Score your text</a>
       <a href="#install">Install</a>
-      <a class="gh" href="https://github.com/isatimur/harness-humanizer-skill">GitHub ↗</a>
+      <a class="gh" href="https://github.com/isatimur/de-slop">GitHub ↗</a>
     </nav>
   </div>
 </header>
@@ -438,7 +438,7 @@
     <div class="proof">
       <div class="term reveal">
         <div class="top"><i style="background:#e6705f"></i><i style="background:#e8d9a0"></i><i style="background:#9fc08a"></i><span class="t">python3 tests/eval.py</span></div>
-<pre><span class="cmt">harness-humanizer detector eval
+<pre><span class="cmt">de-slop detector eval
 (tests DETECTOR behaviour only — not humanness)</span>
 corpus: 29 slop / 11 clean / 11 over-correction
 
@@ -506,59 +506,59 @@ RESULT: <span class="grn">PASS</span></pre>
     <div class="tool-grid">
       <div class="tcard reveal">
         <h4>Claude Code <span class="badge">skill</span></h4>
-        <pre>git clone https://github.com/isatimur/harness-humanizer-skill \
-  ~/.claude/skills/harness-humanizer</pre>
+        <pre>git clone https://github.com/isatimur/de-slop \
+  ~/.claude/skills/de-slop</pre>
         <p>Then ask: <em>"humanize this."</em></p>
-        <a class="file" href="https://github.com/isatimur/harness-humanizer-skill/blob/main/SKILL.md">SKILL.md ↗</a>
+        <a class="file" href="https://github.com/isatimur/de-slop/blob/main/SKILL.md">SKILL.md ↗</a>
       </div>
       <div class="tcard reveal" style="transition-delay:.05s">
         <h4>Cursor <span class="badge">.mdc rule</span></h4>
         <pre>mkdir -p .cursor/rules && curl -o \
- .cursor/rules/harness-humanizer.mdc \
- https://raw.githubusercontent.com/isatimur/harness-humanizer-skill/main/adapters/cursor/harness-humanizer.mdc</pre>
-        <a class="file" href="https://github.com/isatimur/harness-humanizer-skill/blob/main/adapters/cursor/harness-humanizer.mdc">adapters/cursor/…mdc ↗</a>
+ .cursor/rules/de-slop.mdc \
+ https://raw.githubusercontent.com/isatimur/de-slop/main/adapters/cursor/de-slop.mdc</pre>
+        <a class="file" href="https://github.com/isatimur/de-slop/blob/main/adapters/cursor/de-slop.mdc">adapters/cursor/…mdc ↗</a>
       </div>
       <div class="tcard reveal" style="transition-delay:.1s">
         <h4>GitHub Copilot <span class="badge">instructions</span></h4>
         <pre>mkdir -p .github/instructions && curl -o \
- .github/instructions/harness-humanizer.instructions.md \
- https://raw.githubusercontent.com/isatimur/harness-humanizer-skill/main/adapters/copilot/harness-humanizer.instructions.md</pre>
-        <a class="file" href="https://github.com/isatimur/harness-humanizer-skill/blob/main/adapters/copilot/harness-humanizer.instructions.md">adapters/copilot/… ↗</a>
+ .github/instructions/de-slop.instructions.md \
+ https://raw.githubusercontent.com/isatimur/de-slop/main/adapters/copilot/de-slop.instructions.md</pre>
+        <a class="file" href="https://github.com/isatimur/de-slop/blob/main/adapters/copilot/de-slop.instructions.md">adapters/copilot/… ↗</a>
       </div>
       <div class="tcard reveal">
         <h4>Codex &amp; agents <span class="badge">AGENTS.md</span></h4>
         <pre>curl -o AGENTS.md \
- https://raw.githubusercontent.com/isatimur/harness-humanizer-skill/main/adapters/AGENTS.md</pre>
+ https://raw.githubusercontent.com/isatimur/de-slop/main/adapters/AGENTS.md</pre>
         <p>The cross-tool standard — also read by Amp, Jules, Pi, Hermes, OpenCLAW.</p>
-        <a class="file" href="https://github.com/isatimur/harness-humanizer-skill/blob/main/adapters/AGENTS.md">adapters/AGENTS.md ↗</a>
+        <a class="file" href="https://github.com/isatimur/de-slop/blob/main/adapters/AGENTS.md">adapters/AGENTS.md ↗</a>
       </div>
       <div class="tcard reveal" style="transition-delay:.05s">
         <h4>Gemini CLI <span class="badge">GEMINI.md</span></h4>
         <pre>curl -o GEMINI.md \
- https://raw.githubusercontent.com/isatimur/harness-humanizer-skill/main/adapters/gemini/GEMINI.md</pre>
-        <a class="file" href="https://github.com/isatimur/harness-humanizer-skill/blob/main/adapters/gemini/GEMINI.md">adapters/gemini/GEMINI.md ↗</a>
+ https://raw.githubusercontent.com/isatimur/de-slop/main/adapters/gemini/GEMINI.md</pre>
+        <a class="file" href="https://github.com/isatimur/de-slop/blob/main/adapters/gemini/GEMINI.md">adapters/gemini/GEMINI.md ↗</a>
       </div>
       <div class="tcard reveal" style="transition-delay:.1s">
         <h4>Windsurf <span class="badge">rule</span></h4>
         <pre>mkdir -p .windsurf/rules && curl -o \
- .windsurf/rules/harness-humanizer.md \
- https://raw.githubusercontent.com/isatimur/harness-humanizer-skill/main/adapters/windsurf/harness-humanizer.md</pre>
-        <a class="file" href="https://github.com/isatimur/harness-humanizer-skill/blob/main/adapters/windsurf/harness-humanizer.md">adapters/windsurf/… ↗</a>
+ .windsurf/rules/de-slop.md \
+ https://raw.githubusercontent.com/isatimur/de-slop/main/adapters/windsurf/de-slop.md</pre>
+        <a class="file" href="https://github.com/isatimur/de-slop/blob/main/adapters/windsurf/de-slop.md">adapters/windsurf/… ↗</a>
       </div>
       <div class="tcard wide reveal">
         <h4>Any chatbot <span class="badge">paste-anywhere</span></h4>
         <p>Copy the self-contained prompt into ChatGPT, Claude, or Gemini, then paste your text under it. No install, no account, nothing to set up.</p>
-        <a class="file" href="https://github.com/isatimur/harness-humanizer-skill/blob/main/adapters/PROMPT.md">adapters/PROMPT.md ↗</a>
+        <a class="file" href="https://github.com/isatimur/de-slop/blob/main/adapters/PROMPT.md">adapters/PROMPT.md ↗</a>
       </div>
       <div class="tcard wide reveal">
         <h4>CLI detector <span class="badge">uv · pipx</span></h4>
         <pre><span class="cmt"># run the deterministic flagger anywhere — recommended: uv</span>
-uvx --from git+https://github.com/isatimur/harness-humanizer-skill \
-  humanizer-flag yourfile.md --score
+uvx --from git+https://github.com/isatimur/de-slop \
+  de-slop yourfile.md --score
 
 <span class="cmt"># or install it as a standalone tool</span>
-uv tool install git+https://github.com/isatimur/harness-humanizer-skill
-humanizer-flag yourfile.md            <span class="grn"># JSON of flagged tells</span></pre>
+uv tool install git+https://github.com/isatimur/de-slop
+de-slop yourfile.md            <span class="grn"># JSON of flagged tells</span></pre>
         <p>Zero runtime dependencies, stdlib only. <code>pipx install</code> works too.</p>
       </div>
     </div>
@@ -568,15 +568,15 @@ humanizer-flag yourfile.md            <span class="grn"># JSON of flagged tells<
 <footer>
   <div class="wrap">
     <div class="foot-grid">
-      <h3>harness-humanizer</h3>
+      <h3>de-slop</h3>
       <div class="links">
-        <a href="https://github.com/isatimur/harness-humanizer-skill">Repository ↗</a>
+        <a href="https://github.com/isatimur/de-slop">Repository ↗</a>
         <a href="/ai-slop">What is AI slop? ↗</a>
         <a href="/humanize-ai-text">How to humanize AI text ↗</a>
         <a href="/ai-slop-vs-over-correction">Slop vs over-correction ↗</a>
-        <a href="https://github.com/isatimur/harness-humanizer-skill/blob/main/adapters/PROMPT.md">Paste-anywhere prompt ↗</a>
-        <a href="https://github.com/isatimur/harness-humanizer-skill/blob/main/references/slop-catalogue.md">Slop catalogue ↗</a>
-        <a href="https://github.com/isatimur/harness-humanizer-skill/blob/main/CHANGELOG.md">Changelog ↗</a>
+        <a href="https://github.com/isatimur/de-slop/blob/main/adapters/PROMPT.md">Paste-anywhere prompt ↗</a>
+        <a href="https://github.com/isatimur/de-slop/blob/main/references/slop-catalogue.md">Slop catalogue ↗</a>
+        <a href="https://github.com/isatimur/de-slop/blob/main/CHANGELOG.md">Changelog ↗</a>
       </div>
     </div>
     <p class="colophon">

@@ -1,4 +1,4 @@
-# Harness Humanizer — paste-anywhere prompt
+# De-Slop — paste-anywhere prompt
 
 <!-- GENERATED from SKILL.md + references/ by scripts/build_adapters.py. Do not edit by hand; edit the source and regenerate. -->
 
@@ -6,9 +6,9 @@ Copy everything below the line into any AI chat (ChatGPT, Claude, Gemini, etc.),
 
 ---
 
-You are an editor running the **Harness Humanizer** loop. Apply the rules, loop, rubric, and guardrails below to the prose I give you. Report your changes and flags — do not silently rewrite.
+You are an editor running the **De-Slop** loop. Apply the rules, loop, rubric, and guardrails below to the prose I give you. Report your changes and flags — do not silently rewrite.
 
-# Harness Humanizer
+# De-Slop
 
 Turn AI-slop prose into writing that survives a hostile editor's red pen —
 without swapping one kind of slop for another.
@@ -384,4 +384,4 @@ deleting the paragraph costs the reader nothing, it's hollow.
 
 ---
 
-*Optional tooling — a zero-dependency deterministic pre-flagger (`flag_slop.py`), the full slop catalogue, and the test corpus live in the repo: https://github.com/isatimur/harness-humanizer-skill*
+*Optional tooling — a zero-dependency deterministic pre-flagger (`flag_slop.py`), the full slop catalogue, and the test corpus live in the repo: https://github.com/isatimur/de-slop*

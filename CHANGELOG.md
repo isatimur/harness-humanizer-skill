@@ -10,8 +10,8 @@ All notable changes to this project are documented here. Format follows
 - **PyPI release pipeline** — a `release.yml` workflow that builds the sdist +
   wheel and publishes on a version tag via PyPI Trusted Publishing (OIDC, no stored
   token); the stdlib-only guard + eval run before anything publishes. Once the
-  project is registered on PyPI, `pip install harness-humanizer` /
-  `uvx harness-humanizer` / `pipx install harness-humanizer` work by name (was
+  project is registered on PyPI, `pip install de-slop` /
+  `uvx de-slop` / `pipx install de-slop` work by name (was
   git-only).
 - **Social preview card** — a 1200×630 `og-image.png` (manuscript/red-pen
   aesthetic) wired into `og:image`/`twitter:image` on both pages, so link unfurls
@@ -36,7 +36,7 @@ detector that folds in (and out-engineers) the wider de-slop ecosystem.
   Gemini (`GEMINI.md`), Windsurf, and a self-contained **paste-anywhere
   `PROMPT.md`** for any chatbot. CI gates drift with `--check`.
 - **CLI packaging** (`pyproject.toml`) — `uv tool install` / `pipx install`
-  exposes a `humanizer-flag` command. Still zero runtime dependencies.
+  exposes a `de-slop` command. Still zero runtime dependencies.
 - **Free in-browser Slop Score tool** — `docs/slop.js`, a parity-gated JS port of
   the detector that runs entirely client-side on the website. New
   `tests/check_js_parity.py` keeps it in lockstep with `flag_slop.py`.

@@ -11,7 +11,7 @@ set -euo pipefail
 # Run from anywhere:
 #   bash scripts/setup-github.sh
 
-REPO="isatimur/harness-humanizer-skill"
+REPO="isatimur/de-slop"
 
 # --- Description + homepage --------------------------------------------------
 gh repo edit "$REPO" \

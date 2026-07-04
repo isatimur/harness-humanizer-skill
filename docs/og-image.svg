@@ -14,7 +14,7 @@
   <line x1="96" y1="40" x2="96" y2="590" stroke="#d98b84" stroke-width="2" opacity="0.55"/>
 
   <!-- eyebrow -->
-  <text x="130" y="116" font-family="'IBM Plex Mono','Courier New',monospace" font-size="26" letter-spacing="3" fill="#b3271e">harness-humanizer · every AI tool</text>
+  <text x="130" y="116" font-family="'IBM Plex Mono','Courier New',monospace" font-size="26" letter-spacing="3" fill="#b3271e">de-slop · every AI tool</text>
 
   <!-- headline line 1: "Remove AI slop" with red strike on "AI slop" -->
   <text x="128" y="232" font-family="Georgia,'Times New Roman',serif" font-size="86" font-weight="700" fill="#2b2620">Remove AI slop</text>

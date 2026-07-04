@@ -4,9 +4,9 @@ name: release
 # Uses PyPI Trusted Publishing (OIDC) — no API token is stored anywhere.
 #
 # One-time setup on PyPI → Account → Publishing → "Add a pending publisher":
-#   PyPI Project Name : harness-humanizer
+#   PyPI Project Name : de-slop
 #   Owner             : isatimur
-#   Repository name   : harness-humanizer-skill
+#   Repository name   : de-slop
 #   Workflow name     : release.yml
 #   Environment name  : (leave BLANK)
 # The publish job intentionally declares no GitHub environment, so the OIDC claim

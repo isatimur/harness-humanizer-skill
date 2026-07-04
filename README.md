@@ -1,19 +1,19 @@
-# harness-humanizer
+# de-slop
 
 **The de-slopper that won't fake a voice — and [passes its own detector](PROOF.md).**
 
-[![CI](https://github.com/isatimur/harness-humanizer-skill/actions/workflows/ci.yml/badge.svg)](https://github.com/isatimur/harness-humanizer-skill/actions/workflows/ci.yml)
+[![CI](https://github.com/isatimur/de-slop/actions/workflows/ci.yml/badge.svg)](https://github.com/isatimur/de-slop/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![Python 3.9–3.13](https://img.shields.io/badge/python-3.9%E2%80%933.13-blue.svg)](pyproject.toml)
 [![Dependencies: 0](https://img.shields.io/badge/dependencies-0-success.svg)](tests/check_no_deps.py)
-[![Star on GitHub](https://img.shields.io/github/stars/isatimur/harness-humanizer-skill?style=social)](https://github.com/isatimur/harness-humanizer-skill/stargazers)
+[![Star on GitHub](https://img.shields.io/github/stars/isatimur/de-slop?style=social)](https://github.com/isatimur/de-slop/stargazers)
 
 **Version 0.3.1** · stdlib-only, zero-dependency · [Website + free slop scorer](https://harness-humanizer-skill.vercel.app/) · [What is AI slop?](https://harness-humanizer-skill.vercel.app/ai-slop) · [Changelog](CHANGELOG.md) · MIT
 
 ## Install
 
 ```bash
-npx skills add isatimur/harness-humanizer-skill
+npx skills add isatimur/de-slop
 ```
 
 Installs into Claude Code, Cursor, Copilot, Gemini, Codex, Windsurf, and [60+ more
@@ -83,7 +83,7 @@ in-place edit).
 ## Install — one command, 60+ agents
 
 ```bash
-npx skills add isatimur/harness-humanizer-skill
+npx skills add isatimur/de-slop
 ```
 
 That's it. The [`skills` CLI](https://github.com/vercel-labs/skills) installs this
@@ -99,22 +99,22 @@ Prefer to drop in a file yourself? Each adapter is generated from the same `SKIL
 
 | Tool | Install |
 |---|---|
-| **Claude Code** | `git clone … ~/.claude/skills/harness-humanizer` |
-| **Cursor** | copy [`adapters/cursor/harness-humanizer.mdc`](adapters/cursor/harness-humanizer.mdc) → `.cursor/rules/` |
-| **GitHub Copilot** | copy [`adapters/copilot/…instructions.md`](adapters/copilot/harness-humanizer.instructions.md) → `.github/instructions/` |
+| **Claude Code** | `git clone … ~/.claude/skills/de-slop` |
+| **Cursor** | copy [`adapters/cursor/de-slop.mdc`](adapters/cursor/de-slop.mdc) → `.cursor/rules/` |
+| **GitHub Copilot** | copy [`adapters/copilot/…instructions.md`](adapters/copilot/de-slop.instructions.md) → `.github/instructions/` |
 | **Codex / Amp / Jules / Pi / etc.** | copy [`adapters/AGENTS.md`](adapters/AGENTS.md) → repo root |
 | **Gemini CLI** | copy [`adapters/gemini/GEMINI.md`](adapters/gemini/GEMINI.md) → repo root or `~/.gemini/` |
-| **Windsurf** | copy [`adapters/windsurf/harness-humanizer.md`](adapters/windsurf/harness-humanizer.md) → `.windsurf/rules/` |
+| **Windsurf** | copy [`adapters/windsurf/de-slop.md`](adapters/windsurf/de-slop.md) → `.windsurf/rules/` |
 | **Any chatbot** | paste [`adapters/PROMPT.md`](adapters/PROMPT.md) into ChatGPT/Claude/Gemini |
 
 ```bash
 # Claude Code
-git clone https://github.com/isatimur/harness-humanizer-skill.git
-cp -R harness-humanizer-skill ~/.claude/skills/harness-humanizer
+git clone https://github.com/isatimur/de-slop.git
+cp -R de-slop ~/.claude/skills/de-slop
 
 # Cursor (example) — fetch just the adapter
-mkdir -p .cursor/rules && curl -o .cursor/rules/harness-humanizer.mdc \
-  https://raw.githubusercontent.com/isatimur/harness-humanizer-skill/main/adapters/cursor/harness-humanizer.mdc
+mkdir -p .cursor/rules && curl -o .cursor/rules/de-slop.mdc \
+  https://raw.githubusercontent.com/isatimur/de-slop/main/adapters/cursor/de-slop.mdc
 ```
 
 Editing the rules? Change `SKILL.md` / `references/` and run
@@ -127,21 +127,21 @@ and today it runs straight from the GitHub source — no clone, no `pip`:
 
 ```bash
 # one-off, no install — from source
-uvx --from git+https://github.com/isatimur/harness-humanizer-skill humanizer-flag yourfile.md --score
+uvx --from git+https://github.com/isatimur/de-slop de-slop yourfile.md --score
 
 # install as a tool
-uv tool install git+https://github.com/isatimur/harness-humanizer-skill
-humanizer-flag yourfile.md                 # JSON of flagged tells
-humanizer-flag yourfile.md --score         # per-paragraph slop_band
-humanizer-flag yourfile.md --profile stop-slop   # aggressive opt-in rules
+uv tool install git+https://github.com/isatimur/de-slop
+de-slop yourfile.md                 # JSON of flagged tells
+de-slop yourfile.md --score         # per-paragraph slop_band
+de-slop yourfile.md --profile stop-slop   # aggressive opt-in rules
 ```
 
-`pipx install git+https://github.com/isatimur/harness-humanizer-skill` works
+`pipx install git+https://github.com/isatimur/de-slop` works
 identically. Or score text with no install at all in the
 **[free in-browser tool](https://harness-humanizer-skill.vercel.app/#tool)**.
 
 > **PyPI release pending.** Trusted-publisher registration is in progress; once it
-> lands, `uvx --from harness-humanizer …` and `pipx install harness-humanizer` will
+> lands, `uvx --from de-slop …` and `pipx install de-slop` will
 > work by name. Until then, use the `git+https://…` forms above (identical behavior).
 
 ## Layout
@@ -157,7 +157,7 @@ scripts/
   flag_slop.py           # stdlib-only regex pre-pass → JSON; --selftest, --score, --profile
   build_adapters.py      # renders SKILL.md + references/ → every tool's format; --check
 adapters/                # GENERATED — one per tool (cursor, copilot, AGENTS.md, …) + PROMPT.md
-pyproject.toml           # packages flag_slop.py as the `humanizer-flag` CLI (uv/pipx)
+pyproject.toml           # packages flag_slop.py as the `de-slop` CLI (uv/pipx)
 docs/                    # the website (Vercel): landing page, glossary, slop.js scorer
 tests/                   # dev-only; omittable from a runtime install
   corpus/*.jsonl         # labeled slop / clean / over-correction samples

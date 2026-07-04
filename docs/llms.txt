@@ -1,4 +1,4 @@
-# harness-humanizer
+# de-slop
 
 > A free, MIT, zero-dependency skill that removes "AI slop" from prose — the empty
 > hedging, listicle stems, smooth transitions that hide the absence of a claim, and
@@ -9,7 +9,7 @@
 
 ## What it is
 
-harness-humanizer is an Agent Skill (per the Agent Skills spec) plus a
+de-slop is an Agent Skill (per the Agent Skills spec) plus a
 stdlib-only Python detector and an in-browser scorer. It works in Claude Code,
 Cursor, GitHub Copilot, Codex (AGENTS.md), Gemini, Windsurf, or any chatbot via a
 paste-anywhere prompt — all generated from one source (`SKILL.md`).
@@ -23,7 +23,7 @@ The method is subtractive, in three moves:
 ## How it differs from other humanizers
 
 Most "AI humanizer" tools prescribe a replacement style (be punchy, drop em-dashes,
-go first-person). harness-humanizer treats that prescription as **over-correction** —
+go first-person). de-slop treats that prescription as **over-correction** —
 a second, louder kind of slop — and guards against it. Two hard rules: fidelity over
 flair, and flag hollow spans rather than fabricate. It reports changes rather than
 overwriting, so a human stays in control.
@@ -37,5 +37,5 @@ overwriting, so a human stays in control.
 
 ## Source & install
 
-- [GitHub repository](https://github.com/isatimur/harness-humanizer-skill): MIT, zero-dependency, Python 3.9–3.13, adapters for every AI tool.
+- [GitHub repository](https://github.com/isatimur/de-slop): MIT, zero-dependency, Python 3.9–3.13, adapters for every AI tool.
 - License: MIT. Maintainer: Timur Isachenko.

@@ -19,7 +19,7 @@ import sys
 
 _HERE = os.path.dirname(os.path.abspath(__file__))
 _ROOT = os.path.dirname(_HERE)
-REPO = "https://github.com/isatimur/harness-humanizer-skill"
+REPO = "https://github.com/isatimur/de-slop"
 
 GENERATED_NOTE = (
     "<!-- GENERATED from SKILL.md + references/ by scripts/build_adapters.py. "
@@ -115,13 +115,13 @@ def _r_markdown(core, desc, note):
 
 def _r_prompt(core, desc, note):
     header = (
-        "# Harness Humanizer — paste-anywhere prompt\n\n"
+        "# De-Slop — paste-anywhere prompt\n\n"
         f"{GENERATED_NOTE}\n\n"
         "Copy everything below the line into any AI chat (ChatGPT, Claude, "
         "Gemini, etc.), then paste the text you want de-slopped underneath it. "
         "No install required.\n\n"
         "---\n\n"
-        "You are an editor running the **Harness Humanizer** loop. Apply the "
+        "You are an editor running the **De-Slop** loop. Apply the "
         "rules, loop, rubric, and guardrails below to the prose I give you. "
         "Report your changes and flags — do not silently rewrite.\n\n"
     )
@@ -136,10 +136,10 @@ RENDERERS = {
 # Declarative target manifest. Add a harness = add one entry.
 TARGETS = [
     {"id": "cursor", "fmt": "mdc",
-     "path": "adapters/cursor/harness-humanizer.mdc",
+     "path": "adapters/cursor/de-slop.mdc",
      "note": "place in `.cursor/rules/` in your project."},
     {"id": "copilot", "fmt": "copilot",
-     "path": "adapters/copilot/harness-humanizer.instructions.md",
+     "path": "adapters/copilot/de-slop.instructions.md",
      "note": "place in `.github/instructions/` in your repo."},
     {"id": "agents", "fmt": "agents",
      "path": "adapters/AGENTS.md",
@@ -150,7 +150,7 @@ TARGETS = [
      "path": "adapters/gemini/GEMINI.md",
      "note": "place `GEMINI.md` at your repo root or in `~/.gemini/`."},
     {"id": "windsurf", "fmt": "markdown",
-     "path": "adapters/windsurf/harness-humanizer.md",
+     "path": "adapters/windsurf/de-slop.md",
      "note": "place in `.windsurf/rules/` in your project."},
     {"id": "prompt", "fmt": "prompt",
      "path": "adapters/PROMPT.md",

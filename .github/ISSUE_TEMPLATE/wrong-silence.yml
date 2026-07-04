@@ -29,7 +29,7 @@ body:
     id: tool
     attributes:
       label: Where did you run it?
-      description: CLI (`humanizer-flag`), a coding agent (Claude Code / Cursor / …), or the web scorer.
-      placeholder: "humanizer-flag --score"
+      description: CLI (`de-slop`), a coding agent (Claude Code / Cursor / …), or the web scorer.
+      placeholder: "de-slop --score"
     validations:
       required: false

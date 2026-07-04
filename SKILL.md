@@ -1,5 +1,5 @@
 ---
-name: harness-humanizer
+name: de-slop
 description: >-
   Use when prose reads like AI — to remove "AI slop" (empty hedging, listicle
   stems, smooth transitions that hide the absence of a claim, generic filler)
@@ -12,7 +12,7 @@ description: >-
   than overwriting.
 ---
 
-# Harness Humanizer
+# De-Slop
 
 Turn AI-slop prose into writing that survives a hostile editor's red pen —
 without swapping one kind of slop for another.

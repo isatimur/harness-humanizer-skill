@@ -1,12 +1,12 @@
 # Proof: it passes its own detector
 
 The fastest way to distrust a "humanizer" is to read its own marketing and find slop.
-So here is harness-humanizer's own prose, scored by harness-humanizer's own detector.
+So here is de-slop's own prose, scored by de-slop's own detector.
 
 Reproduce it yourself — zero dependencies, any Python 3.9+:
 
 ```bash
-git clone https://github.com/isatimur/harness-humanizer-skill && cd harness-humanizer-skill
+git clone https://github.com/isatimur/de-slop && cd de-slop
 python3 scripts/flag_slop.py --score README.md
 python3 scripts/flag_slop.py --score SKILL.md
 ```

@@ -5,7 +5,7 @@ from every other "humanizer": **it won't trade AI-slop for louder slop, and it p
 its own detector.** Post when ready; nothing here auto-publishes.
 
 Links: site https://harness-humanizer-skill.vercel.app/ · repo
-https://github.com/isatimur/harness-humanizer-skill · scorer
+https://github.com/isatimur/de-slop · scorer
 https://harness-humanizer-skill.vercel.app/#tool
 
 ---
@@ -41,8 +41,8 @@ who lands on 3 stars and no listings bounces. So the discovery + proof layer goe
 The most persuasive thing you can show is the tool judging *itself*:
 
 ```bash
-uvx --from git+https://github.com/isatimur/harness-humanizer-skill \
-  humanizer-flag README.md --score
+uvx --from git+https://github.com/isatimur/de-slop \
+  de-slop README.md --score
 ```
 
 Screenshot the run showing the README/SKILL/rubric scoring `strong` under the
@@ -69,7 +69,7 @@ claim. Lead comments with it. The result is pre-captured in [`PROOF.md`](PROOF.m
 Most "humanizers" swap AI-slop for louder slop — forced hot takes, em-dash
 theatrics, fake "let's be honest." I treated that as a failure mode, not a fix.
 
-harness-humanizer detects machine-writing tells (empty hedging, listicle stems,
+de-slop detects machine-writing tells (empty hedging, listicle stems,
 manufactured stakes), rewrites the fixable parts toward a real point of view under
 strict fidelity, and — the part I care about — **flags hollow paragraphs instead
 of inventing a claim to fill them.** A paragraph with no point can't be reworded
@@ -90,7 +90,7 @@ Happy to talk about the rewordable-vs-hollow judgment call, which is the whole g
 **Tagline:** Remove AI slop without faking a voice — in any AI tool
 
 **Description:**
-harness-humanizer turns machine-flavored prose into writing that survives a hostile
+de-slop turns machine-flavored prose into writing that survives a hostile
 editor's red pen. It detects the tells, rewrites toward a real point of view, self-
 scores against a rubric, and flags hollow spans instead of fabricating claims. Free,
 MIT, zero-dependency, and portable to every AI tool. Includes a free in-browser slop

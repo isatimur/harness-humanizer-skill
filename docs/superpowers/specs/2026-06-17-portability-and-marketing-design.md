@@ -1,4 +1,4 @@
-# harness-humanizer: Portability + Adoption Design
+# de-slop: Portability + Adoption Design
 
 **Date:** 2026-06-17
 **Status:** Approved (scope: build everything buildable now; launch + BYOK runtime specced for later)
@@ -6,7 +6,7 @@
 
 ## Problem
 
-`harness-humanizer` is a Claude Code skill. Its value (de-slop AI prose, fidelity-first)
+`de-slop` is a Claude Code skill. Its value (de-slop AI prose, fidelity-first)
 is tool-agnostic, but its packaging is Claude-Code-only. To reach "everyone and every AI
 tool" it needs (a) to be installable in every major AI harness from one maintained source,
 (b) a frictionless install-free surface for non-CLI users, and (c) a discovery engine
@@ -33,11 +33,11 @@ zero-dependency identity.
 | Tool | Output path | Format notes |
 |---|---|---|
 | Claude Code | `SKILL.md` (source) | canonical, not generated |
-| Cursor | `adapters/cursor/harness-humanizer.mdc` | MDC frontmatter: `description`, `globs`, `alwaysApply: false` |
-| GitHub Copilot | `adapters/copilot/harness-humanizer.instructions.md` | `applyTo` frontmatter + body |
+| Cursor | `adapters/cursor/de-slop.mdc` | MDC frontmatter: `description`, `globs`, `alwaysApply: false` |
+| GitHub Copilot | `adapters/copilot/de-slop.instructions.md` | `applyTo` frontmatter + body |
 | Codex / Amp / Jules / generic | `adapters/AGENTS.md` | universal markdown, the cross-tool standard |
 | Gemini CLI | `adapters/gemini/GEMINI.md` | markdown |
-| Windsurf | `adapters/windsurf/harness-humanizer.md` | markdown rule |
+| Windsurf | `adapters/windsurf/de-slop.md` | markdown rule |
 | Paste-anywhere | `adapters/PROMPT.md` | fully self-contained: skill body + rubric + guardrails + condensed examples inlined. Works in any chatbot, zero install. |
 
 **Pi / Hermes / OpenCLAW and other niche harnesses:** covered today by the universal
@@ -46,8 +46,8 @@ prompt). When an exact rules-file convention is known, add a precise manifest en
 fabricate config-file specs.
 
 ### 1.3 Package the deterministic flagger
-- `pyproject.toml` (stdlib-only, no runtime deps) exposing console script `humanizer-flag`
-  → `scripts/flag_slop.py`. Enables `pipx install harness-humanizer` / `pip install`.
+- `pyproject.toml` (stdlib-only, no runtime deps) exposing console script `de-slop`
+  → `scripts/flag_slop.py`. Enables `pipx install de-slop` / `pip install`.
 - Keep the script runnable directly (back-compat).
 
 ### 1.4 CI
