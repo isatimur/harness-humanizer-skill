@@ -4,6 +4,36 @@ All notable changes to this project are documented here. Format follows
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/); this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.4.0] — 2026-07-11
+
+The rename release: **harness-humanizer is now de-slop** — the name people
+actually use when they ask for it.
+
+### Changed
+- **Repository renamed** to `github.com/isatimur/de-slop`. GitHub redirects the
+  old `harness-humanizer-skill` URLs (clones, badges, links keep working), but
+  update your remotes: `git remote set-url origin https://github.com/isatimur/de-slop.git`.
+- **Python package renamed** `harness-humanizer` → `de-slop`, and the **CLI
+  entry point renamed** `humanizer-flag` → `de-slop`. No release was ever
+  published to PyPI under the old name, so there is nothing to migrate —
+  `pipx install de-slop` will be the first published name once 0.4.0 ships.
+- **Skill name** is `de-slop` across `SKILL.md`, the plugin manifest, and every
+  generated adapter (Cursor, Copilot, Codex/`AGENTS.md`, Gemini, Windsurf,
+  paste-anywhere prompt). `npx skills add isatimur/de-slop` resolves to the new
+  repo path.
+- Version strings unified at 0.4.0 across `pyproject.toml`, `flag_slop.py`,
+  the plugin manifest, the README, and the website (which had drifted between
+  v0.3.0 and v0.3.1 in different sections of the same page).
+
+### Unchanged
+- The website stays at `harness-humanizer-skill.vercel.app` for now; a domain
+  move will be its own release note when it happens.
+- Detector rules, rubric, scoring, and the `flag()` output contract are
+  untouched — this release changes names, not behavior.
+
+Entries below this line shipped under the project's old name; install commands
+in them were updated to the current name to stay copy-pasteable.
+
 ## [0.3.1] — 2026-06-20
 
 ### Added

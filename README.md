@@ -8,7 +8,7 @@
 [![Dependencies: 0](https://img.shields.io/badge/dependencies-0-success.svg)](tests/check_no_deps.py)
 [![Star on GitHub](https://img.shields.io/github/stars/isatimur/de-slop?style=social)](https://github.com/isatimur/de-slop/stargazers)
 
-**Version 0.3.1** · stdlib-only, zero-dependency · [Website + free slop scorer](https://harness-humanizer-skill.vercel.app/) · [What is AI slop?](https://harness-humanizer-skill.vercel.app/ai-slop) · [Changelog](CHANGELOG.md) · MIT
+**Version 0.4.0** · stdlib-only, zero-dependency · [Website + free slop scorer](https://harness-humanizer-skill.vercel.app/) · [What is AI slop?](https://harness-humanizer-skill.vercel.app/ai-slop) · [Changelog](CHANGELOG.md) · MIT
 
 ## Install
 
