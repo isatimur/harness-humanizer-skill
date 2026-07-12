@@ -24,6 +24,11 @@ actually use when they ask for it.
 - Version strings unified at 0.4.0 across `pyproject.toml`, `flag_slop.py`,
   the plugin manifest, the README, and the website (which had drifted between
   v0.3.0 and v0.3.1 in different sections of the same page).
+- README `Verify` section now lists the full five-command suite CI actually
+  runs (it was missing the JS-parity and adapter-sync checks).
+- `PROOF.md` re-scored against the current README: 96/100, still `strong`,
+  4 hits — the new before→after demo quotes one more slop mannerism as an
+  exhibit, and the footnotes now say so.
 
 ### Unchanged
 - The website stays at `harness-humanizer-skill.vercel.app` for now; a domain

@@ -184,10 +184,14 @@ rationale live in [`references/slop-catalogue.md`](references/slop-catalogue.md)
 ## Verify
 
 ```bash
-python3 scripts/flag_slop.py --selftest   # detector smoke test
+python3 scripts/flag_slop.py --selftest    # detector smoke test
 python3 tests/eval.py                      # full detector eval against the corpus
 python3 tests/check_no_deps.py             # confirm it's still stdlib-only
+python3 tests/check_js_parity.py           # docs/slop.js mirrors the Python rule set
+python3 scripts/build_adapters.py --check  # adapters are in sync with SKILL.md
 ```
+
+CI runs all five on Python 3.9–3.13, no `pip install` step anywhere.
 
 The detector also emits a per-paragraph **slop score** with
 `python3 scripts/flag_slop.py --score <file>`. That score measures *surface slop
