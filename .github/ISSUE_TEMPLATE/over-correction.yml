@@ -1,0 +1,36 @@
+name: "Over-correction (swapped slop for edgy-slop)"
+description: The rewrite traded AI slop for a louder slop — forced hot take, fake candor, em-dash theatrics, or a stance the source never made.
+title: "[over-correction]: "
+labels: ["over-correction", "guardrails"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks. An over-correction becomes a labeled row in `tests/corpus/overcorrection.jsonl`.
+        These are the most valuable samples — they prove the skill faked a voice instead of preserving one.
+  - type: textarea
+    id: offending-text
+    attributes:
+      label: Offending text (the over-corrected rewrite)
+      description: The verbatim rewrite the skill produced — the version that manufactured a voice or stance.
+      placeholder: "Let's be honest: if you're not testing, you're not really an engineer — you're just typing and hoping."
+      render: markdown
+    validations:
+      required: true
+  - type: textarea
+    id: source-text
+    attributes:
+      label: Original source text (optional)
+      description: The input that was rewritten, so we can see what fidelity should have preserved.
+      placeholder: "Testing is an important part of the development process that helps ensure quality."
+      render: markdown
+    validations:
+      required: false
+  - type: textarea
+    id: expected-behavior
+    attributes:
+      label: Expected behavior
+      description: What should the rewrite have done — sharpened within fidelity, or left the claim intact? Which guardrail did it break?
+      placeholder: "Should sharpen without inventing a stance: 'Tests are the only reason you can change code you wrote six months ago without re-reading all of it.'"
+    validations:
+      required: true

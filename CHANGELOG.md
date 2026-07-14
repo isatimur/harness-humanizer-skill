@@ -4,14 +4,49 @@ All notable changes to this project are documented here. Format follows
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/); this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.4.0] — 2026-07-11
+
+The rename release: **harness-humanizer is now de-slop** — the name people
+actually use when they ask for it.
+
+### Changed
+- **Repository renamed** to `github.com/isatimur/de-slop`. GitHub redirects the
+  old `harness-humanizer-skill` URLs (clones, badges, links keep working), but
+  update your remotes: `git remote set-url origin https://github.com/isatimur/de-slop.git`.
+- **Python package renamed** `harness-humanizer` → `de-slop`, and the **CLI
+  entry point renamed** `humanizer-flag` → `de-slop`. No release was ever
+  published to PyPI under the old name, so there is nothing to migrate —
+  `pipx install de-slop` will be the first published name once 0.4.0 ships.
+- **Skill name** is `de-slop` across `SKILL.md`, the plugin manifest, and every
+  generated adapter (Cursor, Copilot, Codex/`AGENTS.md`, Gemini, Windsurf,
+  paste-anywhere prompt). `npx skills add isatimur/de-slop` resolves to the new
+  repo path.
+- Version strings unified at 0.4.0 across `pyproject.toml`, `flag_slop.py`,
+  the plugin manifest, the README, and the website (which had drifted between
+  v0.3.0 and v0.3.1 in different sections of the same page).
+- README `Verify` section now lists the full five-command suite CI actually
+  runs (it was missing the JS-parity and adapter-sync checks).
+- `PROOF.md` re-scored against the current README: 96/100, still `strong`,
+  4 hits — the new before→after demo quotes one more slop mannerism as an
+  exhibit, and the footnotes now say so.
+
+### Unchanged
+- The website stays at `harness-humanizer-skill.vercel.app` for now; a domain
+  move will be its own release note when it happens.
+- Detector rules, rubric, scoring, and the `flag()` output contract are
+  untouched — this release changes names, not behavior.
+
+Entries below this line shipped under the project's old name; install commands
+in them were updated to the current name to stay copy-pasteable.
+
 ## [0.3.1] — 2026-06-20
 
 ### Added
 - **PyPI release pipeline** — a `release.yml` workflow that builds the sdist +
   wheel and publishes on a version tag via PyPI Trusted Publishing (OIDC, no stored
   token); the stdlib-only guard + eval run before anything publishes. Once the
-  project is registered on PyPI, `pip install harness-humanizer` /
-  `uvx harness-humanizer` / `pipx install harness-humanizer` work by name (was
+  project is registered on PyPI, `pip install de-slop` /
+  `uvx de-slop` / `pipx install de-slop` work by name (was
   git-only).
 - **Social preview card** — a 1200×630 `og-image.png` (manuscript/red-pen
   aesthetic) wired into `og:image`/`twitter:image` on both pages, so link unfurls
@@ -36,7 +71,7 @@ detector that folds in (and out-engineers) the wider de-slop ecosystem.
   Gemini (`GEMINI.md`), Windsurf, and a self-contained **paste-anywhere
   `PROMPT.md`** for any chatbot. CI gates drift with `--check`.
 - **CLI packaging** (`pyproject.toml`) — `uv tool install` / `pipx install`
-  exposes a `humanizer-flag` command. Still zero runtime dependencies.
+  exposes a `de-slop` command. Still zero runtime dependencies.
 - **Free in-browser Slop Score tool** — `docs/slop.js`, a parity-gated JS port of
   the detector that runs entirely client-side on the website. New
   `tests/check_js_parity.py` keeps it in lockstep with `flag_slop.py`.

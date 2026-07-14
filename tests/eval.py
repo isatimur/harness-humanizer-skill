@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Detector eval for the harness-humanizer skill.
+"""Detector eval for the de-slop skill.
 
 Deterministic, zero-dependency regression gate for scripts/flag_slop.py. It
 tests DETECTOR BEHAVIOUR ONLY — does the regex pass fire on slop and stay quiet
@@ -161,7 +161,7 @@ def gate(result, thresholds):
     return results, all(c["pass"] for c in results)
 
 
-_BANNER = ("harness-humanizer detector eval  "
+_BANNER = ("de-slop detector eval  "
            "(tests DETECTOR behaviour only — NOT rewrite quality or humanness)")
 
 

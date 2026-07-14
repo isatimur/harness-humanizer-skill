@@ -1,13 +1,10 @@
----
-description: Use when prose reads like AI — to remove "AI slop" (empty hedging, listicle stems, smooth transitions that hide the absence of a claim, generic filler) and rewrite it into writing with a real point of view. Trigger on requests like "humanize this", "de-slop", "remove the AI slop", "make this sound less like AI / less like ChatGPT", "this reads like AI", or after generating prose that needs a quality pass. Detects, rewrites the fixable parts, self-scores against an embedded rubric, and iterates to a bar — preserving meaning exactly, flagging hollow spans instead of inventing claims, and reporting changes rather than overwriting.
-globs:
-alwaysApply: false
----
 <!-- GENERATED from SKILL.md + references/ by scripts/build_adapters.py. Do not edit by hand; edit the source and regenerate. -->
 
-> **Install:** place in `.cursor/rules/` in your project.
+> **Install:** place in `.windsurf/rules/` in your project.
+>
+> Use when prose reads like AI — to remove "AI slop" (empty hedging, listicle stems, smooth transitions that hide the absence of a claim, generic filler) and rewrite it into writing with a real point of view. Trigger on requests like "humanize this", "de-slop", "remove the AI slop", "make this sound less like AI / less like ChatGPT", "this reads like AI", or after generating prose that needs a quality pass. Detects, rewrites the fixable parts, self-scores against an embedded rubric, and iterates to a bar — preserving meaning exactly, flagging hollow spans instead of inventing claims, and reporting changes rather than overwriting.
 
-# Harness Humanizer
+# De-Slop
 
 Turn AI-slop prose into writing that survives a hostile editor's red pen —
 without swapping one kind of slop for another.
@@ -206,4 +203,4 @@ found a hollow span — flag it and move on.
 
 ---
 
-*Optional tooling — a zero-dependency deterministic pre-flagger (`flag_slop.py`), the full slop catalogue, and the test corpus live in the repo: https://github.com/isatimur/harness-humanizer-skill*
+*Optional tooling — a zero-dependency deterministic pre-flagger (`flag_slop.py`), the full slop catalogue, and the test corpus live in the repo: https://github.com/isatimur/de-slop*

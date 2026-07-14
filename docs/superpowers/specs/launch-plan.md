@@ -1,4 +1,4 @@
-# harness-humanizer — Launch & Distribution Plan
+# de-slop — Launch & Distribution Plan
 
 **Status:** Ready to execute (not yet run). Goal: adoption — installs, stars,
 usage across every AI tool, and owning "AI slop" in search. 100% free / MIT.
@@ -11,7 +11,7 @@ seed backlinks, then launch loud — each step gives the next something to point
 - [x] Paste-anywhere `PROMPT.md` + per-tool adapters
 - [x] "What is AI slop?" glossary page (SEO landing)
 - [x] `uv tool install` / `pipx` CLI
-- [ ] Publish CLI to PyPI so `uvx harness-humanizer` / `uv tool install harness-humanizer` work by name (currently git-only)
+- [ ] Publish CLI to PyPI so `uvx de-slop` / `uv tool install de-slop` work by name (currently git-only)
 - [ ] OG image (1200×630) for social cards — the manuscript/red-pen motif
 - [ ] 30-second screen capture of the scorer flipping fail → strong
 
@@ -21,7 +21,7 @@ respectful, decision-oriented:
 - What stop-slop is great at (simple, popular, prescriptive banned-list).
 - The different bet: fidelity-first, flag-don't-fabricate, runnable detector,
   every-tool portability, over-correction guardrails.
-- "Use stop-slop if… / use harness-humanizer if…" — real guidance, not a takedown.
+- "Use stop-slop if… / use de-slop if…" — real guidance, not a takedown.
 - Note the `--profile stop-slop` interop on-ramp.
 Target queries: "stop-slop alternative", "AI humanizer that preserves meaning".
 

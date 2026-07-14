@@ -1,4 +1,4 @@
-/* harness-humanizer — in-browser AI-slop scorer.
+/* de-slop — in-browser AI-slop scorer.
  *
  * A faithful JS port of scripts/flag_slop.py: same rule TYPES and same WEIGHTS
  * (tests/check_js_parity.py gates the inventory so this never drifts from the

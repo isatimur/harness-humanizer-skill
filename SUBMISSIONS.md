@@ -13,7 +13,7 @@ below is free unless marked **`$`**. Lead every listing with the one-line differ
 duplicates): awesome-lists → *technical substance*; AI directories → *AI-first, free*;
 communities → *before→after demo first, pitch second*.
 
-**Canonical links:** repo `https://github.com/isatimur/harness-humanizer-skill` · site
+**Canonical links:** repo `https://github.com/isatimur/de-slop` · site
 `https://harness-humanizer-skill.vercel.app/` · scorer `…/#tool`
 
 ---
@@ -45,12 +45,12 @@ These are where people browse for skills. Mostly dofollow GitHub backlinks + dir
 | **tech-leads-club/agent-skills** | PR add (validated/"secure" registry — may require review) | ★★★★☆ | Quality-gated → strong trust signal if accepted. |
 | **awesomeclaude.ai** & **awesome-skills.com** | Web submit form | ★★★☆☆ | Web directories that mirror the lists; extra discovery. |
 | `gh skill` ecosystem (GitHub Agent Skills) | Ensure repo is `gh skill`-installable + tagged | ★★★★☆ | GitHub CLI can install skills directly (Apr-2026 changelog). Make sure SKILL.md metadata is discoverable. |
-| **vercel-labs/skills** (decentralized installer CLI, 70+ agents) | No submission — already installable: `npx skills add isatimur/harness-humanizer-skill` (root `SKILL.md` conforms). **Advertise the command**; consider a PR to any examples/showcase list in the repo. | ★★★★★ | Distribution surface, not a list. One command installs us into Claude Code/Cursor/Cline/OpenCode/etc. Put the command everywhere. |
-| **skills.sh** (registry/leaderboard for the `npx skills` ecosystem) | Indexes GitHub skills installed via `npx skills add`. Confirm we appear at `skills.sh/isatimur/harness-humanizer-skill`; check the docs (`/docs`, CLI/API) for any explicit publish step. **Ranking = total installs + 8-week activity** → every install/launch post compounds here. | ★★★★★ | Public leaderboard with visible install counts. The competitor `story-deslop` lives here at 6.4K installs / 3.3K★ — this is the scoreboard to climb. Drive installs via the one-command line everywhere. |
+| **vercel-labs/skills** (decentralized installer CLI, 70+ agents) | No submission — already installable: `npx skills add isatimur/de-slop` (root `SKILL.md` conforms). **Advertise the command**; consider a PR to any examples/showcase list in the repo. | ★★★★★ | Distribution surface, not a list. One command installs us into Claude Code/Cursor/Cline/OpenCode/etc. Put the command everywhere. |
+| **skills.sh** (registry/leaderboard for the `npx skills` ecosystem) | Indexes GitHub skills installed via `npx skills add`. Confirm we appear at `skills.sh/isatimur/de-slop`; check the docs (`/docs`, CLI/API) for any explicit publish step. **Ranking = total installs + 8-week activity** → every install/launch post compounds here. | ★★★★★ | Public leaderboard with visible install counts. The competitor `story-deslop` lives here at 6.4K installs / 3.3K★ — this is the scoreboard to climb. Drive installs via the one-command line everywhere. |
 
 **Ready-to-paste entry (markdown list item for awesome-lists):**
 ```markdown
-- [harness-humanizer](https://github.com/isatimur/harness-humanizer-skill) — Removes "AI slop" (hedging, listicle stems, filler) without faking a voice. Subtractive method, self-scores against a rubric, flags hollow spans instead of fabricating claims. Zero-dependency, MIT, works in Claude Code / Cursor / Copilot / Codex / Gemini / Windsurf.
+- [de-slop](https://github.com/isatimur/de-slop) — Removes "AI slop" (hedging, listicle stems, filler) without faking a voice. Subtractive method, self-scores against a rubric, flags hollow spans instead of fabricating claims. Zero-dependency, MIT, works in Claude Code / Cursor / Copilot / Codex / Gemini / Windsurf.
 ```
 **Category to request:** `Writing` / `Content` / `Editing` skill.
 
@@ -74,7 +74,7 @@ High-DR directories that ChatGPT/Perplexity pull from for "best AI writing/human
 **60-char:** `De-slop AI writing without faking a voice. Free, MIT.`
 **~150-word long description:**
 ```
-harness-humanizer turns machine-flavored prose into writing that survives a
+de-slop turns machine-flavored prose into writing that survives a
 hostile editor's red pen — without swapping AI-slop for a louder slop. Most
 "humanizers" bolt on forced hot takes, em-dash drama, and fake first-person;
 this one treats that as the failure mode. It detects the real tells (empty
