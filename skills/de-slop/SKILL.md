@@ -10,6 +10,9 @@ description: >-
   against an embedded rubric, and iterates to a bar — preserving meaning exactly,
   flagging hollow spans instead of inventing claims, and reporting changes rather
   than overwriting.
+license: MIT
+metadata:
+  author: isatimur
 ---
 
 # De-Slop
