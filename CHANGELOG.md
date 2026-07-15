@@ -21,6 +21,10 @@ actually use when they ask for it.
   generated adapter (Cursor, Copilot, Codex/`AGENTS.md`, Gemini, Windsurf,
   paste-anywhere prompt). `npx skills add isatimur/de-slop` resolves to the new
   repo path.
+- **Migration for installed copies:** if you have the skill installed under the
+  old name (e.g. `~/.claude/skills/harness-humanizer`, or the
+  `harness-humanizer` plugin), remove it and reinstall as `de-slop` — otherwise
+  both copies may trigger on the same request.
 - Version strings unified at 0.4.0 across `pyproject.toml`, `flag_slop.py`,
   the plugin manifest, the README, and the website (which had drifted between
   v0.3.0 and v0.3.1 in different sections of the same page).

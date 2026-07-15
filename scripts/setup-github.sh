@@ -14,31 +14,34 @@ set -euo pipefail
 REPO="isatimur/de-slop"
 
 # --- Description + homepage --------------------------------------------------
+# Homepage is intentionally the old harness-humanizer-skill.vercel.app domain
+# (see CHANGELOG 0.4.0 "Unchanged"); update it in the same change as any future domain move.
 gh repo edit "$REPO" \
   --description "Portable Claude Code skill that de-slops AI prose — detect, rewrite to a real point of view, self-score, iterate. Fidelity-first; flags hollow spans instead of faking them." \
   --homepage "https://harness-humanizer-skill.vercel.app/"
 
-# --- Topics (13, re-asserted exactly) ---------------------------------------
-# gh replaces the full topic set on each --add-topic invocation list below.
-gh repo edit "$REPO" \
-  --add-topic ai-writing \
-  --add-topic claude-code \
-  --add-topic claude-skill \
-  --add-topic de-slop \
-  --add-topic prose \
-  --add-topic writing-tools \
-  --add-topic agent-skills \
-  --add-topic ai-slop \
-  --add-topic anthropic-claude \
-  --add-topic cursor \
-  --add-topic developer-tools \
-  --add-topic humanizer \
-  --add-topic llm
+# --- Topics (13, replaced exactly) -------------------------------------------
+# `gh repo edit --add-topic` is additive only — it can never remove a stale
+# topic. PUT the full names[] list instead, which genuinely replaces the set.
+gh api -X PUT "repos/$REPO/topics" \
+  -f "names[]=ai-writing" \
+  -f "names[]=claude-code" \
+  -f "names[]=claude-skill" \
+  -f "names[]=de-slop" \
+  -f "names[]=prose" \
+  -f "names[]=writing-tools" \
+  -f "names[]=agent-skills" \
+  -f "names[]=ai-slop" \
+  -f "names[]=anthropic-claude" \
+  -f "names[]=cursor" \
+  -f "names[]=developer-tools" \
+  -f "names[]=humanizer" \
+  -f "names[]=llm"
 
 # --- Social Preview (manual, one-time) --------------------------------------
 # gh has no API for the Social Preview image, so set it by hand once:
 #   Settings → General → Social preview → Upload an image…
-#   Upload the 1280×640 asset that already lives at: docs/og-image.png
+#   Upload the 1200×630 asset that already lives at: docs/og-image.png
 # This is what renders when the repo is shared on X, LinkedIn, Slack, etc.
 
 echo "Done. Verify with: gh repo view $REPO --json description,homepageUrl,repositoryTopics"
