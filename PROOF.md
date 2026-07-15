@@ -11,7 +11,7 @@ python3 scripts/flag_slop.py --score README.md
 python3 scripts/flag_slop.py --score SKILL.md
 ```
 
-## Result (run on this repo)
+## Result (run on this repo, v0.4.1)
 
 | Document | Band | Score | Detector hits |
 |---|---|---|---|
@@ -27,12 +27,12 @@ Every core document lands in the top band.
 The detector measures *surface slop tells*, so the handful of hits are worth naming
 rather than scrubbing — that is the whole ethic of the project:
 
-- The README's two non-`strong` paragraphs are the ones that **quote** slop mannerisms
-  ("let's be honest…", "it's worth noting that…") as the *negative examples* they warn
-  against — one in the before→after demo, one in the over-correction warning. The
-  detector flags the words; in context they are the exhibit, not the crime.
-- Two README hits are the degree word "rather than" — a phrase the detector marks as
-  "often legit." It is legit here.
+- The README's non-clean paragraphs include ones that **quote** slop mannerisms
+  ("it's worth noting that…") as the *negative examples* they warn against — one
+  in the before→after demo. The detector flags the words; in context they are the
+  exhibit, not the crime.
+- Occasional hits like "rather than" are degree-y phrases the detector marks as
+  "often legit."
 
 A `strong` score is not a claim that the writing is *good* — only that it carries no
 surface slop. The detector says so itself on every run: *"slop_band measures surface

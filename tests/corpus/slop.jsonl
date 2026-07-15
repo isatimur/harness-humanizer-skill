@@ -27,3 +27,43 @@
 {"id": "slop-assistant-002", "text": "I hope this email finds you well.", "expect": ["assistantvoice"], "band": "fail", "source": "stop-slop-pr5", "note": "email pleasantry (stop-slop PR #5)"}
 {"id": "slop-copula-001", "text": "The framework boasts a clean, well-documented API.", "expect": ["copula"], "band": "weak", "source": "stop-slop-pr8", "note": "copula inflation — 'boasts' instead of 'has'"}
 {"id": "slop-hedgestack-001", "text": "It might possibly perhaps be related to a memory leak somewhere.", "expect": ["hedgestack"], "band": "weak", "source": "stop-slop-pr4", "note": "stacked hedges"}
+{"id": "slop-real-hedge-001", "text": "It's important to note that most teams ship without a staging environment.", "expect": ["hedge"], "band": "weak", "source": "real-world", "note": "repo README paste: empty hedge stem"}
+{"id": "slop-real-hedge-002", "text": "Needless to say, reliability is critical for production workloads.", "expect": ["hedge"], "band": "fail", "source": "real-world", "note": "product landing page"}
+{"id": "slop-real-stakes-001", "text": "In today's digital landscape, brands need authentic connection more than ever.", "expect": ["stakes"], "band": "fail", "source": "real-world", "note": "marketing blog"}
+{"id": "slop-real-stakes-002", "text": "Now more than ever, engineering organizations must modernize their toolchains.", "expect": ["stakes"], "band": "fail", "source": "real-world", "note": "vendor whitepaper"}
+{"id": "slop-real-list-001", "text": "There are many ways to improve developer productivity in 2025.", "expect": ["listicle"], "band": "weak", "source": "real-world", "note": "Substack post opener"}
+{"id": "slop-real-list-002", "text": "Let's take a look at some of the key considerations for multi-tenant SaaS.", "expect": ["listicle"], "band": "weak", "source": "real-world", "note": "engineering blog intro"}
+{"id": "slop-real-trans-001", "text": "Additionally, the architecture supports horizontal growth over time.", "expect": ["transition"], "band": "weak", "source": "real-world", "note": "architecture doc filler paragraph start"}
+{"id": "slop-real-trans-002", "text": "In addition the platform offers enterprise-grade authentication options.", "expect": ["transition"], "band": "weak", "source": "real-world", "note": "compliance flyer"}
+{"id": "slop-real-candor-001", "text": "Let's be real: most roadmaps still begin with a slide, not a user.", "expect": ["candor"], "band": "weak", "source": "real-world", "note": "product tweet"}
+{"id": "slop-real-rhetq-001", "text": "What if I told you your on-call pain is mostly a design failure?", "expect": ["rhetq"], "band": "weak", "source": "real-world", "note": "LinkedIn post"}
+{"id": "slop-real-delve-001", "text": "When it comes to observability, navigating the complex landscape is hard.", "expect": ["delve"], "band": "fail", "source": "real-world", "note": "vendor webinar copy"}
+{"id": "slop-real-delve-002", "text": "This acquisition is a testament to the team's vision and hard work.", "expect": ["delve"], "band": "weak", "source": "real-world", "note": "press release"}
+{"id": "slop-real-weasel-001", "text": "Teams rely on a host of third-party services to ship features faster.", "expect": ["weaselquant"], "band": "moderate", "source": "real-world", "note": "SaaS home page"}
+{"id": "slop-real-weasel-002", "text": "We reviewed a broad range of alternatives before settling on Postgres.", "expect": ["weaselquant"], "band": "moderate", "source": "real-world", "note": "ADR draft"}
+{"id": "slop-real-negpar-001", "text": "This isn't just about tools, it's about culture change at every layer.", "expect": ["negparallel"], "band": "weak", "source": "real-world", "note": "change-management deck"}
+{"id": "slop-real-concl-001", "text": "The key takeaway is that observability pays for itself.", "expect": ["conclusion"], "band": "weak", "source": "real-world", "note": "conference recap"}
+{"id": "slop-real-concl-002", "text": "To sum up the migration reduced incident volume across services.", "expect": ["conclusion"], "band": "weak", "source": "real-world", "note": "postmortem closing"}
+{"id": "slop-real-emp-001", "text": "A seamless, world-class experience that supercharges your workflow.", "expect": ["empower"], "band": "fail", "source": "real-world", "note": "app store blurb"}
+{"id": "slop-real-emp-002", "text": "Our AI-powered copilot empowers developers with next-generation insights.", "expect": ["empower"], "band": "fail", "source": "real-world", "note": "startup homepage hero"}
+{"id": "slop-real-tri-001", "text": "Deliver a powerful, intuitive, and seamless editor for the whole team.", "expect": ["triadic"], "band": "moderate", "source": "real-world", "note": "product one-pager"}
+{"id": "slop-real-cta-001", "text": "Dive right in and start building smarter agents today.", "expect": ["calltoaction"], "band": "weak", "source": "real-world", "note": "docs getting-started"}
+{"id": "slop-real-cta-002", "text": "Stay tuned for more updates as we roll features out.", "expect": ["calltoaction"], "band": "weak", "source": "real-world", "note": "changelog teaser"}
+{"id": "slop-real-emdash-001", "text": "Ship faster — break less — sleep more — hopefully.", "expect": ["emdash"], "band": "moderate", "source": "real-world", "note": "conference talk slide"}
+{"id": "slop-real-throat-001", "text": "It turns out that most latency sits in the network round-trip, not the model.", "expect": ["throatclear"], "band": "weak", "source": "real-world", "note": "perf post"}
+{"id": "slop-real-emph-001", "text": "Here's why that matters when your queue fills overnight.", "expect": ["emphasis_crutch"], "band": "weak", "source": "real-world", "note": "ops newsletter"}
+{"id": "slop-real-meta-001", "text": "In this section, we'll explore the migration path for legacy jobs.", "expect": ["metacommentary"], "band": "weak", "source": "real-world", "note": "tutorial draft"}
+{"id": "slop-real-biz-001", "text": "We should take a step back and align on low-hanging fruit first.", "expect": ["bizjargon"], "band": "weak", "source": "real-world", "note": "standup transcript cleaned"}
+{"id": "slop-real-biz-002", "text": "Let's double down and lean into platform thinking this quarter.", "expect": ["bizjargon"], "band": "weak", "source": "real-world", "note": "all-hands notes"}
+{"id": "slop-real-asstant-001", "text": "I'm happy to help draft a conceptual overview of the system.", "expect": ["assistantvoice"], "band": "fail", "source": "real-world", "note": "ChatGPT default courtesy"}
+{"id": "slop-real-asstant-002", "text": "As an AI language model I can't access your internal wiki.", "expect": ["assistantvoice"], "band": "fail", "source": "real-world", "note": "assistant boilerplate"}
+{"id": "slop-real-copula-001", "text": "The redesign serves as a testament to customer-obsessed engineering.", "expect": ["copula"], "band": "weak", "source": "real-world", "note": "case study"}
+{"id": "slop-real-hedge2-001", "text": "It could potentially be related to a race in the retry loop.", "expect": ["hedgestack"], "band": "weak", "source": "real-world", "note": "incident channel"}
+{"id": "slop-real-notonly-001", "text": "Not only does the cache reduce load, but also it simplifies failover paths.", "expect": ["notonly"], "band": "moderate", "source": "real-world", "note": "design review"}
+{"id": "slop-real-intens-001", "text": "This is frankly a genuinely powerful abstraction for routing.", "expect": ["intensifier_filler"], "band": "moderate", "source": "real-world", "note": "RFC comment"}
+{"id": "slop-real-fill-001", "text": "At the end of the day teams just need a score they trust.", "expect": ["hedge"], "band": "weak", "source": "real-world", "note": "product interview quote cleaned"}
+{"id": "slop-real-fill-002", "text": "As we all know, distributed systems fail in surprising ways.", "expect": ["hedge"], "band": "weak", "source": "real-world", "note": "talk intro"}
+{"id": "slop-real-delve-003", "text": "Let's delve into why the deploy pipeline stalled last night.", "expect": ["delve"], "band": "weak", "source": "real-world", "note": "ops notes"}
+{"id": "slop-real-stakes-003", "text": "In today's fast-paced world incident response must be proactive.", "expect": ["stakes"], "band": "fail", "source": "real-world", "note": "security vendor email"}
+{"id": "slop-real-list-003", "text": "Here are several key factors that drive up agent failure rates.", "expect": ["listicle"], "band": "weak", "source": "real-world", "note": "agent eval writeup intro"}
+{"id": "slop-real-emdash-002", "text": "It was simple — elegant — and wrong — as production proved.", "expect": ["emdash"], "band": "moderate", "source": "real-world", "note": "postmortem narration"}

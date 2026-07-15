@@ -169,6 +169,10 @@ Apply these to every rewrite. The goal is to remove slop, not to perform
 - You may **not add** a claim, opinion, statistic, example, or stance that was not
   already in the source. If the point isn't there, that's a HOLLOW span — flag it,
   don't fill it.
+- **No invented numbers, names, or mechanisms.** If the source never said
+  "microseconds," "Postgres," "JSON/CSV," or a similar specific, you may not put
+  it in the rewrite — even when it would sound sharper. Specificity without
+  source grounding is fabrication.
 
 ## Over-correction anti-patterns (never inject these)
 

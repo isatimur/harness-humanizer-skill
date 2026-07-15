@@ -14,11 +14,11 @@ set -euo pipefail
 REPO="isatimur/de-slop"
 
 # --- Description + homepage --------------------------------------------------
-# Homepage is intentionally the old harness-humanizer-skill.vercel.app domain
+# Homepage is intentionally the old de-slop-ai.vercel.app domain
 # (see CHANGELOG 0.4.0 "Unchanged"); update it in the same change as any future domain move.
 gh repo edit "$REPO" \
   --description "Portable Claude Code skill that de-slops AI prose — detect, rewrite to a real point of view, self-score, iterate. Fidelity-first; flags hollow spans instead of faking them." \
-  --homepage "https://harness-humanizer-skill.vercel.app/"
+  --homepage "https://de-slop-ai.vercel.app/"
 
 # --- Topics (13, replaced exactly) -------------------------------------------
 # `gh repo edit --add-topic` is additive only — it can never remove a stale

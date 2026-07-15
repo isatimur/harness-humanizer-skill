@@ -29,7 +29,7 @@ import json
 import re
 import sys
 
-__version__ = "0.4.0"
+__version__ = "0.4.1"
 
 # (type, human-readable pattern, compiled regex) — case-insensitive.
 # Adding a rule? Give it a weight in _WEIGHTS and a corpus sample in tests/.

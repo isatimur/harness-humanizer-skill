@@ -15,12 +15,13 @@ install`, ever — that portability is the whole point. CI enforces it
 ```bash
 python3 scripts/flag_slop.py --selftest   # detector smoke test
 python3 tests/eval.py                      # recall / clean-specificity / over-correction gates
+python3 tests/rewrite_eval.py              # fidelity rewrite-contract fixtures
 python3 tests/check_no_deps.py             # stdlib-only guard
 python3 tests/check_js_parity.py           # docs/slop.js mirrors the Python rule set
 python3 scripts/build_adapters.py --check  # adapters are in sync with SKILL.md
 ```
 
-All five must pass. The matrix (Python 3.9–3.13) runs the same checks on every PR.
+All six must pass. The matrix (Python 3.9–3.13) runs the same checks on every PR.
 
 ## The highest-value contribution: a labeled sample
 

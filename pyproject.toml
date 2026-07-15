@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "de-slop"
-version = "0.4.0"
+version = "0.4.1"
 description = "Deterministic AI-slop pre-flagger for the de-slop skill — zero dependencies, stdlib only."
 readme = "README.md"
 requires-python = ">=3.9"
@@ -23,7 +23,7 @@ dependencies = []
 
 [project.urls]
 Homepage = "https://github.com/isatimur/de-slop"
-Website = "https://harness-humanizer-skill.vercel.app"
+Website = "https://de-slop-ai.vercel.app"
 Repository = "https://github.com/isatimur/de-slop"
 Changelog = "https://github.com/isatimur/de-slop/blob/main/CHANGELOG.md"
 

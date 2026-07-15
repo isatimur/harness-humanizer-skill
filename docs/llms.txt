@@ -30,10 +30,10 @@ overwriting, so a human stays in control.
 
 ## Key pages
 
-- [Home + free in-browser slop scorer](https://harness-humanizer-skill.vercel.app/): paste text, see which tells fired, nothing uploaded.
-- [What is AI slop?](https://harness-humanizer-skill.vercel.app/ai-slop): the full taxonomy of tells, each mapped to its detector type.
-- [How to humanize AI text](https://harness-humanizer-skill.vercel.app/humanize-ai-text): the subtractive method, before/after examples, per-tool guidance.
-- [AI slop vs over-correction](https://harness-humanizer-skill.vercel.app/ai-slop-vs-over-correction): why most humanizers make prose worse, and how to avoid it.
+- [Home + free in-browser slop scorer](https://de-slop-ai.vercel.app/): paste text, see which tells fired, nothing uploaded.
+- [What is AI slop?](https://de-slop-ai.vercel.app/ai-slop): the full taxonomy of tells, each mapped to its detector type.
+- [How to humanize AI text](https://de-slop-ai.vercel.app/humanize-ai-text): the subtractive method, before/after examples, per-tool guidance.
+- [AI slop vs over-correction](https://de-slop-ai.vercel.app/ai-slop-vs-over-correction): why most humanizers make prose worse, and how to avoid it.
 
 ## Source & install
 

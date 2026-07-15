@@ -14,7 +14,7 @@ duplicates): awesome-lists → *technical substance*; AI directories → *AI-fir
 communities → *before→after demo first, pitch second*.
 
 **Canonical links:** repo `https://github.com/isatimur/de-slop` · site
-`https://harness-humanizer-skill.vercel.app/` · scorer `…/#tool`
+`https://de-slop-ai.vercel.app/` · scorer `…/#tool`
 
 ---
 

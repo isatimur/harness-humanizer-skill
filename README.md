@@ -8,7 +8,16 @@
 [![Dependencies: 0](https://img.shields.io/badge/dependencies-0-success.svg)](tests/check_no_deps.py)
 [![Star on GitHub](https://img.shields.io/github/stars/isatimur/de-slop?style=social)](https://github.com/isatimur/de-slop/stargazers)
 
-**Version 0.4.0** · stdlib-only, zero-dependency · [Website + free slop scorer](https://harness-humanizer-skill.vercel.app/) · [What is AI slop?](https://harness-humanizer-skill.vercel.app/ai-slop) · [Changelog](CHANGELOG.md) · MIT
+**Version 0.4.1** · stdlib-only, zero-dependency · [Website + free slop scorer](https://de-slop-ai.vercel.app/) · [What is AI slop?](https://de-slop-ai.vercel.app/ai-slop) · [Changelog](CHANGELOG.md) · MIT
+
+## Two surfaces (read this first)
+
+| Surface | What it does | What it does **not** do |
+|---|---|---|
+| **CLI / in-browser flagger** (`de-slop`, `flag_slop.py`, site scorer) | Detects surface slop *candidates*; optional `--score` bands | Does **not** rewrite prose |
+| **Skill / adapters / paste `PROMPT.md`** | Full loop: judge → triage → rewrite or flag hollow → report | Silent overwrite without your approval |
+
+Install the skill when you want rewrites. Use the CLI when you want a fast, offline, deterministic detector. They share the same tell taxonomy; only the skill does the model-side judgment.
 
 ## Install
 
@@ -18,8 +27,8 @@ npx skills add isatimur/de-slop
 
 Installs into Claude Code, Cursor, Copilot, Gemini, Codex, Windsurf, and [60+ more
 agents](#install--one-command-60-agents) from one `SKILL.md`. Then say *"humanize
-this"*, *"de-slop this"*, or *"this reads like ChatGPT"*. Python users: see the
-standalone [CLI flagger](#cli-the-deterministic-flagger).
+this"*, *"de-slop this"*, or *"this reads like ChatGPT"*. For detect-only (no
+model), see the [CLI flagger](#cli-the-deterministic-flagger).
 
 ## See it work
 
@@ -28,14 +37,13 @@ standalone [CLI flagger](#cli-the-deterministic-flagger).
 > It's worth noting that, in many cases, caching can often lead to significant
 > improvements in performance for a wide variety of applications.
 
-**After** — same claim, stated outright.
+**After** — same claim, stated outright. Padding deleted. No invented mechanism.
 
-> Caching cuts repeated work, so a cache hit returns in microseconds what a cache
-> miss spends milliseconds computing.
+> Caching improves performance for many applications.
 
-The hedging is gone ("it's worth noting", "in many cases", "often", "a wide
-variety"); the mechanism is named. Meaning preserved, voice not faked — that's the
-whole bar. [More before→after pairs →](references/examples.md)
+The hedging is gone ("it's worth noting", "in many cases", "often", "significant",
+"a wide variety"); the original claim stays. Meaning preserved, voice not faked,
+no new statistics — that's the whole bar. [More before→after pairs →](references/examples.md)
 
 > ⭐ **If this saves you from one more "it's worth noting that…" paragraph, star the repo** — it's how other people find the skill.
 
@@ -138,7 +146,7 @@ de-slop yourfile.md --profile stop-slop   # aggressive opt-in rules
 
 `pipx install git+https://github.com/isatimur/de-slop` works
 identically. Or score text with no install at all in the
-**[free in-browser tool](https://harness-humanizer-skill.vercel.app/#tool)**.
+**[free in-browser tool](https://de-slop-ai.vercel.app/#tool)**.
 
 > **PyPI release pending.** Trusted-publisher registration is in progress; once it
 > lands, `uvx --from de-slop …` and `pipx install de-slop` will
@@ -162,9 +170,10 @@ docs/                    # the website (Vercel): landing page, glossary, slop.js
 tests/                   # dev-only; omittable from a runtime install
   corpus/*.jsonl         # labeled slop / clean / over-correction samples
   eval.py                # deterministic detector gate (recall, specificity, …)
+  rewrite_eval.py        # fidelity rewrite-contract fixtures
   check_js_parity.py     # docs/slop.js must match flag_slop.py's rule inventory
   thresholds.json        # pass/fail gates
-.github/workflows/ci.yml # self-test + eval + adapter-sync + parity, Python 3.9–3.13, no pip
+.github/workflows/ci.yml # self-test + eval + rewrite-contract + adapter-sync + parity, Python 3.9–3.13, no pip
 ```
 
 The runtime skill is just `SKILL.md`, `references/`, and `scripts/` (or a single
@@ -186,12 +195,13 @@ rationale live in [`references/slop-catalogue.md`](references/slop-catalogue.md)
 ```bash
 python3 scripts/flag_slop.py --selftest    # detector smoke test
 python3 tests/eval.py                      # full detector eval against the corpus
+python3 tests/rewrite_eval.py              # fidelity rewrite-contract fixtures
 python3 tests/check_no_deps.py             # confirm it's still stdlib-only
 python3 tests/check_js_parity.py           # docs/slop.js mirrors the Python rule set
 python3 scripts/build_adapters.py --check  # adapters are in sync with SKILL.md
 ```
 
-CI runs all five on Python 3.9–3.13, no `pip install` step anywhere.
+CI runs these on Python 3.9–3.13, no `pip install` step anywhere.
 
 The detector also emits a per-paragraph **slop score** with
 `python3 scripts/flag_slop.py --score <file>`. That score measures *surface slop
