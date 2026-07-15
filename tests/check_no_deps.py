@@ -16,7 +16,8 @@ _ROOT = os.path.dirname(_HERE)
 
 # Modules the project deliberately uses. Everything else must be stdlib.
 _ALLOWED = {"json", "re", "sys", "os", "ast", "argparse", "io", "pathlib",
-            "collections", "itertools", "textwrap", "math", "string"}
+            "collections", "itertools", "textwrap", "math", "string",
+            "__future__"}  # always stdlib; 3.9 lacks sys.stdlib_module_names
 
 # 3.10+ knows its own stdlib; older versions fall back to the allowlist only.
 _STDLIB = getattr(sys, "stdlib_module_names", frozenset())
