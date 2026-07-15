@@ -67,3 +67,51 @@
 {"id": "slop-real-stakes-003", "text": "In today's fast-paced world incident response must be proactive.", "expect": ["stakes"], "band": "fail", "source": "real-world", "note": "security vendor email"}
 {"id": "slop-real-list-003", "text": "Here are several key factors that drive up agent failure rates.", "expect": ["listicle"], "band": "weak", "source": "real-world", "note": "agent eval writeup intro"}
 {"id": "slop-real-emdash-002", "text": "It was simple — elegant — and wrong — as production proved.", "expect": ["emdash"], "band": "moderate", "source": "real-world", "note": "postmortem narration"}
+{"id": "slop-rw2-hedge-001", "text": "It's worth noting that most outages trace back to a config change, not a code change.", "expect": ["hedge"], "band": "moderate", "source": "real-world", "note": "SRE blog hedge over a real claim"}
+{"id": "slop-rw2-hedge-002", "text": "That said, the rollout was paused after the first canary regressed.", "expect": ["hedge"], "band": "moderate", "source": "real-world", "note": "status page hedge"}
+{"id": "slop-rw2-hedge-003", "text": "It is important to remember that backups are useless until you test a restore.", "expect": ["hedge"], "band": "moderate", "source": "real-world", "note": "ops wiki"}
+{"id": "slop-rw2-stakes-001", "text": "In today's modern era, every company is a software company whether it likes it or not.", "expect": ["stakes"], "band": "fail", "source": "real-world", "note": "keynote abstract"}
+{"id": "slop-rw2-stakes-002", "text": "The stakes have never been higher for data governance teams.", "expect": ["stakes"], "band": "fail", "source": "real-world", "note": "compliance webinar"}
+{"id": "slop-rw2-list-001", "text": "There are a number of reasons your p99 might spike under load.", "expect": ["listicle"], "band": "weak", "source": "real-world", "note": "perf tutorial opener"}
+{"id": "slop-rw2-list-002", "text": "Let's explore how retrieval-augmented generation actually works under the hood.", "expect": ["listicle"], "band": "weak", "source": "real-world", "note": "RAG explainer"}
+{"id": "slop-rw2-list-003", "text": "Here are some things to consider before adopting a service mesh.", "expect": ["listicle"], "band": "weak", "source": "real-world", "note": "platform post"}
+{"id": "slop-rw2-trans-001", "text": "Moreover, the approach scales cleanly across regions.", "expect": ["transition"], "band": "weak", "source": "real-world", "note": "design doc glue"}
+{"id": "slop-rw2-trans-002", "text": "Furthermore, teams reported higher satisfaction after the change.", "expect": ["transition"], "band": "weak", "source": "real-world", "note": "retro summary"}
+{"id": "slop-rw2-candor-001", "text": "Let's be honest, your test suite is slow because nobody owns it.", "expect": ["candor"], "band": "weak", "source": "real-world", "note": "eng manager blog"}
+{"id": "slop-rw2-candor-002", "text": "Truth be told, the migration took three times longer than we scoped.", "expect": ["candor"], "band": "moderate", "source": "real-world", "note": "postmortem candor"}
+{"id": "slop-rw2-rhetq-001", "text": "Have you ever wondered why your CI bill keeps climbing?", "expect": ["rhetq"], "band": "weak", "source": "real-world", "note": "vendor ad"}
+{"id": "slop-rw2-delve-001", "text": "Let's delve into the internals of the scheduler.", "expect": ["delve"], "band": "weak", "source": "real-world", "note": "deep-dive intro"}
+{"id": "slop-rw2-delve-002", "text": "This release is a testament to two years of platform investment.", "expect": ["delve"], "band": "weak", "source": "real-world", "note": "launch blog"}
+{"id": "slop-rw2-delve-003", "text": "When it comes to security, defense in depth is non-negotiable.", "expect": ["delve"], "band": "moderate", "source": "real-world", "note": "security post cliché opener"}
+{"id": "slop-rw2-weasel-001", "text": "The SDK integrates with a wide range of downstream tools.", "expect": ["weaselquant"], "band": "moderate", "source": "real-world", "note": "SDK docs"}
+{"id": "slop-rw2-weasel-002", "text": "We support countless deployment topologies out of the box.", "expect": ["weaselquant"], "band": "moderate", "source": "real-world", "note": "marketing overreach"}
+{"id": "slop-rw2-weasel-003", "text": "A myriad of factors influence embedding quality.", "expect": ["weaselquant"], "band": "moderate", "source": "real-world", "note": "ML blog"}
+{"id": "slop-rw2-negpar-001", "text": "It's not just faster, it's a fundamentally different workflow.", "expect": ["negparallel"], "band": "weak", "source": "real-world", "note": "product launch cadence"}
+{"id": "slop-rw2-concl-001", "text": "In summary, adopting typed configs removed a whole class of bugs.", "expect": ["conclusion"], "band": "moderate", "source": "real-world", "note": "wrap-up"}
+{"id": "slop-rw2-concl-002", "text": "All in all, the rewrite paid for itself within a quarter.", "expect": ["conclusion"], "band": "moderate", "source": "real-world", "note": "case study close"}
+{"id": "slop-rw2-emp-001", "text": "Our best-in-class platform delivers a frictionless developer experience.", "expect": ["empower"], "band": "fail", "source": "real-world", "note": "homepage hero"}
+{"id": "slop-rw2-emp-002", "text": "A state-of-the-art engine that supercharges your data pipelines.", "expect": ["empower"], "band": "fail", "source": "real-world", "note": "data vendor"}
+{"id": "slop-rw2-emp-003", "text": "Unlock next-generation productivity with our AI copilot.", "expect": ["empower"], "band": "fail", "source": "real-world", "note": "ad copy"}
+{"id": "slop-rw2-tri-001", "text": "Build software that is secure, scalable, and reliable by default.", "expect": ["triadic"], "band": "moderate", "source": "real-world", "note": "framework tagline"}
+{"id": "slop-rw2-cta-001", "text": "Ready to level up? Let's dive in.", "expect": ["calltoaction"], "band": "weak", "source": "real-world", "note": "course intro"}
+{"id": "slop-rw2-cta-002", "text": "Without further ado, here's the new dashboard.", "expect": ["calltoaction"], "band": "weak", "source": "real-world", "note": "release note"}
+{"id": "slop-rw2-emdash-001", "text": "Simple — fast — and reliable — that was the pitch.", "expect": ["emdash"], "band": "moderate", "source": "real-world", "note": "pitch slide"}
+{"id": "slop-rw2-throat-001", "text": "The real problem here is that nobody defined what 'done' means.", "expect": ["throatclear"], "band": "weak", "source": "real-world", "note": "process critique"}
+{"id": "slop-rw2-throat-002", "text": "Let me be clear: retries without idempotency make outages worse.", "expect": ["throatclear"], "band": "weak", "source": "real-world", "note": "reliability post"}
+{"id": "slop-rw2-emph-001", "text": "Make no mistake, unbounded queues will eventually take you down.", "expect": ["emphasis_crutch"], "band": "weak", "source": "real-world", "note": "capacity post"}
+{"id": "slop-rw2-meta-001", "text": "In this post, we'll walk through migrating from REST to gRPC.", "expect": ["metacommentary"], "band": "weak", "source": "real-world", "note": "tutorial meta opener"}
+{"id": "slop-rw2-meta-002", "text": "Spoiler: the bottleneck was DNS the whole time.", "expect": ["metacommentary"], "band": "weak", "source": "real-world", "note": "debugging story"}
+{"id": "slop-rw2-biz-001", "text": "Let's circle back on the roadmap once we move the needle on activation.", "expect": ["bizjargon"], "band": "weak", "source": "real-world", "note": "planning meeting"}
+{"id": "slop-rw2-biz-002", "text": "We should double down on the low-hanging fruit this sprint.", "expect": ["bizjargon"], "band": "weak", "source": "real-world", "note": "sprint planning"}
+{"id": "slop-rw2-asst-001", "text": "Great question! Let me break that down for you step by step.", "expect": ["assistantvoice"], "band": "fail", "source": "real-world", "note": "chatbot reply"}
+{"id": "slop-rw2-asst-002", "text": "I'd be happy to help you architect this system.", "expect": ["assistantvoice"], "band": "fail", "source": "real-world", "note": "assistant courtesy"}
+{"id": "slop-rw2-copula-001", "text": "The library boasts first-class TypeScript support.", "expect": ["copula"], "band": "weak", "source": "real-world", "note": "readme puffery"}
+{"id": "slop-rw2-copula-002", "text": "This partnership stands as a testament to open collaboration.", "expect": ["copula"], "band": "weak", "source": "real-world", "note": "press release"}
+{"id": "slop-rw2-hedgestack-001", "text": "It may possibly be a caching issue, but we're not sure yet.", "expect": ["hedgestack"], "band": "weak", "source": "real-world", "note": "triage note"}
+{"id": "slop-rw2-notonly-001", "text": "Not only is it open source, but also it ships with a hosted option.", "expect": ["notonly"], "band": "moderate", "source": "real-world", "note": "comparison page"}
+{"id": "slop-rw2-intens-001", "text": "This is honestly a genuinely underrated pattern for retries.", "expect": ["intensifier_filler"], "band": "moderate", "source": "real-world", "note": "hn comment"}
+{"id": "slop-rw2-fill-001", "text": "At the end of the day, correctness beats cleverness.", "expect": ["hedge"], "band": "moderate", "source": "real-world", "note": "principle stated with filler"}
+{"id": "slop-rw2-stakes-003", "text": "Now more than ever, latency is a feature, not an afterthought.", "expect": ["stakes"], "band": "fail", "source": "real-world", "note": "perf marketing"}
+{"id": "slop-rw2-list-004", "text": "There are several important factors to weigh when sizing a Kafka cluster.", "expect": ["listicle"], "band": "weak", "source": "real-world", "note": "infra guide"}
+{"id": "slop-rw2-delve-004", "text": "Navigating the complex world of IAM policies is a rite of passage.", "expect": ["delve"], "band": "moderate", "source": "real-world", "note": "cloud post"}
+{"id": "slop-rw2-transform-001", "text": "Data becomes insight. Insight becomes advantage.", "expect": ["transformchain"], "band": "weak", "source": "real-world", "note": "analytics tagline (also OC-adjacent)"}

@@ -35,3 +35,29 @@
 {"id": "clean-real-024", "text": "The library reads and writes JSON, CSV, and Parquet.", "expect": [], "band": "strong", "source": "examples.md", "note": "fidelity-safe formats after"}
 {"id": "clean-real-025", "text": "Caching strategies split three ways: cache-aside, write-through, and write-behind.", "expect": [], "band": "strong", "source": "examples.md", "note": "fidelity-safe delve-after with names in source"}
 {"id": "clean-real-026", "text": "Picking a queue means trading off throughput, ordering, and redelivery — most brokers let you optimize two of the three, not all.", "expect": [], "band": "strong", "source": "examples.md", "note": "case A after"}
+{"id": "clean-rw2-001", "text": "The consumer lagged because we set max.poll.records too high for the handler's per-message cost.", "expect": [], "band": "strong", "source": "real-world", "note": "kafka tuning note"}
+{"id": "clean-rw2-002", "text": "We shard by tenant id so a noisy customer can't starve the rest.", "expect": [], "band": "strong", "source": "real-world", "note": "multitenant design"}
+{"id": "clean-rw2-003", "text": "The flake was a clock skew between the test runner and the token issuer.", "expect": [], "band": "strong", "source": "real-world", "note": "test flake root cause"}
+{"id": "clean-rw2-004", "text": "Rate-limit at the edge; the origin should never see more than it can serve.", "expect": [], "band": "strong", "source": "real-world", "note": "edge rule"}
+{"id": "clean-rw2-005", "text": "We roll forward, not back: a bad deploy gets a fix-forward within the hour or an automated revert.", "expect": [], "band": "strong", "source": "real-world", "note": "deploy policy"}
+{"id": "clean-rw2-006", "text": "The agent kept retrying a 400 because the error schema looked like a 500 to its parser.", "expect": [], "band": "strong", "source": "real-world", "note": "agent bug"}
+{"id": "clean-rw2-007", "text": "Store idempotency keys for 24 hours so a client retry never double-charges.", "expect": [], "band": "strong", "source": "real-world", "note": "payments rule"}
+{"id": "clean-rw2-008", "text": "We cap the context window at 8k tokens and summarize older turns into a running memo.", "expect": [], "band": "strong", "source": "real-world", "note": "context management"}
+{"id": "clean-rw2-009", "text": "The migration is reversible until the drop-column step; everything before it is additive.", "expect": [], "band": "strong", "source": "real-world", "note": "schema migration"}
+{"id": "clean-rw2-010", "text": "A code review that only checks style misses the design bug that costs a rewrite.", "expect": [], "band": "strong", "source": "real-world", "note": "review philosophy"}
+{"id": "clean-rw2-011", "text": "We measure eval pass rate per tool, not per model, because the tools are what break.", "expect": [], "band": "strong", "source": "real-world", "note": "eval design"}
+{"id": "clean-rw2-012", "text": "The queue depth alarm fires at 10k because that's where consumers fall behind for good.", "expect": [], "band": "strong", "source": "real-world", "note": "alerting threshold"}
+{"id": "clean-rw2-013", "text": "Prefer a boring database you can operate over an exciting one you can't.", "expect": [], "band": "strong", "source": "real-world", "note": "ops taste"}
+{"id": "clean-rw2-014", "text": "We gate agent write access behind a human approval step for anything touching billing.", "expect": [], "band": "strong", "source": "real-world", "note": "authority boundary"}
+{"id": "clean-rw2-015", "text": "The retro found no single cause; three small gaps lined up to let the outage through.", "expect": [], "band": "strong", "source": "real-world", "note": "swiss-cheese finding"}
+{"id": "clean-rw2-016", "text": "Feature flags default off in prod and on in staging so the blast radius stays small.", "expect": [], "band": "strong", "source": "real-world", "note": "flag policy"}
+{"id": "clean-rw2-017", "text": "We leverage read replicas for reporting so analytics never blocks checkout writes.", "expect": [], "band": "strong", "source": "real-world", "note": "technical leverage, silent"}
+{"id": "clean-rw2-018", "text": "Robust retries here means bounded attempts, jitter, and a dead-letter queue for the rest.", "expect": [], "band": "strong", "source": "real-world", "note": "standalone robust, silent"}
+{"id": "clean-rw2-019", "text": "Very large payloads bypass the cache and stream straight from object storage.", "expect": [], "allow": ["intensifier_degree"], "band": "strong", "source": "real-world", "note": "legit degree word"}
+{"id": "clean-rw2-020", "text": "The token refresh races when two tabs post within the same second; we added a lock.", "expect": [], "band": "strong", "source": "real-world", "note": "concrete race"}
+{"id": "clean-rw2-021", "text": "Write the runbook before the launch, not after the first 3am page.", "expect": [], "band": "strong", "source": "real-world", "note": "ops advice"}
+{"id": "clean-rw2-022", "text": "The model picks the wrong tool when two tools share a verb in their description.", "expect": [], "band": "strong", "source": "real-world", "note": "tool naming lesson"}
+{"id": "clean-rw2-023", "text": "Keep the schema migration and the code that needs it in separate deploys.", "expect": [], "band": "strong", "source": "real-world", "note": "deploy ordering"}
+{"id": "clean-rw2-024", "text": "Cache invalidation here is a version bump on the key, not a delete-and-hope.", "expect": [], "band": "strong", "source": "real-world", "note": "cache strategy"}
+{"id": "clean-rw2-025", "text": "We keep the prompt in the repo and review changes to it like any other code.", "expect": [], "band": "strong", "source": "real-world", "note": "prompt as code"}
+{"id": "clean-rw2-026", "text": "The p95 target is 200ms; anything slower routes to the degraded read path.", "expect": [], "band": "strong", "source": "real-world", "note": "SLO with fallback"}
