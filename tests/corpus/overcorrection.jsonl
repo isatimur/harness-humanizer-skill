@@ -24,3 +24,17 @@
 {"id": "oc-real-intens-001", "text": "I'll be honest this is a truly revolutionary way to ship Markdown.", "expect": ["candor", "intensifier_filler"], "band": "fail", "source": "real-world", "note": "fake first person + filler"}
 {"id": "oc-real-cta-001", "text": "Buckle up — your old roadmap is already obsolete.", "expect": ["calltoaction"], "band": "weak", "source": "real-world", "note": "launch post voice"}
 {"id": "oc-real-candor-003", "text": "Let's be real, most humanizers just swap in a different costume of slop.", "expect": ["candor"], "band": "weak", "source": "real-world", "note": "meta critique that is itself edgy-slop"}
+{"id": "oc-rw2-candor-001", "text": "Let's be honest — your microservices are a distributed monolith with extra billing.", "expect": ["candor"], "band": "weak", "source": "real-world", "note": "hot take rewrite"}
+{"id": "oc-rw2-candor-002", "text": "Here's the thing: most 'AI strategies' are a vendor logo on a slide.", "expect": ["candor"], "band": "weak", "source": "real-world", "note": "edgy opener"}
+{"id": "oc-rw2-stakes-001", "text": "In today's world, shipping without tracing is flying blind at night.", "expect": ["stakes"], "band": "fail", "source": "real-world", "note": "manufactured stakes rewrite"}
+{"id": "oc-rw2-emdash-001", "text": "Fast — cheap — good — pick none, apparently.", "expect": ["emdash"], "band": "weak", "source": "real-world", "note": "theatrics"}
+{"id": "oc-rw2-binary-001", "text": "The problem isn't the model. It's your context window.", "expect": ["binarycontrast"], "band": "weak", "source": "real-world", "note": "reveal cadence"}
+{"id": "oc-rw2-neglist-001", "text": "It wasn't the DB. It wasn't the cache. It was the load balancer all along.", "expect": ["neglisting"], "band": "weak", "source": "real-world", "note": "staccato negative listing"}
+{"id": "oc-rw2-transform-001", "text": "Toil becomes automation. Automation becomes leverage.", "expect": ["transformchain"], "band": "weak", "source": "real-world", "note": "false momentum"}
+{"id": "oc-rw2-correct-001", "text": "You've been told more tests mean fewer bugs. Here's the truth: coverage lies.", "expect": ["correctivereveal"], "band": "weak", "source": "real-world", "note": "contrarian posture"}
+{"id": "oc-rw2-force-001", "text": "You can't have reliability without observability. You can't have one without the other.", "expect": ["forcedcohesion"], "band": "weak", "source": "real-world", "note": "manufactured profundity"}
+{"id": "oc-rw2-throat-001", "text": "Let me be clear: your uptime number is marketing, not reliability.", "expect": ["throatclear"], "band": "weak", "source": "real-world", "note": "confide-then-jab"}
+{"id": "oc-rw2-emp-001", "text": "Truth be told this framework is an absolute game-changer.", "expect": ["candor", "empower"], "band": "fail", "source": "real-world", "note": "candor + buzzword combo"}
+{"id": "oc-rw2-reveal-001", "text": "Everyone says Kubernetes is the answer. They're wrong for teams under ten.", "expect": ["correctivereveal"], "band": "weak", "source": "real-world", "note": "everyone-says posture"}
+{"id": "oc-rw2-intens-001", "text": "I'll be honest this is a genuinely game-changing abstraction.", "expect": ["candor", "empower", "intensifier_filler"], "band": "fail", "source": "real-world", "note": "triple over-correction"}
+{"id": "oc-rw2-cta-001", "text": "Buckle up — this pattern will change how you think about queues.", "expect": ["calltoaction"], "band": "weak", "source": "real-world", "note": "hype cta"}
