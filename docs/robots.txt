@@ -22,4 +22,4 @@ Allow: /
 User-agent: Google-Extended
 Allow: /
 
-Sitemap: https://harness-humanizer-skill.vercel.app/sitemap.xml
+Sitemap: https://de-slop-ai.vercel.app/sitemap.xml

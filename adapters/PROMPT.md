@@ -170,6 +170,10 @@ Apply these to every rewrite. The goal is to remove slop, not to perform
 - You may **not add** a claim, opinion, statistic, example, or stance that was not
   already in the source. If the point isn't there, that's a HOLLOW span — flag it,
   don't fill it.
+- **No invented numbers, names, or mechanisms.** If the source never said
+  "microseconds," "Postgres," "JSON/CSV," or a similar specific, you may not put
+  it in the rewrite — even when it would sound sharper. Specificity without
+  source grounding is fabrication.
 
 ## Over-correction anti-patterns (never inject these)
 
@@ -212,47 +216,65 @@ found a hollow span — flag it and move on.
 Before→after pairs showing each move. Study the *reasoning*, not just the
 rewrite — the judgment of rewordable vs. hollow is the whole skill.
 
-## Rewordable: empty hedging
+**Fidelity rule for every "After" below:** no new claim, number, name, or
+mechanism that was not already in the **Before** (or its immediately quoted
+surrounding context). Pure subtraction is the default. If a rewrite needs a
+specific (Postgres, microseconds, JSON/CSV…), the surrounding text must already
+supply that specific — otherwise FLAG as HOLLOW.
+
+---
+
+## Rewordable: empty hedging (pure subtraction)
 
 **Before** (weak — hedging buries a real claim):
 > It's worth noting that, in many cases, caching can often lead to significant
 > improvements in performance for a wide variety of applications.
 
-**After** (strong — the claim, stated):
-> Caching cuts repeated work, so a cache hit returns in microseconds what a cache
-> miss spends milliseconds computing.
+**After** (strong — the claim, stated; only padding removed):
+> Caching improves performance for many applications.
 
-Why: the source *had* a claim (caching improves performance); it was smothered by
-"it's worth noting", "in many cases", "often", "a wide variety." Subtract the
-hedging, name the mechanism. Meaning preserved.
+Why: the source *had* a claim (caching improves performance). "It's worth
+noting", "in many cases", "often", "significant", "a wide variety of" add no
+meaning. Subtract them. Do **not** invent hit/miss latencies or a mechanism the
+source never named.
 
-## Rewordable: listicle stem
+---
 
-**Before** (weak — stem with no point of view):
-> There are several important factors to consider when choosing a database. Let's
-> explore some of the key considerations.
+## Rewordable: listicle stem (only when context supplies the factors)
 
-**After** (strong — commits to the actual point):
-> Choosing a database is mostly choosing what you're willing to give up: a
+**Before** (weak stem, but a claim arrives in the next sentence of the same
+block):
+> There are several important factors to consider when choosing a database. A
 > document store buys flexible schemas at the cost of joins; a relational store
 > trades the reverse.
 
-Why: only rewrite this way if the surrounding text actually makes that tradeoff
-point. If the source never names a single factor, this is HOLLOW — see below.
+**After** (strong — stem gone, existing tradeoff kept):
+> Choosing a database means choosing what you give up: a document store buys
+> flexible schemas at the cost of joins; a relational store trades the reverse.
 
-## Rewordable: smooth transition hiding no claim
+Why: the tradeoff was already in the source. If the source never names a single
+factor, the listicle stem alone is HOLLOW — see below. Do not invent document vs
+relational if only the stem exists.
+
+---
+
+## Rewordable: smooth transition → flag when no claim exists
 
 **Before** (weak — "moreover" glues two non-claims):
 > The system is designed to be scalable. Moreover, it is built with modern
 > technologies that ensure reliability and performance.
 
-**After** (strong — concrete, falsifiable):
-> The system scales horizontally: stateless workers behind a queue, so adding
-> capacity is adding workers. State lives in Postgres, the one component that
-> can't be cloned away.
+**CORRECT response** — flag it, do not invent architecture:
+> FLAG (hollow): "Scalable" and "modern technologies" name no mechanism. Deleting
+> the paragraph loses nothing. Needs a real claim (how it scales, what the stack
+> is), not rewording.
 
-Why: rewrite this way ONLY if the source's surrounding context supports those
-specifics. If "modern technologies" refers to nothing concrete, flag it.
+**WRONG response** — fabricating stack details (FAILURE):
+> ✗ "The system scales horizontally with stateless workers behind a queue; state
+> lives in Postgres…" — invents workers, queues, and Postgres the source never
+> mentioned.
+
+---
 
 ## Flag, don't fabricate: a hollow paragraph
 
@@ -272,15 +294,16 @@ specifics. If "modern technologies" refers to nothing concrete, flag it.
 > This invents a contrarian claim the source never made. Slop replaced with
 > edgy-slop. Do not do this.
 
+---
+
 ## Over-correction: slop → genuine sharpening (PASS) vs slop → edgy-slop (FAIL)
 
-**Before:**
+**Before** (has a claim: testing helps quality / development):
 > Testing is an important part of the development process that helps ensure
 > quality.
 
-**PASS** (sharpened, fidelity intact):
-> Tests are the only reason you can change code you wrote six months ago without
-> re-reading all of it.
+**PASS** (subtract + light sharpen; no new domain facts):
+> Testing helps ensure quality in development.
 
 **FAIL** (over-corrected — manufactured voice + stance the source didn't have):
 > ✗ "Let's be honest: if you're not testing, you're not really an engineer —
@@ -288,56 +311,69 @@ specifics. If "modern technologies" refers to nothing concrete, flag it.
 > Performed candor ("let's be honest"), a hot take, and an insult the source
 > never implied. Louder, still slop.
 
+**Also FAIL** (invented concreteness the source didn't earn):
+> ✗ "Tests are the only reason you can change code you wrote six months ago
+> without re-reading all of it." — crisp writing, but it adds a claim
+> (regression-without-reread) the before never made. Prefer the lean PASS above
+> unless the surrounding draft already argues that.
+
+---
+
 ## Rewordable: LLM-lexicon filler (delve / tapestry / realm)
 
-**Before** (weak — buzzword vocabulary, real point underneath):
+**Before** (weak lexicon *and* a named set of options in the same block):
 > Let's delve into the rich tapestry of options available in the realm of modern
-> caching strategies.
+> caching strategies: cache-aside, write-through, and write-behind.
 
-**After** (strong — names the actual options):
+**After** (strong — lexicon gone, named options kept):
 > Caching strategies split three ways: cache-aside, write-through, and
-> write-behind — each trades freshness against write latency differently.
+> write-behind.
 
-Why: rewrite this way ONLY if the source actually goes on to discuss those
-strategies. If "options" refers to nothing concrete, it's HOLLOW — flag it. The
-"delve/tapestry/realm" vocabulary is never the problem by itself; the absence of
-a named option is.
+Why: rewrite this way ONLY if the source names those strategies. If "options"
+refers to nothing concrete, it's HOLLOW — flag it. The "delve/tapestry/realm"
+vocabulary is never the problem by itself; the absence of a named option is.
+
+---
 
 ## Rewordable: corporate uplift (empower / leverage / seamless)
 
-**Before** (weak — buzzwords standing in for a mechanism):
+**Before** (weak — buzzwords *and* a stated mechanism in the same block):
 > Our platform empowers teams to leverage cutting-edge tooling for a seamless,
-> robust workflow.
+> robust workflow. It runs your existing CI config and caches build artifacts
+> across branches.
 
-**After** (strong — what it actually does):
-> The platform runs your existing CI config unchanged and adds one thing: it
-> caches build artifacts across branches, so a green main makes feature branches
-> build in seconds.
+**After** (strong — mechanism kept, marketing peeled off):
+> The platform runs your existing CI config and caches build artifacts across
+> branches.
 
-Why: the `empower` rule is sentence-aware. The marketing words here
-("empowers", "seamless", "cutting-edge") flag on their own; the riders
-("leverage", "robust") flag because they share the sentence with them. The fix is
-naming the mechanism, not deleting the words. If there's no mechanism to name,
-HOLLOW. (Note: standalone "we leverage connection pooling" or "robust error
-handling" in honest technical prose is deliberately *not* flagged — only the
-marketing register is.)
+Why: the `empower` rule is sentence-aware. Marketing words ("empowers",
+"seamless", "cutting-edge") flag; riders ("leverage", "robust") flag when they
+share that register. Fix by keeping the mechanism and dropping the uplift. If
+there's no mechanism to keep, HOLLOW. Standalone "we leverage connection pooling"
+or "robust error handling" in honest technical prose is deliberately *not*
+flagged.
+
+---
 
 ## Rewordable: vague quantifier (a wide variety of)
 
-**Before** (weak — "a wide variety" hides the absence of a count):
-> The library supports a wide variety of formats for a number of use cases.
+**Before** (vague opener, specific formats already named):
+> The library supports a wide variety of formats for a number of use cases: JSON,
+> CSV, and Parquet, read and write.
 
-**After** (strong — the actual list):
-> The library reads JSON, CSV, and Parquet, and writes all three back — enough for
-> ETL work, not enough to be a general serialization layer.
+**After** (strong — the actual list, quantifier gone):
+> The library reads and writes JSON, CSV, and Parquet.
 
-Why: rewrite ONLY if the source names the formats somewhere. If it never does,
-"a wide variety of" is concealing that there's no real list — HOLLOW.
+Why: rewrite ONLY if the source names the formats. If it never does, "a wide
+variety of" is concealing that there's no real list — HOLLOW. Do not invent
+JSON/CSV/Parquet to fill the hole.
+
+---
 
 ## The hard judgment call: REWORDABLE vs HOLLOW on near-identical prose
 
 These two look almost the same. The difference is whether a claim exists *in the
-surrounding context*, not in the sentence itself.
+surrounding context*, not in the stem alone.
 
 **Case A — REWORDABLE** (the next sentence supplies the point):
 > There are several factors to weigh when picking a queue. Throughput, ordering
@@ -360,19 +396,22 @@ to rescue Case B** — that's fabrication.
 The whole skill lives in telling A from B. When unsure, apply the removal test: if
 deleting the paragraph costs the reader nothing, it's hollow.
 
+---
+
 ## Over-correction: another PASS vs FAIL pair
 
 **Before:**
 > Documentation is an essential part of any software project.
 
-**PASS** (sharpened, fidelity intact):
-> Docs are the interface to your code for everyone who didn't write it — including
-> you, a year from now.
+**PASS** (claim stated without padding — no new story about "a year from now"):
+> Documentation is essential in software projects.
 
 **FAIL** (over-corrected — manufactured stakes + hot take the source never made):
 > ✗ "In today's ship-or-die world, undocumented code isn't just lazy — it's
 > sabotage." Manufactured stakes ("in today's…world"), em-dash theatrics, and an
 > accusation the source never implied. Louder, still slop.
+
+---
 
 ## Idempotence: already-strong prose
 

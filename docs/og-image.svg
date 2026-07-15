@@ -34,5 +34,5 @@
 
   <!-- footer row -->
   <text x="130" y="542" font-family="'IBM Plex Mono','Courier New',monospace" font-size="26" fill="#6b6354">MIT · zero-dependency</text>
-  <text x="1070" y="542" text-anchor="end" font-family="'IBM Plex Mono','Courier New',monospace" font-size="26" fill="#b3271e">harness-humanizer-skill.vercel.app</text>
+  <text x="1070" y="542" text-anchor="end" font-family="'IBM Plex Mono','Courier New',monospace" font-size="26" fill="#b3271e">de-slop-ai.vercel.app</text>
 </svg>

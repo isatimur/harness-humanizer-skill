@@ -4,9 +4,9 @@ Sequenced plan + ready-to-post copy for each channel. The angle that separates t
 from every other "humanizer": **it won't trade AI-slop for louder slop, and it passes
 its own detector.** Post when ready; nothing here auto-publishes.
 
-Links: site https://harness-humanizer-skill.vercel.app/ · repo
+Links: site https://de-slop-ai.vercel.app/ · repo
 https://github.com/isatimur/de-slop · scorer
-https://harness-humanizer-skill.vercel.app/#tool
+https://de-slop-ai.vercel.app/#tool
 
 ---
 

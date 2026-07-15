@@ -21,10 +21,14 @@ jobs:
           python-version: ${{ matrix.python-version }}
       - name: Zero-dependency guard
         run: python3 tests/check_no_deps.py
+      - name: Version strings in sync
+        run: python3 tests/check_version_sync.py
       - name: Detector self-test
         run: python3 scripts/flag_slop.py --selftest
       - name: Detector eval (gated)
         run: python3 tests/eval.py
+      - name: Rewrite-contract eval (fidelity fixtures)
+        run: python3 tests/rewrite_eval.py
       - name: Adapters in sync with source
         run: python3 scripts/build_adapters.py --check
       - name: Web scorer parity with detector

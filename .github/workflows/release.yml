@@ -1,6 +1,6 @@
 name: release
 
-# Publishes to PyPI on a version tag (e.g. `git tag v0.3.1 && git push --tags`).
+# Publishes to PyPI on a version tag (e.g. `git tag v0.4.0 && git push --tags`).
 # Uses PyPI Trusted Publishing (OIDC) — no API token is stored anywhere.
 #
 # One-time setup on PyPI → Account → Publishing → "Add a pending publisher":
@@ -44,6 +44,10 @@ jobs:
           python3 -m pip install --upgrade build twine
           python3 -m build
           python3 -m twine check dist/*
+      - name: Smoke-test the wheel
+        run: |
+          pip install dist/*.whl
+          de-slop --selftest
       - uses: actions/upload-artifact@v4
         with:
           name: dist

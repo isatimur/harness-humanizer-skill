@@ -4,6 +4,33 @@ All notable changes to this project are documented here. Format follows
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/); this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.4.1] — 2026-07-15
+
+Post-review hardening: rebrand finish, fidelity fixes, larger corpus, rewrite-eval.
+
+### Changed
+- **Canonical website URLs** now point at
+  [`https://de-slop-ai.vercel.app/`](https://de-slop-ai.vercel.app/) (was the
+  transitional `harness-humanizer-skill.vercel.app` slug, which now redirects).
+- **Flagship before→after** (README, `examples.md`, site cards) rewritten for
+  pure fidelity — padding-only rewrites; no invented microseconds, Postgres, or
+  format lists. Guardrails now say explicitly: no invented numbers/names/mechanisms.
+- **README** leads with a **CLI vs skill** surface table so detect-only and
+  rewrite roles cannot be confused.
+- Examples that *do* name concretes now put that context **in the Before**, so
+  Afters that keep those names stay fidelity-legal.
+
+### Added
+- **Real-world corpus growth** — labeled slop / clean / over-correction samples
+  expanded well past the previous ~50-line gate corpus.
+- **`tests/rewrite_eval.py` + `tests/fixtures/rewrite_cases.jsonl`** — a
+  deterministic gate for hollow-vs-reword decisions and fidelity-safe after
+  pairs (not model-dependent; catches demo regressions).
+
+### Fixed
+- Local skill installs should use `de-slop`, not a leftover
+  `harness-humanizer` directory (dual-install trigger collision).
+
 ## [0.4.0] — 2026-07-11
 
 The rename release: **harness-humanizer is now de-slop** — the name people
@@ -21,6 +48,10 @@ actually use when they ask for it.
   generated adapter (Cursor, Copilot, Codex/`AGENTS.md`, Gemini, Windsurf,
   paste-anywhere prompt). `npx skills add isatimur/de-slop` resolves to the new
   repo path.
+- **Migration for installed copies:** if you have the skill installed under the
+  old name (e.g. `~/.claude/skills/harness-humanizer`, or the
+  `harness-humanizer` plugin), remove it and reinstall as `de-slop` — otherwise
+  both copies may trigger on the same request.
 - Version strings unified at 0.4.0 across `pyproject.toml`, `flag_slop.py`,
   the plugin manifest, the README, and the website (which had drifted between
   v0.3.0 and v0.3.1 in different sections of the same page).
@@ -31,8 +62,7 @@ actually use when they ask for it.
   exhibit, and the footnotes now say so.
 
 ### Unchanged
-- The website stays at `harness-humanizer-skill.vercel.app` for now; a domain
-  move will be its own release note when it happens.
+- Website URL was still transitional in 0.4.0; full domain cleanup is in **0.4.1**.
 - Detector rules, rubric, scoring, and the `flag()` output contract are
   untouched — this release changes names, not behavior.
 
@@ -56,7 +86,7 @@ in them were updated to the current name to stay copy-pasteable.
 
 ### Changed
 - Canonical home consolidated on Vercel: GitHub Pages retired, repo homepage and
-  README links point at `harness-humanizer-skill.vercel.app` (clean `/ai-slop` URL).
+  README links point at `de-slop-ai.vercel.app` (clean `/ai-slop` URL).
 
 ## [0.3.0] — 2026-06-18
 
