@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-marketplace-manifest.json",
+  "name": "de-slop",
+  "owner": {
+    "name": "Timur Isachenko",
+    "url": "https://github.com/isatimur"
+  },
+  "description": "De-slop AI prose — detect slop, rewrite to a real point of view, self-score, and flag hollow spans instead of faking claims.",
+  "plugins": [
+    {
+      "name": "de-slop",
+      "source": "./",
+      "description": "The de-slop skill: removes AI-slop (empty hedging, listicle stems, filler) and rewrites toward a real point of view; self-scores against an embedded rubric and flags hollow spans rather than fabricating.",
+      "homepage": "https://github.com/isatimur/de-slop",
+      "license": "MIT",
+      "keywords": ["de-slop", "humanize", "ai-slop", "writing", "editing"]
+    }
+  ]
+}
