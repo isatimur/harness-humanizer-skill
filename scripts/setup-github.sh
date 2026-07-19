@@ -14,13 +14,13 @@ set -euo pipefail
 REPO="isatimur/de-slop"
 
 # --- Description + homepage --------------------------------------------------
-# Homepage is intentionally the old de-slop-ai.vercel.app domain
-# (see CHANGELOG 0.4.0 "Unchanged"); update it in the same change as any future domain move.
+# Homepage is the canonical site (de-slop-ai.vercel.app since the 0.4.x domain
+# move); keep this in sync with SUBMISSIONS.md's canonical links on any change.
 gh repo edit "$REPO" \
   --description "Portable Claude Code skill that de-slops AI prose — detect, rewrite to a real point of view, self-score, iterate. Fidelity-first; flags hollow spans instead of faking them." \
   --homepage "https://de-slop-ai.vercel.app/"
 
-# --- Topics (13, replaced exactly) -------------------------------------------
+# --- Topics (16, replaced exactly) -------------------------------------------
 # `gh repo edit --add-topic` is additive only — it can never remove a stale
 # topic. PUT the full names[] list instead, which genuinely replaces the set.
 gh api -X PUT "repos/$REPO/topics" \
@@ -36,7 +36,10 @@ gh api -X PUT "repos/$REPO/topics" \
   -f "names[]=cursor" \
   -f "names[]=developer-tools" \
   -f "names[]=humanizer" \
-  -f "names[]=llm"
+  -f "names[]=llm" \
+  -f "names[]=claude-code-plugin" \
+  -f "names[]=claude-plugin" \
+  -f "names[]=claude-skills"
 
 # --- Social Preview (manual, one-time) --------------------------------------
 # gh has no API for the Social Preview image, so set it by hand once:
